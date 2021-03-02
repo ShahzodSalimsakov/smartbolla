@@ -1,12 +1,7 @@
-import Link from 'next/Link'
+import {MainLayout} from "../../components/MainLayout";
 
-export default function Media() {
-    return (
-        <>
-        <h1>Media</h1>
-        <Link href="/">
-            <a>Back Home</a>
-        </Link>
-        </>
-    );
+function Media() {
+  return <MainLayout>Media</MainLayout>
 }
+
+export default Media
