@@ -1,7 +1,7 @@
 import {MainLayout} from "../../components/MainLayout";
 
-function Contacts() {
-  return <MainLayout>Contact</MainLayout>
+function Media() {
+  return <MainLayout>Media</MainLayout>
 }
 
-export default Contacts
+export default Media
