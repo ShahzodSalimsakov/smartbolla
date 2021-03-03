@@ -1,12 +1,7 @@
-import Link from 'next/Link'
+import {MainLayout} from "../../components/MainLayout";
 
-export default function Contacts() {
-    return (
-        <>
-        <h1>Contacts</h1>
-        <Link href="/">
-            <a>Back Home</a>
-        </Link>
-        </>
-    );
+function Contacts() {
+  return <MainLayout>Contact</MainLayout>
 }
+
+export default Contacts

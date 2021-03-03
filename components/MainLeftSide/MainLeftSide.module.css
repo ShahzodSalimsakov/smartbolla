@@ -1,0 +1,13 @@
+.leftSide {
+    width: 70px;
+    height: 100vh;
+    padding-top: 100px;
+}
+
+.rotatedContent {
+    transform: rotate(
+            -90deg
+    ) translate(-100%, 0);
+    width: 100vh;
+    transform-origin: 0 0;
+}
