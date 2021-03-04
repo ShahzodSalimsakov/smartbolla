@@ -1,5 +1,7 @@
+import {MainLayout} from "../../components/MainLayout";
+
 function Invest() {
-  return (<></>)
+  return <MainLayout>Invest</MainLayout>
 }
 
 export default Invest
