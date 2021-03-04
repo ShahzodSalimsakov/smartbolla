@@ -1,0 +1,38 @@
+.headerMenuItem {
+    position: relative;
+    padding: 0 10px;
+}
+
+.headerMenuItem:first-child {
+    padding-left: 20px;
+}
+
+.headerMenuItem:first-child::before {
+    display: block;
+    content: '';
+    width: 70px;
+    background: #fff;
+    height: 1px;
+    position: absolute;
+    right: 0;
+    transform: rotate(
+            125deg
+    );
+    top: 0;
+    transform-origin: 0 -20px;
+}
+
+.headerMenuItem::after {
+    display: block;
+    content: '';
+    width: 70px;
+    background: #fff;
+    height: 1px;
+    position: absolute;
+    right: 0;
+    transform: rotate(
+            125deg
+    );
+    top: 0;
+    transform-origin: 55px 8px;
+}

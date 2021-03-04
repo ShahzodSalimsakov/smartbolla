@@ -6,17 +6,17 @@
 .rotatedContent {
     transform: rotate(
             -90deg
-    ) translate(-20%, 0);
+    ) translate(-100%, 0);
     width: 100vh;
     transform-origin: 0 0;
-    padding-right: 100px;
+    padding-right: 60px;
 }
 .rotatedContent::after {
     display: block;
     content: '';
     height: 1px;
     background: #fff;
-    width: calc(100% - 100px);
+    width: calc(100% - 60px);
     position: absolute;
-    bottom: 0;
+    bottom: -14px;
 }

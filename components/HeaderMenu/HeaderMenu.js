@@ -1,20 +1,5 @@
 import Link from "next/link";
-
-export default function HeaderMenu() {
-  return (
-      <>
-        {
-          navButtons.map(button => (
-              <Link href={button.path} key={button.label}>
-                <a className='text-white uppercase mr-3'>
-                  {button.label}
-                </a>
-              </Link>
-          ))
-        }
-      </>
-  )
-}
+import styles from './HeaderMenu.module.css'
 
 const navButtons = [
   {
@@ -42,3 +27,25 @@ const navButtons = [
     path: '/contacts',
   }
 ]
+
+export default function HeaderMenu() {
+  return (
+      <>
+        <nav>
+          <ul className="flex flex-row">
+            {
+              navButtons.map(button => (
+                  <li className={styles.headerMenuItem}>
+                    <Link href={button.path} key={button.label}>
+                      <a className='text-white uppercase mr-3'>
+                        {button.label}
+                      </a>
+                    </Link>
+                  </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </>
+  )
+}
