@@ -35,7 +35,7 @@ export default function HeaderMenu() {
           <ul className="flex flex-row">
             {
               navButtons.map(button => (
-                  <li className={styles.headerMenuItem}>
+                  <li className={styles.headerMenuItem} key={button.label}>
                     <Link href={button.path} key={button.label}>
                       <a className='text-white uppercase mr-3'>
                         {button.label}
