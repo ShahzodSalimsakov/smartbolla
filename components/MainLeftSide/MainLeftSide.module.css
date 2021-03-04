@@ -7,7 +7,7 @@
 .rotatedContent {
     transform: rotate(
             -90deg
-    ) translate(-100%, 0);
+    ) translate(-20%, 0);
     width: 100vh;
     transform-origin: 0 0;
 }

@@ -2,7 +2,9 @@ import Link from 'next/Link'
 import Head from 'next/head'
 import MainLeftSide from './MainLeftSide/MainLeftSide';
 import MainLeftLogo from "./MainLeftLogo/MainLeftLogo";
+import HeaderMenu from "./HeaderMenu/HeaderMenu";
 import {useSelector} from "react-redux";
+import Lang from "./Lang/Lang";
 
 
 export function MainLayout({children, title = ''}) {
@@ -14,6 +16,8 @@ export function MainLayout({children, title = ''}) {
           <title>{title}</title>
         </Head>
         <div style={{background: backgroundColor}}>
+          <HeaderMenu />
+          <Lang />
           <MainLeftSide>
             <div className="flex flex-row items-center">
               <MainLeftLogo />
