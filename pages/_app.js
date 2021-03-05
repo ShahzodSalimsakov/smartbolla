@@ -1,5 +1,6 @@
 // import '../styles/main.css'
 import "tailwindcss/tailwind.css";
+import 'swiper/swiper.scss';
 import {Provider} from "react-redux";
 import { createWrapper } from 'next-redux-wrapper';
 import store from '../store/store'
