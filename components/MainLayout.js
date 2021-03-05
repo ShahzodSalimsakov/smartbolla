@@ -7,6 +7,7 @@ import {useSelector} from "react-redux";
 import Lang from "./Lang/Lang";
 import MainRightSide from "./MainRightSide/MainRightSide";
 import styles from './MainLayout.module.css'
+import Social from "./Social/Social";
 
 
 export function MainLayout({children, title = ''}) {
@@ -33,6 +34,7 @@ export function MainLayout({children, title = ''}) {
               </header>
               <div className='p-10'>
                 {children}
+                <Social />
               </div>
               <footer>
 
