@@ -25,6 +25,10 @@ const navButtons = [
   {
     label: 'contacts',
     path: '/contacts',
+  },
+  {
+    label: 'team',
+    path: '/team',
   }
 ]
 
