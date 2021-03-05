@@ -31,8 +31,8 @@ module.exports = {
     ]
   },
   i18n: {
-    locales: ['en-US', 'fr', 'ru'],
-    defaultLocale: 'en-US',
+    locales: ['en', 'fr', 'ru'],
+    defaultLocale: 'en',
   },
   images: {
     domains: ['smartbolla.com'],

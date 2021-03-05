@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from './HeaderMenu.module.css'
+import {useRouter} from "next/router";
 
 const navButtons = [
   {
@@ -33,16 +34,19 @@ const navButtons = [
 ]
 
 export default function HeaderMenu() {
+
+  const { pathname } = useRouter();
+
   return (
       <>
-        <nav>
-          <ul className="flex flex-row">
+        <nav className="h-full">
+          <ul className="flex h-full flex-row">
             {
               navButtons.map(button => (
-                  <li className={styles.headerMenuItem} key={button.label}>
-                    <Link href={button.path} key={button.label}>
-                      <a className='text-white uppercase mr-3'>
-                        {button.label}
+                  <li className={`${styles.headerMenuItem} h-full`} key={button.label}>
+                    <Link href={button.path}>
+                      <a className={`${(pathname === button.path ? 'is-active' : '')} text-white h-full items-end flex font-bold uppercase mr-3`}>
+                        <span>{button.label}</span>
                       </a>
                     </Link>
                   </li>
