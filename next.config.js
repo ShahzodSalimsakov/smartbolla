@@ -34,4 +34,7 @@ module.exports = {
     locales: ['en', 'fr', 'ru'],
     defaultLocale: 'en',
   },
+  images: {
+    domains: ['smartbolla.com'],
+  },
 }
