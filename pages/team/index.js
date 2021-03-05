@@ -1,5 +1,5 @@
 import {MainLayout} from '../../components/MainLayout'
-import TeamPage from '../../components/TeamPage'
+import TeamPage from '../../components/TeamPage/TeamPage'
 
 function Team() {
   return  (

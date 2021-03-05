@@ -31,7 +31,9 @@ export function MainLayout({children, title = ''}) {
                   <HeaderMenu />
                   <Lang />
               </header>
-              {children}
+              <div className='p-10'>
+                {children}
+              </div>
               <footer>
 
               </footer>
