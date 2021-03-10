@@ -38,7 +38,7 @@ export function MainLayout({ children, title = "" }) {
             <HeaderMenu />
             <Lang />
           </header>
-          <div className="p-10">
+          <div className="p-10 main-content">
             {children}
             <Social />
           </div>
