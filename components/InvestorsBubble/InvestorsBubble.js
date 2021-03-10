@@ -1,36 +1,38 @@
-import BubbleUI, { defaultOptions } from "react-bubble-ui";
-import "react-bubble-ui/dist/index.css";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./InvestorsBubble.module.css"
 import InvestorsBubbleItem from "./InvestorsBubbleItem";
+import IsoTopeGrid from "react-isotope";
+
+const filtersDefault = [
+    { label: "all", isChecked: true },
+];
 
 export default function InvestorBubble({investors}) {
-    const options = {
-        size: 180,
-        minSize: 20,
-        gutter: 8,
-        provideProps: true,
-        numCols: 6,
-        fringeWidth: 160,
-        yRadius: 130,
-        xRadius: 220,
-        cornerRadius: 50,
-        showGuides: false,
-        compact: true,
-        gravitation: 5,
-    }
+
+    // Local state for managing filtering logic
+    const [filters, updateFilters] = useState(filtersDefault);
+
+    investors = investors.map(card => {
+        card.filter = [];
+        card.id = card.ID;
+        return card;
+    });
+
     return (
         <div>
-            {
-                typeof window !== 'undefined' &&
-                (
-                    <BubbleUI options={options} className={styles.myBubbleUI}>
-                        {investors && investors.map((item, key) => (
-                            <InvestorsBubbleItem {...item} key={key} />
-                        ))}
-                    </BubbleUI>
-                )
-            }
+            <IsoTopeGrid
+                gridLayout={investors} // gridlayout of cards
+                noOfCols={6} // number of columns show in one row
+                unitWidth={150} // card width of 1 unit
+                unitHeight={150} // card height of 1 unit
+                filters={filters}
+            >
+                {investors.map(card => (
+                    <div key={card.ID} className="davr">
+                        {card.NAME}
+                    </div>
+                ))}
+            </IsoTopeGrid>
 
         </div>
     )
