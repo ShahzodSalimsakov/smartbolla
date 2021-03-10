@@ -31,3 +31,6 @@
     height: 100%;
     transition: opacity 0.1s ease;
 }
+.davr {
+    border-radius: 20px;
+}
