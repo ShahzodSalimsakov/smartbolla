@@ -21,9 +21,13 @@ export function MainLayout({children, title = ''}) {
         </Head>
         <div style={{background: backgroundColor}} className="flex flex-row">
           <MainLeftSide>
-            <div className="flex flex-row items-center">
-              <MainLeftLogo />
-              <div className="font-bold ml-3 text-white uppercase text-2x1">SmartBolla</div>
+            <div>
+                <Link href="/">
+                    <a className="flex flex-row items-center">
+                      <MainLeftLogo />
+                      <div className="font-bold ml-3 text-white uppercase text-2x1">SmartBolla</div>
+                    </a>
+                </Link>
             </div>
           </MainLeftSide>
           <MainRightSide>
