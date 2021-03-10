@@ -50,6 +50,6 @@ export function MainLayout({ children, title = "" }) {
           font-family: "Montserrat";
         }
       `}</style>
-    </main>
+      </>
   );
 }
