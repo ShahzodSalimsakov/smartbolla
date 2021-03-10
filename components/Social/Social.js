@@ -12,7 +12,6 @@ const SocialButtonsPage = () => {
           <FontAwesomeIcon
             icon={["fab", "facebook"]}
             size="lg"
-            spin
             className="text-white"
           />
         </a>
