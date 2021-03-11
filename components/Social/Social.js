@@ -1,25 +1,59 @@
-import { MDBIcon, MDBContainer } from 'mdbreact';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+
+library.add(fab);
 
 const SocialButtonsPage = () => {
   return (
-      <div>
-        <a href="#!" className="fb-ic mr-3 float-right d-block">
-          <MDBIcon fab icon="facebook-f" />
+    <ul className="absolute float-right right-3.5 top-1/3">
+      <li className="pb-6">
+        <a href="">
+          <FontAwesomeIcon
+            icon={["fab", "facebook"]}
+            size="lg"
+            className="text-white"
+          />
         </a>
-        <a href="#!" className="tw-ic mr-3 float-right d-block">
-          <MDBIcon fab icon="twitter" />
+      </li>
+      <li className="pb-6">
+        <a href="">
+          <FontAwesomeIcon
+            icon={["fab", "instagram"]}
+            size="lg"
+            className="text-white"
+          />
         </a>
-        <a href="#!" className="gplus-ic mr-3 float-right d-block">
-          <MDBIcon fab icon="google-plus-g" />
+      </li>
+      <li className="pb-6">
+        <a href="">
+          <FontAwesomeIcon
+            icon={["fab", "tiktok"]}
+            size="lg"
+            className="text-white"
+          />
         </a>
-        <a href="#!" className="li-ic mr-3 float-right d-block">
-          <MDBIcon fab icon="linkedin-in" />
+      </li>
+      <li className="pb-6">
+        <a href="">
+          <FontAwesomeIcon
+            icon={["fab", "telegram"]}
+            size="lg"
+            className="text-white"
+          />
         </a>
-        <a href="#!" className="ins-ic mr-3 float-right d-block">
-          <MDBIcon fab icon="instagram" />
+      </li>
+      <li className="pb-6">
+        <a href="">
+          <FontAwesomeIcon
+            icon={["fab", "youtube"]}
+            size="lg"
+            className="text-white"
+          />
         </a>
-      </div>
+      </li>
+    </ul>
   );
-}
+};
 
 export default SocialButtonsPage;
