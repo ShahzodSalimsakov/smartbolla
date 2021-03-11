@@ -1,4 +1,4 @@
-import Link from "next/Link";
+import Link from "next/link";
 import Head from "next/head";
 import MainLeftSide from "./MainLeftSide/MainLeftSide";
 import MainLeftLogo from "./MainLeftLogo/MainLeftLogo";
