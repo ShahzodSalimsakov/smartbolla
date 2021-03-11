@@ -23,14 +23,6 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/polyfill@^7.2.5":
-  version "7.12.1"
-  resolved "https://registry.yarnpkg.com/@babel/polyfill/-/polyfill-7.12.1.tgz#1f2d6371d1261bbd961f3c5d5909150e12d0bd96"
-  integrity sha512-X0pi0V6gxLi6lFZpGmeNa4zxtwEmCs42isWLNjZZDE0Y8yVfgu0T2OAHlzBbdYlqbW/YXVvoBHpATEM+goCj8g==
-  dependencies:
-    core-js "^2.6.5"
-    regenerator-runtime "^0.13.4"
-
 "@babel/runtime@7.12.5":
   version "7.12.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
@@ -82,6 +74,7 @@
   version "5.15.2"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.2.tgz#218cd7276ab4f9ab57cc3d2efa2697e6a579f25d"
   integrity sha512-7l/AX41m609L/EXI9EKH3Vs3v0iA8tKlIOGtw+kgcoanI7p+e4I4GYLqW3UXWiTnjSFymKSmTTPKYrivzbxxqA==
+
 "@fortawesome/fontawesome-common-types@^0.2.34":
   version "0.2.34"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.34.tgz#0a8c348bb23b7b760030f5b1d912e582be4ec915"
@@ -128,14 +121,6 @@
   integrity sha512-kwOXw8fZ0Lt1QmeOOrd+o4Ibvp4UTEBFQbzvWldjlKv5n+G9sXfIPn1hh63IQIL8K8vbvv1oYMJiIUbuy9bGaA==
   dependencies:
     purgecss "^3.1.3"
-
-"@fullpage/react-fullpage@^0.1.19":
-  version "0.1.19"
-  resolved "https://registry.yarnpkg.com/@fullpage/react-fullpage/-/react-fullpage-0.1.19.tgz#770ecfc96475900007ce1c29376da7fa11fb26a8"
-  integrity sha512-URgt+91lw/Ac4R+VXqquY97w2U+QaQhHIcO7V+HHesPHYA8kCfjMb3VZ+n7RFz05FdpIx3gLV9TZHOYS9p43Kg==
-  dependencies:
-    "@babel/polyfill" "^7.2.5"
-    fullpage.js "^3.1.0"
 
 "@hapi/accept@5.0.1":
   version "5.0.1"
@@ -879,10 +864,12 @@ core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
   integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
+
 core-js@^2.6.5:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
+
 
 core-util-is@~1.0.0:
   version "1.0.2"
@@ -1355,11 +1342,11 @@ fslightbox-react@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/fslightbox-react/-/fslightbox-react-1.6.2.tgz#d4456843508f1a916277583204fb4d880057941f"
   integrity sha512-rdWD+BkOhxHA6ZTEk4/ZHmdNwPuAmEVsF4Yfj75GivcI5YHkslf3G3pu7sf6lT5Yzy8l5UYfb2I5tC5fkNzNfQ==
+
 fullpage.js@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/fullpage.js/-/fullpage.js-3.1.0.tgz#521e5673145501ab3a0a3d11284f822392e06941"
   integrity sha512-fbwb9MxcWHfWAR4bV5g+9aWFKdDrgDhFgtBTnfXZMIJU2CpSTbn+eZSKF827atCsLCXUFTMF0CgatagxvzIEqg==
-
 function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
@@ -2637,10 +2624,12 @@ react-chartjs-2@2.9.0:
   dependencies:
     lodash "^4.17.4"
     prop-types "^15.5.8"
+
 react-bubble-ui@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/react-bubble-ui/-/react-bubble-ui-1.0.6.tgz#045ae75634fdbf8e0f2ae75ce3605f922732c025"
   integrity sha512-Kr7fjy1xqvQrp6dVdgmB8Xl1LQdybzdoOdwE57rGxa7pikcxChSYNEe7cr1vU6Z2HuWPRghlg0SNj++JwNgfXA==
+
 react-dom@17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.1.tgz#1de2560474ec9f0e334285662ede52dbc5426fc6"
@@ -2718,6 +2707,7 @@ react-popper@^1.3.7:
     prop-types "^15.6.1"
     typed-styles "^0.0.7"
     warning "^4.0.2"
+
 react-isotope@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/react-isotope/-/react-isotope-1.0.7.tgz#433ea567fe1a993ada158c0f75dcf0a0337c2849"

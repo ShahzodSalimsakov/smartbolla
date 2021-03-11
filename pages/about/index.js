@@ -1,12 +1,11 @@
-import { MainLayout } from "../../components/MainLayout";
-import TeamPage from "../../components/TeamPage/TeamPage";
-import AboutPage from "../../components/AboutPage/AboutPage";
+import Link from 'next/Link';
+import Head from "next/head";
+import {MainLayout} from "../../components/MainLayout";
 
 export default function About() {
   return (
-    <MainLayout title={"About"}>
-      <AboutPage />
-      <TeamPage />
-    </MainLayout>
-  );
+      <MainLayout title={'About'}>
+        <h1>About page</h1>
+      </MainLayout>
+  )
 }
