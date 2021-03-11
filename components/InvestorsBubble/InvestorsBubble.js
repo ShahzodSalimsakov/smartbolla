@@ -1,39 +1,27 @@
 import React, { useState } from "react";
-// import styles from "./InvestorsBubble.module.css";
-import InvestorsBubbleItem from "./InvestorsBubbleItem";
-import IsoTopeGrid from "react-isotope";
-
-const filtersDefault = [{ label: "all", isChecked: true }];
+import styles from "./InvestorsBubble.module.css";
 
 export default function InvestorBubble({ investors }) {
-  // Local state for managing filtering logic
-  const [filters, updateFilters] = useState(filtersDefault);
-
-  investors = investors.map((card) => {
-    card.filter = [];
-    card.id = card.ID;
-    return card;
-  });
-
   return (
     <div>
-      <IsoTopeGrid
-        gridLayout={investors} // gridlayout of cards
-        noOfCols={6} // number of columns show in one row
-        unitWidth={200} // card width of 1 unit
-        unitHeight={250} // card height of 1 unit
-        filters={filters}
-      >
+      <div className={styles.masonry}>
         {investors.map((card) => (
-          <div
-            key={card.ID}
-            className="text-center rounded-full border-none p-2"
-          >
-            <img src={card.PREVIEW_PICTURE} className="rounded-full" />
-            <div className="pt-2">{card.NAME}</div>
+          <div key={card.ID} className={styles.brick}>
+            <div
+              style={{
+                backgroundImage: `url(${card.PREVIEW_PICTURE})`,
+              }}
+              className={`${styles.investor} bg-cover bg-no-repeat border-none h-full p-2 relative rounded-3xl shadow-2xl text-center w-full cursor-pointer`}
+            >
+              <div
+                className={`${styles.investorTitle} absolute bg-black bg-opacity-50 bottom-0 font-bold left-0 p-2 rounded-b-3xl text-white uppercase w-full`}
+              >
+                {card.NAME}
+              </div>
+            </div>
           </div>
         ))}
-      </IsoTopeGrid>
+      </div>
     </div>
   );
 }
