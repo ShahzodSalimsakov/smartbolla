@@ -17,8 +17,10 @@
     "next": "^10.0.0",
     "next-redux-wrapper": "^6.0.2",
     "react": "17.0.1",
+    "react-awesome-lightbox": "^1.7.3",
     "react-bubble-ui": "^1.0.6",
     "react-dom": "17.0.1",
+    "react-fancybox": "^0.2.5",
     "react-flags-select": "^2.1.2",
     "react-isotope": "^1.0.7",
     "react-redux": "^7.2.2",
@@ -27,10 +29,12 @@
     "redux-thunk": "^2.3.0",
     "redux-wrapper": "^0.0.1",
     "sass": "^1.32.8",
+    "simple-react-lightbox": "^3.6.3",
     "swiper": "^6.4.15"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.4",
+    "fslightbox-react": "^1.6.2",
     "postcss": "^8.2.6",
     "tailwindcss": "^2.0.3"
   }
