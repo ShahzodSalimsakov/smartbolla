@@ -34,12 +34,19 @@ function Home({ investors }) {
         render={({ state, fullpageApi }) => {
           return (
             <ReactFullpage.Wrapper className="">
-              <div className="section pl-24 pt-20">
-                <FullPageSectionTitle title="Investors" />
-                <p>Section 1 (welcome to fullpage.js)</p>
-                <button onClick={() => fullpageApi.moveSectionDown()}>
-                  Click me to move down
-                </button>
+              <div className="section pl-24">
+                <div className="flex">
+                  <div className="flex h-100 items-center">
+                    <motion.h1
+                      initial={{ scale: [14, 1] }}
+                      animate={{ scale: [1, 1] }}
+                      transition={{ duration: 0.8, ease: "easeIn", delay: 2 }}
+                    >
+                      SmartBolla
+                    </motion.h1>
+                  </div>
+                  <div></div>
+                </div>
               </div>
               <div className="section pl-24 pt-20">
                 <FullPageSectionTitle title="Investors" />
