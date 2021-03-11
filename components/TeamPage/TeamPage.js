@@ -30,15 +30,18 @@ function Team() {
     </SwiperSlide>
   ));
   return (
-    <Swiper
-      spaceBetween={40}
-      slidesPerView={4}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
-      autoplay={{ delay: 1000 }}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">{teamItems}</div>
-    </Swiper>
+    <div>
+      <div className="text-center text-2xl pt-2">Team</div>
+      <Swiper
+        spaceBetween={40}
+        slidesPerView={4}
+        onSlideChange={() => console.log("slide change")}
+        onSwiper={(swiper) => console.log(swiper)}
+        autoplay={{ delay: 1000 }}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">{teamItems}</div>
+      </Swiper>
+    </div>
   );
 }
 

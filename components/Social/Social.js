@@ -6,7 +6,7 @@ library.add(fab);
 
 const SocialButtonsPage = () => {
   return (
-    <ul className="absolute float-right right-3.5 top-1/3">
+    <ul className="fixed float-right right-3.5 top-1/3">
       <li className="pb-6">
         <a href="">
           <FontAwesomeIcon
