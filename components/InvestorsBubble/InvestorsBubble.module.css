@@ -1,104 +1,102 @@
 .investor {
-    width: 200px;
-    height: 200px;
+  width: 200px;
+  height: 200px;
 }
 
-.investor .investorTitle
-{
-    visibility: visible;
-    opacity: 1;
+.investor .investorTitle {
+  visibility: visible;
+  opacity: 1;
 }
 
 .investor:hover .investorTitle {
-    visibility: hidden;
-    opacity: 0;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .masonry {
-    transition: all .5s ease-in-out;
-    column-gap: 30px;
-    column-fill: initial;
+  transition: all 0.5s ease-in-out;
+  column-gap: 30px;
+  column-fill: initial;
 }
 
 /* Masonry item */
 .masonry .brick {
-    margin-bottom: 30px;
-    display: inline-block; /* Fix the misalignment of items */
-    vertical-align: top; /* Keep the item on the very top */
+  margin-bottom: 30px;
+  display: inline-block; /* Fix the misalignment of items */
+  vertical-align: top; /* Keep the item on the very top */
 }
 
 /* Masonry image effects */
 .masonry .brick img {
-    transition: all .5s ease-in-out;
-    backface-visibility: hidden; /* Remove Image flickering on hover */
+  transition: all 0.5s ease-in-out;
+  backface-visibility: hidden; /* Remove Image flickering on hover */
 }
 
 .masonry .brick:hover img {
-    opacity: .75;
+  opacity: 0.75;
 }
 
 /* Bordered masonry */
 .masonry.bordered {
-    column-rule: 1px solid #eee;
-    column-gap: 50px;
+  column-rule: 1px solid #eee;
+  column-gap: 50px;
 }
 
 .masonry.bordered .brick {
-    padding-bottom: 25px;
-    margin-bottom: 25px;
-    border-bottom: 1px solid #eee;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
 }
 
 /* Gutterless masonry */
 .masonry.gutterless {
-    column-gap: 0;
+  column-gap: 0;
 }
 
 .masonry.gutterless .brick {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 /* Masonry on tablets */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-    .masonry {
-        column-count: 4;
-    }
+  .masonry {
+    column-count: 4;
+  }
 
-    .investor {
-        width: 150px;
-        height: 150px;
-    }
+  .investor {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
-    .masonry {
-        column-count: 3;
-    }
+  .masonry {
+    column-count: 3;
+  }
 
-    .investor {
-        width: 150px;
-        height: 150px;
-    }
+  .investor {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
-
-    .masonry {
-        column-count: 2;
-    }
+  .masonry {
+    column-count: 2;
+  }
 }
 
 /* Masonry on big screens */
 @media only screen and (min-width: 1024px) {
-    .desc {
-        font-size: 1.25em;
-    }
+  .desc {
+    font-size: 1.25em;
+  }
 
-    .intro {
-        letter-spacing: 1px;
-    }
+  .intro {
+    letter-spacing: 1px;
+  }
 
-    .masonry {
-        column-count: 6;
-    }
+  .masonry {
+    column-count: 5;
+  }
 }
