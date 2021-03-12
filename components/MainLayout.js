@@ -51,7 +51,7 @@ export function MainLayout({ children, title = "" }) {
           </header>
           <footer></footer>
         </MainRightSide>
-        <div className={`main-content ${pathname == "/" ? "" : "pl-24 pt-24"}`}>
+        <div className={`main-content ${pathname == "/" ? "" : "pl-24 pt-24"} ${pathname == "/contacts" ? "px-24" : ""}`}>
           {children}
           <Social />
         </div>

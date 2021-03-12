@@ -1,4 +1,7 @@
 .header {
     border-bottom: 1px solid #fff;
     height: 60px;
+    background: linear-gradient(
+        270deg
+        , #0C0E12 0.14%, #232b3e 100%)
 }
