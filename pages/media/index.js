@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from "react";
-import {MainLayout} from "../../components/MainLayout";
+import { MainLayout } from "../../components/MainLayout";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
-import { photos } from "./photos";
+
+const photos = [];
 
 function Media() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -20,25 +21,25 @@ function Media() {
 
   return (
     <>
-    <MainLayout>
-      <div>      
-        <Gallery photos={photos} onClick={openLightbox} />
-        <ModalGateway>
-          {viewerIsOpen ? (
-            <Modal onClose={closeLightbox}>
-              <Carousel
-                currentIndex={currentImage}
-                views={photos.map(x => ({
-                  ...x,
-                  srcset: x.srcSet,
-                  caption: x.title
-                }))}
-              />
-            </Modal>
-          ) : null}
-        </ModalGateway>
-      </div>
-    </MainLayout>
+      <MainLayout>
+        <div>
+          <Gallery photos={photos} onClick={openLightbox} />
+          <ModalGateway>
+            {viewerIsOpen ? (
+              <Modal onClose={closeLightbox}>
+                <Carousel
+                  currentIndex={currentImage}
+                  views={photos.map((x) => ({
+                    ...x,
+                    srcset: x.srcSet,
+                    caption: x.title,
+                  }))}
+                />
+              </Modal>
+            ) : null}
+          </ModalGateway>
+        </div>
+      </MainLayout>
     </>
   );
 }
