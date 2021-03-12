@@ -8,12 +8,13 @@ import { useDispatch } from "react-redux";
 import { changeMainBackground } from "../store/actions/mainConfigActions";
 import { motion } from "framer-motion";
 import FullPageSectionTitle from "../components/FullPageSectionTitle/FullPageSectionTitle";
+import Project from "../components/Project/Project";
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({ investors }) {
+function Home({ investors, projects }) {
   const dispatch = useDispatch();
 
   return (
@@ -52,6 +53,11 @@ function Home({ investors }) {
                 <FullPageSectionTitle title="Investors" />
                 {investors && <InvestorsBubble investors={investors} />}
               </div>
+              {projects.map((project) => (
+                <div className="section pl-24 pt-20">
+                  <Project project={project} />
+                </div>
+              ))}
             </ReactFullpage.Wrapper>
           );
         }}
@@ -87,13 +93,27 @@ export async function getServerSideProps() {
       ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
     },
   });
-  let { data: investors } = await res.json();
 
+  const resProjects = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "get.projects.list",
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
+
+  let { data: investors } = await res.json();
+  let { data: projects } = await resProjects.json();
+  
   investors = investors || [];
 
   return {
     props: {
       investors,
+      projects,
     },
   };
 }
