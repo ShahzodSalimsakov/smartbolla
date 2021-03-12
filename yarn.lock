@@ -3305,10 +3305,10 @@ react-awesome-lightbox@^1.7.3:
   resolved "https://registry.yarnpkg.com/react-awesome-lightbox/-/react-awesome-lightbox-1.7.3.tgz#ee1c00fd4197e0e65bf996aa219eac4d8b6db5a0"
   integrity sha512-mSxdL3KGzuh2eR8I00nv9njiolmMoXITuCvfd71DBXK13JW3e+Z/sCMENS9+dngBJU8/m7dR1Ix0W6afS5cFsA==
 
-react-bubble-ui@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/react-bubble-ui/-/react-bubble-ui-1.0.6.tgz#045ae75634fdbf8e0f2ae75ce3605f922732c025"
-  integrity sha512-Kr7fjy1xqvQrp6dVdgmB8Xl1LQdybzdoOdwE57rGxa7pikcxChSYNEe7cr1vU6Z2HuWPRghlg0SNj++JwNgfXA==
+react-bubble-ui@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-bubble-ui/-/react-bubble-ui-1.1.0.tgz#f301a6113444b4dc596fdc71cd124b49d892a06f"
+  integrity sha512-2ZsAJ17NuMMWL4xmYSYCPtPBRYSptbx+A87OVNoev7sxJfEC9zWGI/oG5EbEpbmFJ3l/YdUWNCAPrS2n8VqeJQ==
 
 react-chartjs-2@2.9.0:
   version "2.9.0"
@@ -3459,6 +3459,15 @@ react-numeric-input@2.2.3:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/react-numeric-input/-/react-numeric-input-2.2.3.tgz#4bf5918c3eafed851a80df1eb992d941002bb552"
   integrity sha1-S/WRjD6v7YUagN8euZLZQQArtVI=
+
+react-on-screen@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-on-screen/-/react-on-screen-2.1.1.tgz#c66d78a8187457262d57f71766d1733f875e727a"
+  integrity sha512-mV2Ntd61ncJ9nBsXF/p5Y6lMDGTTwXTGvHaal4b7O1eX3GwSwDXKAe7KKXTf/4Oc1BuYc7j5Sy0XdT89w/MjDA==
+  dependencies:
+    lodash.throttle "^4.1.1"
+    prop-types "^15.6.0"
+    shallowequal "^1.0.2"
 
 react-photo-gallery@^8.0.0:
   version "8.0.0"
@@ -3971,7 +3980,7 @@ shallow-clone@^3.0.0:
   dependencies:
     kind-of "^6.0.2"
 
-shallowequal@^1.1.0:
+shallowequal@^1.0.2, shallowequal@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
   integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==

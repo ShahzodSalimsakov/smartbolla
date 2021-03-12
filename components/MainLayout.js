@@ -24,7 +24,12 @@ export function MainLayout({ children, title = "" }) {
           rel="stylesheet"
         />
       </Head>
-      <div style={{ background: backgroundColor }} className="flex flex-row">
+      <div
+        style={{ background: backgroundColor }}
+        className={`${
+          pathname == "/" ? "flex flex-row" : ""
+        }`}
+      >
         <MainLeftSide className="fixed left-0 z-30">
           <div>
             <Link href="/">
