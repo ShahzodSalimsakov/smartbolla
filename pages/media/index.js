@@ -1,17 +1,46 @@
+import React, { useState, useCallback } from "react";
 import {MainLayout} from "../../components/MainLayout";
-import MediaPage from "../../components/MediaPage/MediaPage";
-import SimpleReactLightbox from "simple-react-lightbox";
+import Gallery from "react-photo-gallery";
+import Carousel, { Modal, ModalGateway } from "react-images";
+import { photos } from "./photos";
 
 function Media() {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [viewerIsOpen, setViewerIsOpen] = useState(false);
+
+  const openLightbox = useCallback((event, { photo, index }) => {
+    setCurrentImage(index);
+    setViewerIsOpen(true);
+  }, []);
+
+  const closeLightbox = () => {
+    setCurrentImage(0);
+    setViewerIsOpen(false);
+  };
+
   return (
+    <>
     <MainLayout>
-      <SimpleReactLightbox>
-        <div className="App">
-          <MediaPage />
-        </div>
-      </SimpleReactLightbox>
+      <div>      
+        <Gallery photos={photos} onClick={openLightbox} />
+        <ModalGateway>
+          {viewerIsOpen ? (
+            <Modal onClose={closeLightbox}>
+              <Carousel
+                currentIndex={currentImage}
+                views={photos.map(x => ({
+                  ...x,
+                  srcset: x.srcSet,
+                  caption: x.title
+                }))}
+              />
+            </Modal>
+          ) : null}
+        </ModalGateway>
+      </div>
     </MainLayout>
-  )
+    </>
+  );
 }
 
-export default Media
+export default Media;

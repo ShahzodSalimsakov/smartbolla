@@ -18,7 +18,6 @@ function Home({ investors }) {
 }
 
 export async function getServerSideProps() {
-  console.log("davr");
   const res = await fetch("https://smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
