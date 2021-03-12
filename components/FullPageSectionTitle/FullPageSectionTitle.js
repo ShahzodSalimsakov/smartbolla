@@ -19,10 +19,12 @@ export default function FullPageSectionTitle({ title }) {
   }, [controls, inView]);
   const boxVariants = {
     hidden: {
-      x: -1000,
+      y: 100,
+      opacity: 0,
     },
     visible: {
-      x: 0,
+      y: 0,
+      opacity: 1,
     },
   };
 
