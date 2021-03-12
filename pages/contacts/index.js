@@ -1,8 +1,6 @@
 import {MainLayout} from "../../components/MainLayout";
 import './css/all.css';
 
-
-
 function Contacts({contactAddress}) {
   return (
     <MainLayout>

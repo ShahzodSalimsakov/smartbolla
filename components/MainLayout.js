@@ -1,4 +1,4 @@
-import Link from "next/Link";
+import Link from "next/link";
 import Head from "next/head";
 import MainLeftSide from "./MainLeftSide/MainLeftSide";
 import MainLeftLogo from "./MainLeftLogo/MainLeftLogo";
@@ -8,10 +8,12 @@ import Lang from "./Lang/Lang";
 import MainRightSide from "./MainRightSide/MainRightSide";
 import styles from "./MainLayout.module.css";
 import Social from "./Social/Social";
+import { useRouter } from "next/router";
 
 export function MainLayout({ children, title = "" }) {
   const { backgroundColor } = useSelector((state) => state.mainConfig);
   console.log(backgroundColor);
+  const { pathname } = useRouter();
   return (
     <>
       <Head>
@@ -23,7 +25,7 @@ export function MainLayout({ children, title = "" }) {
         />
       </Head>
       <div style={{ background: backgroundColor }} className="flex flex-row">
-        <MainLeftSide>
+        <MainLeftSide className="fixed left-0 z-30">
           <div>
             <Link href="/">
               <a className="flex flex-row items-center">
@@ -35,19 +37,19 @@ export function MainLayout({ children, title = "" }) {
             </Link>
           </div>
         </MainLeftSide>
-        <MainRightSide>
+        <MainRightSide className="fixed right-0.5 top-0 z-30">
           <header
             className={`${styles.header} flex flex-row items-end justify-between`}
           >
             <HeaderMenu />
             <Lang />
           </header>
-          <div className="p-10 main-content">
-            {children}
-            <Social />
-          </div>
           <footer></footer>
         </MainRightSide>
+        <div className={`main-content ${pathname == "/" ? "" : "pl-24 pt-24"}`}>
+          {children}
+          <Social />
+        </div>
       </div>
       <style jsx global>{`
         html,
