@@ -1,10 +1,10 @@
 import { MainLayout } from "../../components/MainLayout";
-import Project from "../../components/Project/Project"
+import Project from "../../components/Project/Project";
 
 function ProjectsPage() {
   return (
     <MainLayout>
-      <Project />
+      <div>dasdsad</div>
     </MainLayout>
   );
 }
