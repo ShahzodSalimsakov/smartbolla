@@ -49,7 +49,8 @@ export function MainLayout({ children, title = "" }) {
             },
           }}
           style={{
-            position: 'absolute'
+            position: 'absolute',
+            zIndex: 9
           }}
         />
         <MainLeftSide className="fixed left-0 z-30">

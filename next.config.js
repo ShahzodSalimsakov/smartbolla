@@ -2,39 +2,39 @@ module.exports = {
   async headers() {
     return [
       {
-        source: '/about/',
+        source: "/about/",
         headers: [
           {
-            key: 'X-About-Custom-Header',
-            value: 'about_header_value',
+            key: "X-About-Custom-Header",
+            value: "about_header_value",
           },
         ],
       },
       {
-        source: '/media/',
+        source: "/media/",
         headers: [
           {
-            key: 'X-Media-Custom-Header',
-            value: 'media_header_value',
+            key: "X-Media-Custom-Header",
+            value: "media_header_value",
           },
         ],
       },
       {
-        source: '/contacts/',
+        source: "/contacts/",
         headers: [
           {
-            key: 'X-Contacts-Custom-Header',
-            value: 'contacts_header_value',
+            key: "X-Contacts-Custom-Header",
+            value: "contacts_header_value",
           },
         ],
       },
-    ]
+    ];
   },
   i18n: {
-    locales: ['en', 'fr', 'ru'],
-    defaultLocale: 'en',
+    locales: ["en", "fr", "ru", "uz", "cn", "ae", "es"],
+    defaultLocale: "en",
   },
   images: {
-    domains: ['smartbolla.com'],
+    domains: ["smartbolla.com"],
   },
-}
+};

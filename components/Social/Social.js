@@ -1,13 +1,25 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import { motion } from "framer-motion";
 
 library.add(fab);
 
 const SocialButtonsPage = () => {
   return (
-    <ul className="fixed float-right right-3.5 top-1/3 w-6">
-      <li className="pb-6">
+    <motion.ul
+      transition={{
+        staggerChildren: 0.1,
+        duration: 0.6,
+      }}
+      className="fixed float-right right-3.5 top-1/3 w-6"
+    >
+      <motion.li
+        animate={{
+          x: [100, 0, -10, 0],
+        }}
+        className="pb-6"
+      >
         <a href="">
           <FontAwesomeIcon
             icon={["fab", "facebook"]}
@@ -15,8 +27,16 @@ const SocialButtonsPage = () => {
             className="text-white"
           />
         </a>
-      </li>
-      <li className="pb-6">
+      </motion.li>
+      <motion.li
+        animate={{
+          x: [100, 0, -10, 0],
+        }}
+        transition={{
+          delay: 0.1,
+        }}
+        className="pb-6"
+      >
         <a href="">
           <FontAwesomeIcon
             icon={["fab", "instagram"]}
@@ -24,8 +44,16 @@ const SocialButtonsPage = () => {
             className="text-white"
           />
         </a>
-      </li>
-      <li className="pb-6">
+      </motion.li>
+      <motion.li
+        animate={{
+          x: [100, 0, -10, 0],
+        }}
+        transition={{
+          delay: 0.2,
+        }}
+        className="pb-6"
+      >
         <a href="">
           <FontAwesomeIcon
             icon={["fab", "tiktok"]}
@@ -33,8 +61,16 @@ const SocialButtonsPage = () => {
             className="text-white"
           />
         </a>
-      </li>
-      <li className="pb-6">
+      </motion.li>
+      <motion.li
+        animate={{
+          x: [100, 0, -10, 0],
+        }}
+        transition={{
+          delay: 0.3,
+        }}
+        className="pb-6"
+      >
         <a href="">
           <FontAwesomeIcon
             icon={["fab", "telegram"]}
@@ -42,8 +78,16 @@ const SocialButtonsPage = () => {
             className="text-white"
           />
         </a>
-      </li>
-      <li className="pb-6">
+      </motion.li>
+      <motion.li
+        animate={{
+          x: [100, 0, -10, 0],
+        }}
+        transition={{
+          delay: 0.4,
+        }}
+        className="pb-6"
+      >
         <a href="">
           <FontAwesomeIcon
             icon={["fab", "youtube"]}
@@ -51,8 +95,8 @@ const SocialButtonsPage = () => {
             className="text-white"
           />
         </a>
-      </li>
-    </ul>
+      </motion.li>
+    </motion.ul>
   );
 };
 
