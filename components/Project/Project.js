@@ -8,6 +8,7 @@ import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import YouTube from "react-youtube";
 
+
 library.add(faYoutube, faArrowLeft);
 
 function Project({ project }) {
@@ -82,6 +83,9 @@ function Project({ project }) {
         transition={{ duration: 0.6, delay: 0.2, ease: "easeInOut" }}
       >
         <div key={project.ID} className="grid grid-cols-2 overflow-hidden">
+          {project.PROPERTY_PHOTOS && project.PROPERTY_PHOTOS.map(img => (
+            <img src={img}/>
+          ))}
           <motion.div
             initial="hidden"
             transition={{ duration: 0.6 }}
