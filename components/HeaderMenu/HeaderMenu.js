@@ -45,7 +45,7 @@ export default function HeaderMenu() {
                 <a
                   className={`${
                     pathname === button.path ? "is-active" : ""
-                  } text-decoration-none h-full items-end flex font-bold uppercase mr-3`}
+                  } text-decoration-none h-full items-end flex font-extralight uppercase mr-3`}
                 >
                   <span>{button.label}</span>
                 </a>

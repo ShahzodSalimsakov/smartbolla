@@ -70,36 +70,46 @@ function Project({ project }) {
   };
 
   const youtubeOptions = {
-    height: "390",
+    height: "400",
     width: "90%",
   };
 
   return (
-    <div ref={ref} className="flex h-full items-center">
+    <div
+      ref={ref}
+      className={`flex h-full ${showYoutube ? "" : "items-center"}`}
+    >
       <motion.div
         animate={showYoutube ? "hidden" : "visible"}
         variants={contentBoxVariants}
-        transition={{ duration: 0.6, delay: 0.2, ease: "easeInOut" }}
+        transition={{ ease: "easeInOut" }}
       >
-        <div key={project.ID} className="grid grid-cols-2 overflow-hidden">
-          <motion.div
-            initial="hidden"
-            transition={{ duration: 0.6 }}
-            animate={controls}
-            variants={textBlock}
-          >
-            <div>
-              <div className={styles.textBlock}>
-                <div>
-                  <h1 className="text-center">{project.NAME}</h1>
-                  {project.PREVIEW_TEXT}
+        <div
+          key={project.ID}
+          className="grid grid-cols-3 items-center overflow-hidden"
+        >
+          <div className="col-span-2">
+            <motion.div
+              initial="hidden"
+              transition={{ duration: 0.6 }}
+              animate={controls}
+              variants={textBlock}
+            >
+              <div>
+                <div className={styles.textBlock}>
+                  <div>
+                    <h1 className="font-extralight text-5xl text-center">
+                      {project.NAME}
+                    </h1>
+                    {project.PREVIEW_TEXT}
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
           <motion.div initial="hidden" animate={controls} variants={logoBlock}>
             <div className="flex items-center h-full justify-around relative">
-              <img src={project.DETAIL_PICTURE} className="w-6/12" />
+              <img src={project.DETAIL_PICTURE} className="w-8/12" />
               {project.PROPERTY_YOUTUBE_LINK_VALUE && (
                 <div className="absolute" onClick={() => setshowYoutube(true)}>
                   <FontAwesomeIcon
@@ -117,7 +127,7 @@ function Project({ project }) {
         <motion.div
           animate={showYoutube ? "visible" : "hidden"}
           variants={youtubeBoxVariants}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeInOut" }}
+          transition={{ ease: "easeInOut" }}
         >
           <div>
             <div

@@ -27,7 +27,6 @@
 
 .headerMenuItem:first-child a::before {
   display: block;
-  content: "";
   width: 70px;
   background: #fff;
   height: 1px;
@@ -40,7 +39,6 @@
 
 .headerMenuItem a::after {
   display: block;
-  content: "";
   width: 70px;
   background: #fff;
   height: 1px;
