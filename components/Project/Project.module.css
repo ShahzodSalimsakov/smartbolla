@@ -6,3 +6,9 @@
   border-radius: 10px;
   padding: 20px;
 }
+
+.projectRandomObjects img {
+  width: 200px!important;
+  height: 200px!important;
+  position: absolute;
+}

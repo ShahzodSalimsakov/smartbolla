@@ -257,12 +257,8 @@ export async function getServerSideProps({ locale }) {
 
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
-<<<<<<< HEAD
-console.log(projects);
-=======
   let { data: counter } = await resCounter.json();
-
->>>>>>> c2c66bd8a8deb5dd57bd243b82ee9a1395f62c5e
+console.log(projects[0]);
   investors = investors || [];
 
   return {
