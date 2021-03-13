@@ -75,7 +75,7 @@ function Project({ project }) {
   };
 
   return (
-    <div ref={ref} className="flex">
+    <div ref={ref} className="flex h-full items-center">
       <motion.div
         animate={showYoutube ? "hidden" : "visible"}
         variants={contentBoxVariants}
@@ -89,8 +89,12 @@ function Project({ project }) {
             variants={textBlock}
           >
             <div>
-              <h1 className="text-center">{project.NAME}</h1>
-              <div className={styles.textBlock}>{project.PREVIEW_TEXT}</div>
+              <div className={styles.textBlock}>
+                <div>
+                  <h1 className="text-center">{project.NAME}</h1>
+                  {project.PREVIEW_TEXT}
+                </div>
+              </div>
             </div>
           </motion.div>
           <motion.div initial="hidden" animate={controls} variants={logoBlock}>
