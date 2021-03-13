@@ -9,7 +9,6 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import YouTube from "react-youtube";
 import Image from "next/image";
 
-
 library.add(faYoutube, faArrowLeft);
 
 function Project({ project }) {
@@ -53,10 +52,12 @@ function Project({ project }) {
     hidden: {
       width: ["100vw", "0vw"],
       opacity: [1, 0],
+      zIndex: 20,
     },
     visible: {
       width: ["0vw", "100vw"],
       opacity: [0, 1],
+      zIndex: 20,
     },
   };
 
@@ -64,10 +65,12 @@ function Project({ project }) {
     hidden: {
       width: ["100vw", "0vw"],
       opacity: [1, 0],
+      zIndex: 20,
     },
     visible: {
       width: ["0vw", "100vw"],
       opacity: [0, 1],
+      zIndex: 20,
     },
   };
 
@@ -81,15 +84,20 @@ function Project({ project }) {
       ref={ref}
       className={`flex h-full ${showYoutube ? "" : "items-center"}`}
     >
-    <div className={`absolute h-full ${styles.projectRandomObjects} w-full`}>
-      
-      {project.PROPERTY_PHOTOS && project.PROPERTY_PHOTOS.map(img => (
-        <img src={img} style={{
-          left: `${Math.floor(Math.random() * 100) + 1}%`,
-          top: `${Math.floor(Math.random() * 100) + 1}%`
-        }} />
-      ))}
-    </div>
+      <div
+        className={`absolute h-full z-10 ${styles.projectRandomObjects} w-full`}
+      >
+        {project.PROPERTY_PHOTOS &&
+          project.PROPERTY_PHOTOS.map((img) => (
+            <img
+              src={img}
+              style={{
+                left: `${Math.floor(Math.random() * 80) + 1}%`,
+                top: `${Math.floor(Math.random() * 80) + 1}%`,
+              }}
+            />
+          ))}
+      </div>
       <motion.div
         animate={showYoutube ? "hidden" : "visible"}
         variants={contentBoxVariants}
@@ -102,7 +110,6 @@ function Project({ project }) {
           <div className="col-span-2">
             <motion.div
               initial="hidden"
-              transition={{ duration: 0.6 }}
               animate={controls}
               variants={textBlock}
             >
