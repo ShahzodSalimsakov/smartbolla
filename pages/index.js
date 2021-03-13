@@ -10,12 +10,13 @@ import { motion } from "framer-motion";
 import FullPageSectionTitle from "../components/FullPageSectionTitle/FullPageSectionTitle";
 import InvestorNewBubble from "../components/InvestorNewBubble/InvestorNewBubble";
 import Project from "../components/Project/Project";
+import CounterList from "../components/CounterList/CounterList";
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({ investors, projects }) {
+function Home({ investors, projects, counter }) {
   const dispatch = useDispatch();
 
   const [isAllowScroll, setIsAllowScroll] = useState(false);
@@ -109,6 +110,9 @@ function Home({ investors, projects }) {
                     <Project project={project} />
                   </div>
                 ))}
+                <div className="section pl-24 pt-20">
+                  <CounterList counter={counter} />
+                </div>
               </ReactFullpage.Wrapper>
             );
           }}
@@ -238,8 +242,22 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
+  const resCounter = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "get.counter.list",
+      data: {
+        locale,
+      },
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
+  let { data: counter } = await resCounter.json();
 
   investors = investors || [];
 
@@ -247,6 +265,7 @@ export async function getServerSideProps({ locale }) {
     props: {
       investors,
       projects,
+      counter,
     },
   };
 }
