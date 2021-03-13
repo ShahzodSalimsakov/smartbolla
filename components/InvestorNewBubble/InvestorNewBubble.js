@@ -68,7 +68,6 @@ export default function InvestorNewBubble({ investors }) {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background-color: #ccc;
             background-size: cover;
             transition: all 0.5s ease;
           }
@@ -77,7 +76,6 @@ export default function InvestorNewBubble({ investors }) {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background-color: #ccc;
             background-size: cover;
             transition: all 0.5s ease;
           }

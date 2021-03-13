@@ -31,7 +31,7 @@ function Home({ investors, projects }) {
     });
   };
 
-  const sectionsColor = ["#282c34", "#ff5f45"];
+  const sectionsColor = ["#282c34", "#6135863d"];
 
   projects.map((project) => {
     if (project.PROPERTY_BACKGROUND_COLOR_VALUE) {
