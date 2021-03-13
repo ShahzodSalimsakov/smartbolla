@@ -111,7 +111,7 @@ function Contacts({contactAddress}) {
                   },
                 });
               
-              setSubmitting(false);
+                setSubmitting(false);
               } catch (error) {
                 console.log(error)
               }

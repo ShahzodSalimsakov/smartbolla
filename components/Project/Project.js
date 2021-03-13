@@ -7,6 +7,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import YouTube from "react-youtube";
+import Image from "next/image";
+
 
 library.add(faYoutube, faArrowLeft);
 
@@ -79,6 +81,15 @@ function Project({ project }) {
       ref={ref}
       className={`flex h-full ${showYoutube ? "" : "items-center"}`}
     >
+    <div className={`absolute h-full ${styles.projectRandomObjects} w-full`}>
+      
+      {project.PROPERTY_PHOTOS && project.PROPERTY_PHOTOS.map(img => (
+        <img src={img} style={{
+          left: `${Math.floor(Math.random() * 100) + 1}%`,
+          top: `${Math.floor(Math.random() * 100) + 1}%`
+        }} />
+      ))}
+    </div>
       <motion.div
         animate={showYoutube ? "hidden" : "visible"}
         variants={contentBoxVariants}
