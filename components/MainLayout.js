@@ -9,7 +9,6 @@ import MainRightSide from "./MainRightSide/MainRightSide";
 import styles from "./MainLayout.module.css";
 import Social from "./Social/Social";
 import { useRouter } from "next/router";
-import Particles from "react-particles-js";
 
 export function MainLayout({ children, title = "" }) {
   const { backgroundColor } = useSelector((state) => state.mainConfig);
@@ -21,7 +20,7 @@ export function MainLayout({ children, title = "" }) {
         <title>{title}</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet"
         />
       </Head>
@@ -29,30 +28,6 @@ export function MainLayout({ children, title = "" }) {
         style={{ background: backgroundColor }}
         className={`${pathname == "/" ? "flex flex-row" : ""}`}
       >
-        <Particles
-          params={{
-            particles: {
-              number: {
-                value: 50,
-              },
-              size: {
-                value: 3,
-              },
-            },
-            interactivity: {
-              events: {
-                onhover: {
-                  enable: true,
-                  mode: "repulse",
-                },
-              },
-            },
-          }}
-          style={{
-            position: 'absolute',
-            zIndex: 9
-          }}
-        />
         <MainLeftSide className="fixed left-0 z-30">
           <div>
             <Link href="/">
