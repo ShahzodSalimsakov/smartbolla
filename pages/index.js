@@ -58,8 +58,23 @@ function Home({ investors, projects }) {
                 </div>
                 <div className="section pl-24 pt-20">
                   <FullPageSectionTitle title="Investors" />
-                  {/*investors && <InvestorsBubble investors={investors} />*/}
                   {investors && <InvestorNewBubble investors={investors} />}
+                  <a
+                    href="javascript:void(0)"
+                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-top"
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </a>
+                  <a
+                    href="javascript:void(0)"
+                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-bottom"
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </a>
                 </div>
                 {projects.map((project) => (
                   <div className="section pl-24 pt-20" key={project.ID}>
@@ -85,6 +100,82 @@ function Home({ investors, projects }) {
               background: #fff !important;
               border: 3px solid #fff !important;
             }
+
+            .ct-btn-scroll {
+              position: absolute;
+              top: 20%;
+              right: 0;
+              z-index: 2;
+              display: inline-block;
+              -webkit-transform: translate(0, -50%);
+              transform: translate(0, -50%);
+              color: #fff;
+              font: normal 400 20px/1 "Josefin Sans", sans-serif;
+              letter-spacing: 0.1em;
+              text-decoration: none;
+              transition: opacity 0.3s;
+            }
+            .ct-btn-scroll span {
+              position: absolute;
+              top: 0;
+              left: 50%;
+              width: 24px;
+              height: 24px;
+              margin-left: -12px;
+              border-left: 2px solid #fff;
+              border-bottom: 2px solid #fff;
+              -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+              -webkit-animation: sdb07 2s infinite;
+              animation: sdb07 2s infinite;
+              opacity: 0;
+              box-sizing: border-box;
+            }
+            .ct-btn-scroll span:nth-of-type(1) {
+              -webkit-animation-delay: 0s;
+              animation-delay: 0s;
+            }
+            .ct-btn-scroll span:nth-of-type(2) {
+              top: 16px;
+              -webkit-animation-delay: 0.15s;
+              animation-delay: 0.15s;
+            }
+            .ct-btn-scroll span:nth-of-type(3) {
+              top: 32px;
+              -webkit-animation-delay: 0.3s;
+              animation-delay: 0.3s;
+            }
+
+            .ct-btn-scroll-top {
+              transform: rotate(180deg);
+              top: 30%;
+            }
+            .ct-btn-scroll-bottom {
+              top: 75%;
+            }
+
+            @-webkit-keyframes sdb07 {
+              0% {
+                opacity: 0;
+              }
+              50% {
+                opacity: 1;
+              }
+              100% {
+                opacity: 0;
+              }
+            }
+            @keyframes sdb07 {
+              0% {
+                opacity: 0;
+              }
+              50% {
+                opacity: 1;
+              }
+              100% {
+                opacity: 0;
+              }
+            }
           `}
         </style>
       </MainLayout>
@@ -92,7 +183,7 @@ function Home({ investors, projects }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }) {
   const res = await fetch("https://smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
@@ -107,6 +198,9 @@ export async function getServerSideProps() {
     method: "POST",
     body: JSON.stringify({
       method: "get.projects.list",
+      data: {
+        locale,
+      },
     }),
     headers: {
       ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",

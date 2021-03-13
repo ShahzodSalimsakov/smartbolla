@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import YouTube from "react-youtube";
 
-library.add(faYoutube, faTimes);
+library.add(faYoutube, faArrowLeft);
 
 function Project({ project }) {
   const controls = useAnimation();
@@ -49,50 +49,46 @@ function Project({ project }) {
 
   const contentBoxVariants = {
     hidden: {
+      width: ["100vw", "0vw"],
       opacity: [1, 0],
-      scale: [1, 0],
-      height: ["100vh", "0vh"],
     },
     visible: {
+      width: ["0vw", "100vw"],
       opacity: [0, 1],
-      scale: [0, 1],
-      height: ["0vh", "100vh"],
     },
   };
 
   const youtubeBoxVariants = {
     hidden: {
+      width: ["100vw", "0vw"],
       opacity: [1, 0],
-      scale: [1, 30],
-      height: ["100vh", "0vh"],
     },
     visible: {
+      width: ["0vw", "100vw"],
       opacity: [0, 1],
-      scale: [30, 1],
-      height: ["0vh", "100vh"],
     },
   };
 
   const youtubeOptions = {
     height: "390",
-    width: "80%",
+    width: "90%",
   };
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="flex">
       <motion.div
         animate={showYoutube ? "hidden" : "visible"}
         variants={contentBoxVariants}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeInOut" }}
       >
-        <div key={project.ID} className="grid grid-cols-2">
+        <div key={project.ID} className="grid grid-cols-2 overflow-hidden">
           <motion.div
             initial="hidden"
             transition={{ duration: 0.6 }}
             animate={controls}
             variants={textBlock}
           >
-            <div className={styles.parent}>
+            <div>
               <h1 className="text-center">{project.NAME}</h1>
               <div className={styles.textBlock}>{project.PREVIEW_TEXT}</div>
             </div>
@@ -117,18 +113,19 @@ function Project({ project }) {
         <motion.div
           animate={showYoutube ? "visible" : "hidden"}
           variants={youtubeBoxVariants}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeInOut" }}
         >
           <div>
-            <div className="flex justify-end px-16">
-              <div>
-                <FontAwesomeIcon
-                  icon={faTimes}
-                  size="lg"
-                  className="cursor-pointer text-white w-8"
-                  onClick={() => setshowYoutube(false)}
-                />
-              </div>
+            <div
+              className="cursor-pointer flex items-center pb-4 px-16"
+              onClick={() => setshowYoutube(false)}
+            >
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                size="lg"
+                className="mr-2 text-white w-5"
+              />
+              <span>Назад</span>
             </div>
             <YouTube
               videoId={project.PROPERTY_YOUTUBE_LINK_VALUE}
