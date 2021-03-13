@@ -31,6 +31,19 @@ function Home({ investors, projects }) {
     });
   };
 
+  const sectionsColor = ["#282c34", "#ff5f45"];
+
+  projects.map((project) => {
+    console.log(project);
+    if (project.PROPERTY_BACKGROUND_COLOR_VALUE) {
+      sectionsColor.push(project.PROPERTY_BACKGROUND_COLOR_VALUE);
+    } else {
+      sectionsColor.push("#152331");
+    }
+  });
+
+  console.log(sectionsColor);
+
   return (
     <>
       <MainLayout title={"Smartbolla"}>
@@ -40,7 +53,7 @@ function Home({ investors, projects }) {
           scrollingSpeed={1000} /* Options here */
           navigation={true}
           navigationPosition={"left"}
-          sectionsColor={["#282c34", "#ff5f45", "#0798ec"]}
+          sectionsColor={sectionsColor}
           onLeave={(origin, destination, direction) => {
             if (destination.index == 1) {
               setIsAllowScroll(false);
@@ -78,24 +91,22 @@ function Home({ investors, projects }) {
                 <div className="section pl-24 pt-20">
                   <FullPageSectionTitle title="Investors" />
                   {investors && <InvestorNewBubble investors={investors} />}
-                  <a
-                    href="javascript:void(0)"
+                  <span
                     className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-top"
                     onClick={() => scrollFromInvestors("up")}
                   >
                     <span></span>
                     <span></span>
                     <span></span>
-                  </a>
-                  <a
-                    href="javascript:void(0)"
+                  </span>
+                  <span
                     className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-bottom"
                     onClick={() => scrollFromInvestors("down")}
                   >
                     <span></span>
                     <span></span>
                     <span></span>
-                  </a>
+                  </span>
                 </div>
                 {projects.map((project) => (
                   <div className="section pl-24 pt-20" key={project.ID}>
