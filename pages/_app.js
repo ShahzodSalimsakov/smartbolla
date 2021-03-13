@@ -1,4 +1,4 @@
-import "../styles/main.css";
+import "../styles/main.scss";
 import "tailwindcss/tailwind.css";
 import "swiper/swiper.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
