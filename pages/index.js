@@ -29,7 +29,10 @@ function Home({ investors, projects }) {
           navigationPosition={"left"}
           sectionsColor={["#282c34", "#ff5f45", "#0798ec"]}
           onLeave={(origin, destination, direction) => {
-            if (origin.index == 1 && direction == "up") {
+            if (
+              origin.index == 1 &&
+              (direction == "up" || direction == "down")
+            ) {
               return false;
             }
             // useEffect(() => {
@@ -59,7 +62,7 @@ function Home({ investors, projects }) {
                   {investors && <InvestorNewBubble investors={investors} />}
                 </div>
                 {projects.map((project) => (
-                  <div className="section pl-24 pt-20">
+                  <div className="section pl-24 pt-20" key={project.ID}>
                     <Project project={project} />
                   </div>
                 ))}
@@ -110,10 +113,9 @@ export async function getServerSideProps() {
     },
   });
 
-
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
-  
+
   investors = investors || [];
 
   return {
