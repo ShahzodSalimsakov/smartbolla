@@ -11,7 +11,7 @@ export default function InvestorNewBubble({ investors }) {
   const options = {
     size: 180,
     minSize: 20,
-    gutter: 8,
+    gutter: 0,
     provideProps: true,
     numCols: 6,
     fringeWidth: 160,
@@ -20,14 +20,13 @@ export default function InvestorNewBubble({ investors }) {
     cornerRadius: 50,
     showGuides: false,
     compact: true,
-    gravitation: 5,
+    gravitation: 8,
   };
   const children = investors.map((data, i) => {
     return (
       <div
         key={data.ID}
         className="child-block cursor-pointer"
-        onClick={() => router.push("/investor/" + data.ID)}
         layoutId="investorPhoto"
       >
         <div
