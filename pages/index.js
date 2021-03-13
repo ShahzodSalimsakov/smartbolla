@@ -3,7 +3,7 @@ import Head from "next/head";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { MainLayout } from "../components/MainLayout";
 import InvestorsBubble from "../components/InvestorsBubble/InvestorsBubble";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeMainBackground } from "../store/actions/mainConfigActions";
 import { motion } from "framer-motion";
@@ -18,6 +18,29 @@ const pluginWrapper = () => {
 function Home({ investors, projects }) {
   const dispatch = useDispatch();
 
+  const [isAllowScroll, setIsAllowScroll] = useState(false);
+
+  const scrollFromInvestors = (direction) => {
+    setIsAllowScroll(true);
+    setTimeout(() => {
+      if (direction == "up") {
+        fullpage_api.moveSectionUp();
+      } else {
+        fullpage_api.moveSectionDown();
+      }
+    });
+  };
+
+  const sectionsColor = ["#282c34", "#ff5f45"];
+
+  projects.map((project) => {
+    if (project.PROPERTY_BACKGROUND_COLOR_VALUE) {
+      sectionsColor.push(project.PROPERTY_BACKGROUND_COLOR_VALUE);
+    } else {
+      sectionsColor.push("#152331");
+    }
+  });
+
   return (
     <>
       <MainLayout title={"Smartbolla"}>
@@ -27,9 +50,14 @@ function Home({ investors, projects }) {
           scrollingSpeed={1000} /* Options here */
           navigation={true}
           navigationPosition={"left"}
-          sectionsColor={["#282c34", "#ff5f45", "#0798ec"]}
+          sectionsColor={sectionsColor}
           onLeave={(origin, destination, direction) => {
+            if (destination.index == 1) {
+              setIsAllowScroll(false);
+            }
+
             if (
+              !isAllowScroll &&
               origin.index == 1 &&
               (direction == "up" || direction == "down")
             ) {
@@ -59,22 +87,22 @@ function Home({ investors, projects }) {
                 <div className="section pl-24 pt-20">
                   <FullPageSectionTitle title="Investors" />
                   {investors && <InvestorNewBubble investors={investors} />}
-                  <a
-                    href="javascript:void(0)"
-                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-top"
+                  <span
+                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-top cursor-pointer"
+                    onClick={() => scrollFromInvestors("up")}
                   >
                     <span></span>
                     <span></span>
                     <span></span>
-                  </a>
-                  <a
-                    href="javascript:void(0)"
-                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-bottom"
+                  </span>
+                  <span
+                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-bottom cursor-pointer"
+                    onClick={() => scrollFromInvestors("down")}
                   >
                     <span></span>
                     <span></span>
                     <span></span>
-                  </a>
+                  </span>
                 </div>
                 {projects.map((project) => (
                   <div className="section pl-24 pt-20" key={project.ID}>
@@ -87,6 +115,9 @@ function Home({ investors, projects }) {
         />
         <style jsx global>
           {`
+            #fp-nav {
+              top: 65% !important;
+            }
             #fp-nav ul li a span,
             .fp-slidesNav ul li a span {
               background: transparent !important;
@@ -104,7 +135,7 @@ function Home({ investors, projects }) {
             .ct-btn-scroll {
               position: absolute;
               top: 20%;
-              right: 0;
+              right: 10%;
               z-index: 2;
               display: inline-block;
               -webkit-transform: translate(0, -50%);
@@ -148,7 +179,7 @@ function Home({ investors, projects }) {
 
             .ct-btn-scroll-top {
               transform: rotate(180deg);
-              top: 30%;
+              top: 25%;
             }
             .ct-btn-scroll-bottom {
               top: 75%;
