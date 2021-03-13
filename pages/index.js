@@ -34,15 +34,12 @@ function Home({ investors, projects }) {
   const sectionsColor = ["#282c34", "#ff5f45"];
 
   projects.map((project) => {
-    console.log(project);
     if (project.PROPERTY_BACKGROUND_COLOR_VALUE) {
       sectionsColor.push(project.PROPERTY_BACKGROUND_COLOR_VALUE);
     } else {
       sectionsColor.push("#152331");
     }
   });
-
-  console.log(sectionsColor);
 
   return (
     <>
@@ -59,7 +56,6 @@ function Home({ investors, projects }) {
               setIsAllowScroll(false);
             }
 
-            console.log(isAllowScroll);
             if (
               !isAllowScroll &&
               origin.index == 1 &&
@@ -92,7 +88,7 @@ function Home({ investors, projects }) {
                   <FullPageSectionTitle title="Investors" />
                   {investors && <InvestorNewBubble investors={investors} />}
                   <span
-                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-top"
+                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-top cursor-pointer"
                     onClick={() => scrollFromInvestors("up")}
                   >
                     <span></span>
@@ -100,7 +96,7 @@ function Home({ investors, projects }) {
                     <span></span>
                   </span>
                   <span
-                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-bottom"
+                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-bottom cursor-pointer"
                     onClick={() => scrollFromInvestors("down")}
                   >
                     <span></span>
