@@ -43,7 +43,7 @@ function Contacts({ contactAddress, social }) {
                 className="mr-3 w-5 text-white"
               />
             </div>
-            <div>{contactAddress.ADDEESS}</div>
+            <div>{contactAddress.ADDRESS}</div>
           </div>
           <div className="flex py-4">
             <div className="flex">
@@ -192,21 +192,21 @@ export async function getServerSideProps({ locale }) {
   });
   let { data: contactAddress } = await res.json();
 
-  const socials = await fetch("https://smartbolla.com/api/", {
-    method: "POST",
-    body: JSON.stringify({
-      method: "social.links",
-      data: {
-        locale: locale,
-      },
-    }),
-    headers: {
-      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
-    },
-  });
-  let { data: social } = await socials.json();
-  console.log(social);
 
+    const socials = await fetch("https://smartbolla.com/api/", {
+      method: "POST",
+      body: JSON.stringify({
+        method: "social.links",
+        data: {
+          locale: locale,
+        }
+      }),
+      headers: {
+        ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+      },
+    });
+    let { data: social, } = await socials.json();
+  
   return {
     props: {
       contactAddress,

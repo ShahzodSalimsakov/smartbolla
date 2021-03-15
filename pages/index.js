@@ -34,7 +34,7 @@ function Home({ investors, projects, counter, products, cofounder, team }) {
 
   return (
     <>
-      <MainLayout title={"Smartbolla"}>
+      <MainLayout title={"Smartbolla"} mainLayoutSocial={mainLayoutSocial}>
         <ReactFullpage
           //fullpage options
           licenseKey={""}
@@ -238,6 +238,19 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
+  const socials = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "social.links",
+      data: {
+        locale: locale,
+      },
+    }),
+      headers: {
+        ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+      },
+    });
+      
   const resProducts = await fetch("https://smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
@@ -277,10 +290,10 @@ export async function getServerSideProps({ locale }) {
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
+  let { data: mainLayoutSocial, } = await socials.json();
   let { data: products } = await resProducts.json();
   let { data: cofounder } = await resCoFounder.json();
   let { data: team } = await resTeam.json();
-
   investors = investors || [];
 
   return {
@@ -288,6 +301,7 @@ export async function getServerSideProps({ locale }) {
       investors,
       projects,
       counter,
+      mainLayoutSocial,
       products,
       cofounder,
       team,

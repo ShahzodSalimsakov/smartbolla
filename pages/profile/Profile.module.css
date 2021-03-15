@@ -1,0 +1,21 @@
+.profileTable {
+    background-color: rgb(246 200 134);
+    border-radius: 15px;
+    color: #333;
+}
+
+.profileTable th {
+    padding: 20px;
+}
+
+.profileTable td {
+    padding: 20px;
+}
+
+.tokenCount{
+    color: #333;
+    background-color: #f6c886;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+}

@@ -9,6 +9,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import YouTube from "react-youtube";
 import Image from "next/image";
 
+
 library.add(faYoutube, faArrowLeft);
 
 function Project({ project }) {
@@ -52,12 +53,10 @@ function Project({ project }) {
     hidden: {
       width: ["100vw", "0vw"],
       opacity: [1, 0],
-      zIndex: 20,
     },
     visible: {
       width: ["0vw", "100vw"],
       opacity: [0, 1],
-      zIndex: 20,
     },
   };
 
@@ -65,12 +64,10 @@ function Project({ project }) {
     hidden: {
       width: ["100vw", "0vw"],
       opacity: [1, 0],
-      zIndex: 20,
     },
     visible: {
       width: ["0vw", "100vw"],
       opacity: [0, 1],
-      zIndex: 20,
     },
   };
 
@@ -111,6 +108,7 @@ function Project({ project }) {
           <div className="col-span-2">
             <motion.div
               initial="hidden"
+              transition={{ duration: 0.6 }}
               animate={controls}
               variants={textBlock}
             >
