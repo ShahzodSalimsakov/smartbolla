@@ -1,0 +1,15 @@
+.textBlock {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.projectRandomObjects img {
+  width: 200px !important;
+  height: 200px !important;
+  position: absolute;
+  transition: all 1s ease;
+}

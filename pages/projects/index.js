@@ -1,7 +1,12 @@
-import {MainLayout} from "../../components/MainLayout";
+import { MainLayout } from "../../components/MainLayout";
+import Project from "../../components/Project/Project";
 
-function Projects() {
-  return <MainLayout>Projects</MainLayout>
+function ProjectsPage() {
+  return (
+    <MainLayout>
+      <div>dasdsad</div>
+    </MainLayout>
+  );
 }
 
-export default Projects
+export default ProjectsPage;
