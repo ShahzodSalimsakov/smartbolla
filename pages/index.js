@@ -12,26 +12,14 @@ import InvestorNewBubble from "../components/InvestorNewBubble/InvestorNewBubble
 import Project from "../components/Project/Project";
 import CounterList from "../components/CounterList/CounterList";
 import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
+import Slider from "../components/Slider/Slider";
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({ investors, projects, counter, products }) {
+function Home({ investors, projects, counter, products, cofounder }) {
   const dispatch = useDispatch();
-
-  const [isAllowScroll, setIsAllowScroll] = useState(false);
-
-  const scrollFromInvestors = (direction) => {
-    setIsAllowScroll(true);
-    setTimeout(() => {
-      if (direction == "up") {
-        fullpage_api.moveSectionUp();
-      } else {
-        fullpage_api.moveSectionDown();
-      }
-    });
-  };
 
   const sectionsColor = ["#282c34", "#6135863d"];
 
@@ -53,22 +41,7 @@ function Home({ investors, projects, counter, products }) {
           navigation={true}
           navigationPosition={"left"}
           sectionsColor={sectionsColor}
-          onLeave={(origin, destination, direction) => {
-            if (destination.index == 1) {
-              setIsAllowScroll(false);
-            }
-
-            if (
-              !isAllowScroll &&
-              origin.index == 1 &&
-              (direction == "up" || direction == "down")
-            ) {
-              return false;
-            }
-            // useEffect(() => {
-            // dispatch(changeMainBackground("red"));
-            // }, []);
-          }}
+          onLeave={(origin, destination, direction) => {}}
           render={({ state, fullpageApi }) => {
             return (
               <ReactFullpage.Wrapper className="">
@@ -88,25 +61,15 @@ function Home({ investors, projects, counter, products }) {
                     </div>
                   </div>
                 </div>
-                <div className="section pl-24 pt-20">
+                <div className="section pl-24 pt-14">
                   <FullPageSectionTitle title="Investors" />
-                  {investors && <InvestorNewBubble investors={investors} />}
-                  <span
-                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-top cursor-pointer"
-                    onClick={() => scrollFromInvestors("up")}
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </span>
-                  <span
-                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-bottom cursor-pointer"
-                    onClick={() => scrollFromInvestors("down")}
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </span>
+                  <div className="w-10/12 m-auto">
+                    <Slider slides={investors} />
+                  </div>
+                  <FullPageSectionTitle title="Co-founders" />
+                  <div className="w-10/12 m-auto">
+                    <Slider slides={cofounder} />
+                  </div>
                 </div>
                 {projects.map((project) => (
                   <div className="section pl-24 pt-20" key={project.ID}>
@@ -268,10 +231,24 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
+  const resCoFounder = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "get.cofounder.list",
+      data: {
+        locale,
+      },
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+  console.log(resProducts);
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
   let { data: products } = await resProducts.json();
+  let { data: cofounder } = await resCoFounder.json();
 
   investors = investors || [];
 
@@ -281,6 +258,7 @@ export async function getServerSideProps({ locale }) {
       projects,
       counter,
       products,
+      cofounder,
     },
   };
 }

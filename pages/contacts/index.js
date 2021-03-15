@@ -22,7 +22,7 @@ library.add(fab);
 library.add(fas);
 
 
-function Contacts({contactAddress}) {
+function Contacts({contactAddress, social}) {
   return (
     <MainLayout>
       
@@ -56,7 +56,7 @@ function Contacts({contactAddress}) {
             <div className={styles.phoneLink} dangerouslySetInnerHTML={{__html: contactAddress.PHONE }}/>
           </div>
           <div className="py-2">
-            {contactAddress.SOC_ICONS.map(item => (
+            {social.SOC_ICONS.map(item => (
               <span key={item.LINK} class="nav-item social-icons">
                 <span class={styles.faStack}>
                   <a target="_blank" href={item.LINK}>
@@ -177,24 +177,39 @@ function Contacts({contactAddress}) {
 }
 
 
+
   export async function getServerSideProps({ locale }) {
-  const res = await fetch("https://smartbolla.com/api/", {
-    method: "POST",
-    body: JSON.stringify({
-      method: "get.contact.address",
-      data: {
-        locale: locale,
-      }
-    }),
-    headers: {
-      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
-    },
-  });
-  let { data: contactAddress, } = await res.json();
+
+    const res = await fetch("https://smartbolla.com/api/", {
+      method: "POST",
+      body: JSON.stringify({
+        method: "get.contact.address",
+      }),
+      headers: {
+        ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+      },
+    });
+    let { data: contactAddress, } = await res.json();
+
+    const socials = await fetch("https://smartbolla.com/api/", {
+      method: "POST",
+      body: JSON.stringify({
+        method: "social.links",
+        data: {
+          locale: locale,
+        }
+      }),
+      headers: {
+        ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+      },
+    });
+    let { data: social, } = await socials.json();
+    console.log(social);
   
   return {
     props: {
       contactAddress,
+      social,
     },
   };
 }
