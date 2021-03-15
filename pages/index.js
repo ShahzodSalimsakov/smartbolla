@@ -11,12 +11,13 @@ import FullPageSectionTitle from "../components/FullPageSectionTitle/FullPageSec
 import InvestorNewBubble from "../components/InvestorNewBubble/InvestorNewBubble";
 import Project from "../components/Project/Project";
 import CounterList from "../components/CounterList/CounterList";
+import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({ investors, projects, counter }) {
+function Home({ investors, projects, counter, products }) {
   const dispatch = useDispatch();
 
   const [isAllowScroll, setIsAllowScroll] = useState(false);
@@ -82,7 +83,9 @@ function Home({ investors, projects, counter }) {
                         SmartBolla
                       </motion.h1>
                     </div>
-                    <div></div>
+                    <div>
+                      <ProductsSlider products={products} />
+                    </div>
                   </div>
                 </div>
                 <div className="section pl-24 pt-20">
@@ -255,9 +258,20 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
+  const resProducts = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "get.products.list",
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
+  let { data: products } = await resProducts.json();
 
   investors = investors || [];
 
@@ -266,6 +280,7 @@ export async function getServerSideProps({ locale }) {
       investors,
       projects,
       counter,
+      products,
     },
   };
 }
