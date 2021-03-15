@@ -25,7 +25,7 @@ function Slider({ slides }) {
     >
       {slides.map((item) => (
         <SwiperSlide key={item.ID}>
-          <div className="w-10/12">
+          <div className="">
             <Image
               src={item.PREVIEW_PICTURE ? `${item.PREVIEW_PICTURE}` : "/"}
               width={200}

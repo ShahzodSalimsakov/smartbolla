@@ -17,7 +17,7 @@ const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({ investors, projects, counter, cofounder }) {
+function Home({ investors, projects, counter, cofounder, team }) {
   const dispatch = useDispatch();
 
   const sectionsColor = ["#282c34", "#6135863d"];
@@ -83,6 +83,9 @@ function Home({ investors, projects, counter, cofounder }) {
                 ))}
                 <div className="section pl-24 pt-20">
                   <CounterList counter={counter} />
+                </div>
+                <div className="section pl-24 pt-20">
+                  <Slider slides={team} />
                 </div>
               </ReactFullpage.Wrapper>
             );
@@ -239,10 +242,24 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
+  const resTeam = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "get.team.list",
+      data: {
+        locale,
+      },
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
   let { data: cofounder } = await resCoFounder.json();
+  let { data: team } = await resTeam.json();
 
   investors = investors || [];
 
@@ -252,6 +269,7 @@ export async function getServerSideProps({ locale }) {
       projects,
       counter,
       cofounder,
+      team,
     },
   };
 }
