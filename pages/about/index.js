@@ -3,50 +3,35 @@ import AboutPage from "../../components/AboutPage/AboutPage";
 import React from "react";
 import Slider from "../../components/Slider/Slider";
 
-export default function About() {
+export default function About({ team }) {
+  console.log(team)
   return (
     <MainLayout title={"About"}>
       <AboutPage />
-      <Slider slides={teamData} />
+      <Slider slides={team} />
     </MainLayout>
   );
 }
 
-const teamData = [
-  {
-    name: "Shahzod",
-    description: "Developer",
-    photoLink:
-      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
-  },
-  {
-    name: "Davron",
-    description: "Developer",
-    photoLink:
-      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
-  },
-  {
-    name: "Bekzod",
-    description: "Developer",
-    photoLink:
-      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
-  },
-  {
-    name: "Nuriddin",
-    description: "Developer",
-    photoLink:
-      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
-  },
-  {
-    name: "Abdurahmon",
-    description: "Developer",
-    photoLink:
-      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
-  },
-  {
-    name: "Doniyor",
-    description: "Developer",
-    photoLink:
-      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
-  },
-];
+export async function getStaticProps({ locale }) {
+  const resTeam = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "get.team.list",
+      data: {
+        locale,
+      },
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
+  let { data: team } = await resTeam.json();
+
+  return {
+    props: {
+      team,
+    },
+  };
+}
