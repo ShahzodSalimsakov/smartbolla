@@ -8,7 +8,8 @@
 }
 
 .projectRandomObjects img {
-  width: 200px!important;
-  height: 200px!important;
+  width: 200px !important;
+  height: 200px !important;
   position: absolute;
+  transition: all 1s ease;
 }
