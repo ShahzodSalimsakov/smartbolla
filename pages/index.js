@@ -16,7 +16,7 @@ const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({ investors, projects, counter }) {
+function Home({ investors, projects, counter, mainLayoutSocial }) {
   const dispatch = useDispatch();
 
   const [isAllowScroll, setIsAllowScroll] = useState(false);
@@ -44,7 +44,7 @@ function Home({ investors, projects, counter }) {
 
   return (
     <>
-      <MainLayout title={"Smartbolla"}>
+      <MainLayout title={"Smartbolla"} mainLayoutSocial={mainLayoutSocial}>
         <ReactFullpage
           //fullpage options
           licenseKey={""}
@@ -255,9 +255,23 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
+  const socials = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "social.links",
+      data: {
+        locale: locale,
+      }
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
+  let { data: mainLayoutSocial, } = await socials.json();
   investors = investors || [];
 
   return {
@@ -265,6 +279,7 @@ export async function getServerSideProps({ locale }) {
       investors,
       projects,
       counter,
+      mainLayoutSocial,
     },
   };
 }

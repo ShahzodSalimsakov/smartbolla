@@ -24,7 +24,7 @@ library.add(fas);
 
 function Contacts({contactAddress, social}) {
   return (
-    <MainLayout>
+    <MainLayout social={social}>
       
       <div className='mb-10'>
         <YMaps>
@@ -179,11 +179,13 @@ function Contacts({contactAddress, social}) {
 
 
   export async function getServerSideProps({ locale }) {
-
     const res = await fetch("https://smartbolla.com/api/", {
       method: "POST",
       body: JSON.stringify({
         method: "get.contact.address",
+        data: {
+          locale
+        }
       }),
       headers: {
         ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
@@ -196,7 +198,7 @@ function Contacts({contactAddress, social}) {
       body: JSON.stringify({
         method: "social.links",
         data: {
-          locale: locale,
+          locale
         }
       }),
       headers: {
@@ -204,7 +206,6 @@ function Contacts({contactAddress, social}) {
       },
     });
     let { data: social, } = await socials.json();
-    console.log(social);
   
   return {
     props: {

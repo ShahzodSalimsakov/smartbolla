@@ -10,9 +10,8 @@ import styles from "./MainLayout.module.css";
 import Social from "./Social/Social";
 import { useRouter } from "next/router";
 
-export function MainLayout({ children, title = "" }) {
+export function MainLayout({ children, title = "", mainLayoutSocial }) {
   const { backgroundColor } = useSelector((state) => state.mainConfig);
-  console.log(backgroundColor);
   const { pathname } = useRouter();
   return (
     <>
@@ -55,7 +54,7 @@ export function MainLayout({ children, title = "" }) {
           }`}
         >
           {children}
-          <Social />
+          { pathname != "/contacts" && <Social mainLayoutSocial={mainLayoutSocial} />}
         </div>
       </div>
       <style jsx global>{`

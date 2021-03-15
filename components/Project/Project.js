@@ -84,7 +84,7 @@ function Project({ project }) {
     <div className={`absolute h-full ${styles.projectRandomObjects} w-full`}>
       
       {project.PROPERTY_PHOTOS && project.PROPERTY_PHOTOS.map(img => (
-        <img src={img} style={{
+        <img src={img} width={5} style={{
           left: `${Math.floor(Math.random() * 100) + 1}%`,
           top: `${Math.floor(Math.random() * 100) + 1}%`
         }} />

@@ -5,7 +5,7 @@ import Carousel, { Modal, ModalGateway } from "react-images";
 
 const photos = [];
 
-function Media() {
+function Media({mainLayoutSocial}) {
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
@@ -21,7 +21,7 @@ function Media() {
 
   return (
     <>
-      <MainLayout>
+      <MainLayout mainLayoutSocial={mainLayoutSocial}>
         <div>
           <Gallery photos={photos} onClick={openLightbox} />
           <ModalGateway>
@@ -42,6 +42,31 @@ function Media() {
       </MainLayout>
     </>
   );
+}
+
+
+export async function getServerSideProps({ locale }) {
+
+  const socials = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "social.links",
+      data: {
+        locale: locale,
+      }
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
+  let { data: mainLayoutSocial, } = await socials.json();
+
+  return {
+    props: {
+      mainLayoutSocial,
+    },
+  };
 }
 
 export default Media;
