@@ -63,7 +63,9 @@ function Home({ investors, projects, counter, products, cofounder }) {
                           <h1 className="font-black uppercase text-5xl">
                             Your are the boss.
                           </h1>
-                          <span>Invest in your future</span>
+                          <span className="text-2xl font-weight-light">
+                            Invest in your future
+                          </span>
                         </div>
                       </div>
                       <div className="flex h-100 items-center z-20 justify-around">
