@@ -54,9 +54,13 @@ function Home({ investors, projects, counter, products, cofounder, team }) {
                           <Image src="/img/portrait.webp" layout="fill" />
                         </div>
                         <div className="absolute bg-black bottom-0 jsx-1377087279 p-4 w-2/4 z-20">
-                          <h1 className="font-black uppercase">Your time.</h1>
-                          <h1 className="font-black uppercase">Your goals.</h1>
-                          <h1 className="font-black uppercase">
+                          <h1 className="font-black uppercase text-5xl">
+                            Your time.
+                          </h1>
+                          <h1 className="font-black uppercase text-5xl">
+                            Your goals.
+                          </h1>
+                          <h1 className="font-black uppercase text-5xl">
                             Your are the boss.
                           </h1>
                           <span>Invest in your future</span>
