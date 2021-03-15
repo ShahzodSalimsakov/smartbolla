@@ -17,9 +17,8 @@ const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({ investors, projects, counter }) {
+function Home({ investors, projects, counter, cofounder }) {
   const dispatch = useDispatch();
-
 
   const sectionsColor = ["#282c34", "#6135863d"];
 
@@ -41,8 +40,7 @@ function Home({ investors, projects, counter }) {
           navigation={true}
           navigationPosition={"left"}
           sectionsColor={sectionsColor}
-          onLeave={(origin, destination, direction) => {
-          }}
+          onLeave={(origin, destination, direction) => {}}
           render={({ state, fullpageApi }) => {
             return (
               <ReactFullpage.Wrapper className="">
@@ -67,8 +65,8 @@ function Home({ investors, projects, counter }) {
                     transition={{ duration: 0.8, ease: "easeIn", delay: 2 }}
                   >
                     Investors
-                    <Slider slides={investors} />
                   </motion.h1>
+                  <Slider slides={investors} />
                   <motion.h1
                     initial={{ scale: [14, 1] }}
                     animate={{ scale: [1, 1] }}
@@ -76,6 +74,7 @@ function Home({ investors, projects, counter }) {
                   >
                     Co-founders
                   </motion.h1>
+                  <Slider slides={cofounder} />
                 </div>
                 {projects.map((project) => (
                   <div className="section pl-24 pt-20" key={project.ID}>
@@ -227,10 +226,24 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
+  const resCoFounder = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "get.cofounder.list",
+      data: {
+        locale,
+      },
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
-  
+  let { data: cofounder } = await resCoFounder.json();
+
   investors = investors || [];
 
   return {
@@ -238,6 +251,7 @@ export async function getServerSideProps({ locale }) {
       investors,
       projects,
       counter,
+      cofounder,
     },
   };
 }
