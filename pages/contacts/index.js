@@ -43,7 +43,7 @@ function Contacts({ contactAddress, social }) {
                 className="mr-3 w-5 text-white"
               />
             </div>
-            <div>{contactAddress.ADDEESS}</div>
+            <div>{contactAddress.ADDRESS}</div>
           </div>
           <div className="flex py-4">
             <div className="flex">

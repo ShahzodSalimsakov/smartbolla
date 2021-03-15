@@ -19,7 +19,7 @@ const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({ investors, projects, counter, products, cofounder }) {
+function Home({ investors, projects, counter, products, cofounder, team }) {
   const dispatch = useDispatch();
 
   const sectionsColor = ["#000000", "#6135863d"];
@@ -34,7 +34,7 @@ function Home({ investors, projects, counter, products, cofounder }) {
 
   return (
     <>
-      <MainLayout title={"Smartbolla"}>
+      <MainLayout title={"Smartbolla"} mainLayoutSocial={mainLayoutSocial}>
         <ReactFullpage
           //fullpage options
           licenseKey={""}
@@ -89,8 +89,12 @@ function Home({ investors, projects, counter, products, cofounder }) {
                     <Project project={project} />
                   </div>
                 ))}
-                <div className="section pl-24 pt-20">
+                <div className="section pl-24 pt-30">
                   <CounterList counter={counter} />
+                  <FullPageSectionTitle title="Team" />
+                  <div className="w-10/12 m-auto">
+                    <Slider slides={team} />
+                  </div>
                 </div>
               </ReactFullpage.Wrapper>
             );
@@ -234,6 +238,19 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
+  const socials = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "social.links",
+      data: {
+        locale: locale,
+      },
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
   const resProducts = await fetch("https://smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
@@ -256,12 +273,27 @@ export async function getServerSideProps({ locale }) {
       ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
     },
   });
+
+  const resTeam = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "get.team.list",
+      data: {
+        locale,
+      },
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
+  let { data: mainLayoutSocial } = await socials.json();
   let { data: products } = await resProducts.json();
   let { data: cofounder } = await resCoFounder.json();
-
+  let { data: team } = await resTeam.json();
   investors = investors || [];
 
   return {
@@ -269,8 +301,10 @@ export async function getServerSideProps({ locale }) {
       investors,
       projects,
       counter,
+      mainLayoutSocial,
       products,
       cofounder,
+      team,
     },
   };
 }

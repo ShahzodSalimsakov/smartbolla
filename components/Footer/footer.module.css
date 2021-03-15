@@ -1,0 +1,4 @@
+.rotatedContentFooter::before {
+    content: '';
+    border: 1px solid
+}
