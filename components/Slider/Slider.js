@@ -12,7 +12,6 @@ SwiperCore.use([EffectCoverflow, Pagination, Navigation, Lazy]);
 
 function Slider({ slides }) {
   const { ref, inView } = useInView();
-  console.log("inView", inView);
   return (
     <div ref={ref}>
       {InView && (

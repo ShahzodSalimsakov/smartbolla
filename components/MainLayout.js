@@ -12,7 +12,6 @@ import { useRouter } from "next/router";
 
 export function MainLayout({ children, title = "" }) {
   const { backgroundColor } = useSelector((state) => state.mainConfig);
-  console.log(backgroundColor);
   const { pathname } = useRouter();
   return (
     <>

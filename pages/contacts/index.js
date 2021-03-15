@@ -205,7 +205,6 @@ export async function getServerSideProps({ locale }) {
     },
   });
   let { data: social } = await socials.json();
-  console.log(social);
 
   return {
     props: {

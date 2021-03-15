@@ -1,7 +1,5 @@
 export default async function handler(req, res) {
   //   if (req.method === "POST") {
-  //   console.log(req.body);
-  console.log(req.query);
   try {
     const resCounter = await fetch("https://smartbolla.com/api/", {
       method: "POST",

@@ -256,7 +256,6 @@ export async function getServerSideProps({ locale }) {
       ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
     },
   });
-  console.log(resProducts);
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();

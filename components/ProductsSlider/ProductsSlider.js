@@ -41,7 +41,6 @@ export default function ProductsSlider({ products }) {
         ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
       },
     });
-    console.log(resCounter);
     setisLoadingBasket(false);
   };
 
