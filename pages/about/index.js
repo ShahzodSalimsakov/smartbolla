@@ -1,13 +1,13 @@
 import { MainLayout } from "../../components/MainLayout";
-import TeamPage from "../../components/TeamPage/TeamPage";
 import AboutPage from "../../components/AboutPage/AboutPage";
 import React from "react";
+import Slider from "../../components/Slider/Slider";
 
 function About({ aboutText, mainLayoutSocial }) {
   return (
     <MainLayout title={"About"} mainLayoutSocial={mainLayoutSocial}>
       <AboutPage aboutText={aboutText}/>
-      <TeamPage />
+      <Slider slides={teamData} />
     </MainLayout>
   );
 }
@@ -52,3 +52,41 @@ export async function getServerSideProps({ locale }) {
 }
 
 export default About;
+const teamData = [
+  {
+    name: "Shahzod",
+    description: "Developer",
+    photoLink:
+      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
+  },
+  {
+    name: "Davron",
+    description: "Developer",
+    photoLink:
+      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
+  },
+  {
+    name: "Bekzod",
+    description: "Developer",
+    photoLink:
+      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
+  },
+  {
+    name: "Nuriddin",
+    description: "Developer",
+    photoLink:
+      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
+  },
+  {
+    name: "Abdurahmon",
+    description: "Developer",
+    photoLink:
+      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
+  },
+  {
+    name: "Doniyor",
+    description: "Developer",
+    photoLink:
+      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
+  },
+];
