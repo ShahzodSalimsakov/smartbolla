@@ -28,7 +28,7 @@ export default function ProductsSlider({ products }) {
 
   const addBasket = async () => {
     setisLoadingBasket(true);
-    const resCounter = await fetch("https://smartbolla.com/api/", {
+    const resCounter = await fetch("/api/basket", {
       method: "POST",
       body: JSON.stringify({
         method: "add.basket.product",
@@ -40,7 +40,6 @@ export default function ProductsSlider({ products }) {
         ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
       },
     });
-    console.log(resCounter);
     setisLoadingBasket(false);
   };
 
