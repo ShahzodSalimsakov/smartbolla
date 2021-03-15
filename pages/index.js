@@ -13,6 +13,7 @@ import Project from "../components/Project/Project";
 import CounterList from "../components/CounterList/CounterList";
 import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
 import Slider from "../components/Slider/Slider";
+import Image from "next/image";
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
@@ -46,18 +47,24 @@ function Home({ investors, projects, counter, products, cofounder }) {
             return (
               <ReactFullpage.Wrapper className="">
                 <div className="section pl-24">
-                  <div className="flex">
-                    <div className="flex h-100 items-center">
-                      <motion.h1
-                        initial={{ scale: [14, 1] }}
-                        animate={{ scale: [1, 1] }}
-                        transition={{ duration: 0.8, ease: "easeIn", delay: 2 }}
-                      >
-                        SmartBolla
-                      </motion.h1>
-                    </div>
-                    <div>
-                      <ProductsSlider products={products} />
+                  <div className="flex h-full items-center">
+                    <div className="grid grid-cols-2 h-full w-full pt-20">
+                      <div className="flex h-100 items-center">
+                        <div className="absolute h-5/6 left-0 w-9/12 w-90 z-10">
+                          <Image src="/img/portrait.webp" layout="fill" />
+                        </div>
+                        <div className="absolute bg-black bottom-0 jsx-1377087279 p-4 w-2/4 z-20">
+                          <h1 className="font-black uppercase">Your time.</h1>
+                          <h1 className="font-black uppercase">Your goals.</h1>
+                          <h1 className="font-black uppercase">
+                            Your are the boss.
+                          </h1>
+                          <span>Invest in your future</span>
+                        </div>
+                      </div>
+                      <div className="flex h-100 items-center z-20 justify-around">
+                        <ProductsSlider products={products} />
+                      </div>
                     </div>
                   </div>
                 </div>
