@@ -29,7 +29,7 @@ export default function ProductsSlider({ products }) {
   const addBasket = async () => {
     setisLoadingBasket(true);
     const resCounter = await fetch("/api/basket", {
-      method: "POST",
+      method: "GET",
       body: JSON.stringify({
         method: "add.basket.product",
         data: {
