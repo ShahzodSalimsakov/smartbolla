@@ -3,6 +3,7 @@ import { useState } from "react";
 import ProductsSliderItem from "./ProductsSliderItem";
 import CircleIcon from "../../public/img/circleDragIcon.svg";
 import styles from "./ProductsSlider.module.css";
+import { motion } from "framer-motion";
 
 function thousands_separators(num) {
   var num_parts = num.toString().split(".");
@@ -24,29 +25,41 @@ export default function ProductsSlider({ products }) {
   const currentProduct = idsByPrice[currentSliderValue];
   console.log(currentProduct);
   return (
-    <div className={styles.roundSlider}>
-      <CircularSlider
-        label=" &nbsp;&nbsp;"
-        prependToValue="$"
-        labelColor="#005a58"
-        valueFontSize="4rem"
-        knobColor="#c4c4c4"
-        knobPosition="bottom"
-        progressColorFrom="#ff8500"
-        progressColorTo="#a15400"
-        verticalOffset="1rem"
-        progressSize={8}
-        trackColor="#eeeeee"
-        trackSize={8}
-        data={sliderValues} //...
-        dataIndex={0}
-        onChange={(value) => {
-          setcurrentSliderValue(value);
-        }}
-      >
-        <CircleIcon x="22" y="22" width="28px" height="28px" />
-      </CircularSlider>
-      <button className="text-white font-bold py-2 px-4 rounded">Invest</button>
-    </div>
+    <motion.div
+      animate={{ scale: [0, 1, 1.1, 1] }}
+      transition={{ ease: "easeInOut" }}
+    >
+      <div className={`${styles.roundSlider} flex flex-col m-auto`}>
+        <CircularSlider
+          label=" &nbsp;&nbsp;"
+          prependToValue="$"
+          labelColor="#005a58"
+          valueFontSize="4rem"
+          knobColor="#c4c4c4"
+          knobPosition="bottom"
+          progressColorFrom="#ff8500"
+          progressColorTo="#a15400"
+          verticalOffset="1rem"
+          progressSize={8}
+          trackColor="#eeeeee"
+          trackSize={8}
+          data={sliderValues} //...
+          dataIndex={0}
+          onChange={(value) => {
+            setcurrentSliderValue(value);
+          }}
+        >
+          <CircleIcon x="22" y="22" width="28px" height="28px" />
+        </CircularSlider>
+        <button
+          style={{
+            backgroundColor: currentProduct.COLOR,
+          }}
+          className="uppercase text-black font-bold mt-5 py-2 px-4 rounded"
+        >
+          Invest
+        </button>
+      </div>
+    </motion.div>
   );
 }
