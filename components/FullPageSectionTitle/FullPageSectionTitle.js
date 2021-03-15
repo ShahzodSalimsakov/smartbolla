@@ -29,13 +29,13 @@ export default function FullPageSectionTitle({ title }) {
   };
 
   return (
-    <div ref={ref} className="pb-4">
+    <div ref={ref}>
       <motion.h1
         initial="hidden"
         transition={{ duration: 0.6 }}
         animate={controls}
         variants={boxVariants}
-        className="font-extrabold text-2x1 text-white uppercase"
+        className={`font-extrabold text-white uppercase ${styles.title}`}
       >
         {title}
       </motion.h1>

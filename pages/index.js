@@ -11,13 +11,14 @@ import FullPageSectionTitle from "../components/FullPageSectionTitle/FullPageSec
 import InvestorNewBubble from "../components/InvestorNewBubble/InvestorNewBubble";
 import Project from "../components/Project/Project";
 import CounterList from "../components/CounterList/CounterList";
+import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
 import Slider from "../components/Slider/Slider";
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({ investors, projects, counter, cofounder, team }) {
+function Home({ investors, projects, counter, products, cofounder, team }) {
   const dispatch = useDispatch();
 
   const sectionsColor = ["#282c34", "#6135863d"];
@@ -55,26 +56,20 @@ function Home({ investors, projects, counter, cofounder, team }) {
                         SmartBolla
                       </motion.h1>
                     </div>
-                    <div></div>
+                    <div>
+                      <ProductsSlider products={products} />
+                    </div>
                   </div>
                 </div>
-                <div className="section pl-24 pt-20">
-                  <motion.h1
-                    initial={{ scale: [14, 1] }}
-                    animate={{ scale: [1, 1] }}
-                    transition={{ duration: 0.8, ease: "easeIn", delay: 2 }}
-                  >
-                    Investors
-                  </motion.h1>
-                  <Slider slides={investors} />
-                  <motion.h1
-                    initial={{ scale: [14, 1] }}
-                    animate={{ scale: [1, 1] }}
-                    transition={{ duration: 0.8, ease: "easeIn", delay: 2 }}
-                  >
-                    Co-founders
-                  </motion.h1>
-                  <Slider slides={cofounder} />
+                <div className="section pl-24 pt-14">
+                  <FullPageSectionTitle title="Investors" />
+                  <div className="w-10/12 m-auto">
+                    <Slider slides={investors} />
+                  </div>
+                  <FullPageSectionTitle title="Co-founders" />
+                  <div className="w-10/12 m-auto">
+                    <Slider slides={cofounder} />
+                  </div>
                 </div>
                 {projects.map((project) => (
                   <div className="section pl-24 pt-20" key={project.ID}>
@@ -229,6 +224,16 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
+  const resProducts = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "get.products.list",
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
   const resCoFounder = await fetch("https://smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
@@ -258,6 +263,7 @@ export async function getServerSideProps({ locale }) {
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
+  let { data: products } = await resProducts.json();
   let { data: cofounder } = await resCoFounder.json();
   let { data: team } = await resTeam.json();
 
@@ -268,6 +274,7 @@ export async function getServerSideProps({ locale }) {
       investors,
       projects,
       counter,
+      products,
       cofounder,
       team,
     },
