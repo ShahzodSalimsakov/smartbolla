@@ -1,9 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  faFacebook,
+  faInstagram,
+  faTiktok,
+  faTelegram,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 import { motion } from "framer-motion";
 
-library.add(fab);
+library.add(faFacebook, faInstagram, faTiktok, faTelegram, faYoutube);
 
 const SocialButtonsPage = () => {
   return (
@@ -21,11 +27,7 @@ const SocialButtonsPage = () => {
         className="pb-6"
       >
         <a href="">
-          <FontAwesomeIcon
-            icon={["fab", "facebook"]}
-            size="lg"
-            className="text-white"
-          />
+          <FontAwesomeIcon icon={faFacebook} size="lg" className="text-white" />
         </a>
       </motion.li>
       <motion.li
@@ -39,7 +41,7 @@ const SocialButtonsPage = () => {
       >
         <a href="">
           <FontAwesomeIcon
-            icon={["fab", "instagram"]}
+            icon={faInstagram}
             size="lg"
             className="text-white"
           />
@@ -55,11 +57,7 @@ const SocialButtonsPage = () => {
         className="pb-6"
       >
         <a href="">
-          <FontAwesomeIcon
-            icon={["fab", "tiktok"]}
-            size="lg"
-            className="text-white"
-          />
+          <FontAwesomeIcon icon={faTiktok} size="lg" className="text-white" />
         </a>
       </motion.li>
       <motion.li
@@ -72,11 +70,7 @@ const SocialButtonsPage = () => {
         className="pb-6"
       >
         <a href="">
-          <FontAwesomeIcon
-            icon={["fab", "telegram"]}
-            size="lg"
-            className="text-white"
-          />
+          <FontAwesomeIcon icon={faTelegram} size="lg" className="text-white" />
         </a>
       </motion.li>
       <motion.li
@@ -89,11 +83,7 @@ const SocialButtonsPage = () => {
         className="pb-6"
       >
         <a href="">
-          <FontAwesomeIcon
-            icon={["fab", "youtube"]}
-            size="lg"
-            className="text-white"
-          />
+          <FontAwesomeIcon icon={faYoutube} size="lg" className="text-white" />
         </a>
       </motion.li>
     </motion.ul>
