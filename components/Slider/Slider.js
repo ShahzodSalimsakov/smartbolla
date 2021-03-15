@@ -2,17 +2,16 @@ import Image from "next/image";
 import SwiperCore, {
   EffectCoverflow,
   Navigation,
-  Pagination,
   Lazy,
+  Autoplay,
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import InView, { useInView } from "react-intersection-observer";
 import Delayed from "../Delayed/Delayed";
-SwiperCore.use([EffectCoverflow, Pagination, Navigation, Lazy]);
+SwiperCore.use([EffectCoverflow, Navigation, Lazy, Autoplay]);
 
 function Slider({ slides }) {
   const { ref, inView } = useInView();
-  console.log("inView", inView);
   return (
     <div ref={ref}>
       {InView && (
@@ -23,16 +22,18 @@ function Slider({ slides }) {
             centeredSlides={true}
             spaceBetween={1}
             slidesPerView={4}
-            pagination
             navigation
             preloadImages={false}
             activeSlideKey={5}
+            autoplay={{
+              delay: 1000,
+            }}
             lazy={true}
             coverflowEffect={{
               rotate: 0,
               stretch: 70,
               depth: 150,
-              modifier: 1,
+              modifier: 2,
               slideShadows: false,
             }}
           >
@@ -41,11 +42,11 @@ function Slider({ slides }) {
                 <div className="text-center w-8/12">
                   <Image
                     src={item.PREVIEW_PICTURE ? `${item.PREVIEW_PICTURE}` : "/"}
-                    width={150}
-                    height={150}
+                    width={200}
+                    height={200}
                   />
                   {/* <img src={item.PREVIEW_PICTURE} /> */}
-                  <h1 className="leading-none font-extralight mt-1 text-2xl">
+                  <h1 className="font-extralight mt-1 text-base">
                     {item.NAME}
                   </h1>
                   <div className="">

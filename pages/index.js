@@ -89,11 +89,12 @@ function Home({ investors, projects, counter, products, cofounder, team }) {
                     <Project project={project} />
                   </div>
                 ))}
-                <div className="section pl-24 pt-20">
+                <div className="section pl-24 pt-30">
                   <CounterList counter={counter} />
-                </div>
-                <div className="section pl-24 pt-20">
-                  <Slider slides={team} />
+                  <FullPageSectionTitle title="Team" />
+                  <div className="w-10/12 m-auto">
+                    <Slider slides={team} />
+                  </div>
                 </div>
               </ReactFullpage.Wrapper>
             );
