@@ -30,6 +30,7 @@ export default function ProductsSlider({ products }) {
     setisLoadingBasket(true);
     const resCounter = await fetch("https://smartbolla.com/api/", {
       method: "POST",
+      mode: "no-cors",
       body: JSON.stringify({
         method: "add.basket.product",
         data: {
