@@ -22,7 +22,7 @@ const pluginWrapper = () => {
 function Home({ investors, projects, counter, products, cofounder }) {
   const dispatch = useDispatch();
 
-  const sectionsColor = ["#282c34", "#6135863d"];
+  const sectionsColor = ["#000000", "#6135863d"];
 
   projects.map((project) => {
     if (project.PROPERTY_BACKGROUND_COLOR_VALUE) {
