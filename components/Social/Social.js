@@ -1,10 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  faFacebook,
+  faInstagram,
+  faTiktok,
+  faTelegram,
+  faYoutube,
+  fab
+} from "@fortawesome/free-brands-svg-icons";
 import { motion } from "framer-motion";
 import styles from './Social.module.css'
 
-library.add(fab);
+library.add(faFacebook, faInstagram, faTiktok, faTelegram, faYoutube, fab);
 
 function Socials({mainLayoutSocial}) {
   return (

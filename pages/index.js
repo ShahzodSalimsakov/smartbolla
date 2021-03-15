@@ -11,28 +11,18 @@ import FullPageSectionTitle from "../components/FullPageSectionTitle/FullPageSec
 import InvestorNewBubble from "../components/InvestorNewBubble/InvestorNewBubble";
 import Project from "../components/Project/Project";
 import CounterList from "../components/CounterList/CounterList";
+import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
+import Slider from "../components/Slider/Slider";
+import Image from "next/image";
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({ investors, projects, counter, mainLayoutSocial }) {
+function Home({ investors, projects, counter, products, cofounder, team }) {
   const dispatch = useDispatch();
 
-  const [isAllowScroll, setIsAllowScroll] = useState(false);
-
-  const scrollFromInvestors = (direction) => {
-    setIsAllowScroll(true);
-    setTimeout(() => {
-      if (direction == "up") {
-        fullpage_api.moveSectionUp();
-      } else {
-        fullpage_api.moveSectionDown();
-      }
-    });
-  };
-
-  const sectionsColor = ["#282c34", "#6135863d"];
+  const sectionsColor = ["#000000", "#6135863d"];
 
   projects.map((project) => {
     if (project.PROPERTY_BACKGROUND_COLOR_VALUE) {
@@ -52,66 +42,59 @@ function Home({ investors, projects, counter, mainLayoutSocial }) {
           navigation={true}
           navigationPosition={"left"}
           sectionsColor={sectionsColor}
-          onLeave={(origin, destination, direction) => {
-            if (destination.index == 1) {
-              setIsAllowScroll(false);
-            }
-
-            if (
-              !isAllowScroll &&
-              origin.index == 1 &&
-              (direction == "up" || direction == "down")
-            ) {
-              return false;
-            }
-            // useEffect(() => {
-            // dispatch(changeMainBackground("red"));
-            // }, []);
-          }}
+          onLeave={(origin, destination, direction) => {}}
           render={({ state, fullpageApi }) => {
             return (
               <ReactFullpage.Wrapper className="">
                 <div className="section pl-24">
-                  <div className="flex">
-                    <div className="flex h-100 items-center">
-                      <motion.h1
-                        initial={{ scale: [14, 1] }}
-                        animate={{ scale: [1, 1] }}
-                        transition={{ duration: 0.8, ease: "easeIn", delay: 2 }}
-                      >
-                        SmartBolla
-                      </motion.h1>
+                  <div className="flex h-full items-center">
+                    <div className="grid grid-cols-2 h-full w-full pt-20">
+                      <div className="flex h-100 items-center">
+                        <div className="absolute h-5/6 left-0 w-9/12 w-90 z-10">
+                          <Image src="/img/portrait.webp" layout="fill" />
+                        </div>
+                        <div className="absolute bg-black bottom-0 jsx-1377087279 p-4 w-2/4 z-20">
+                          <h1 className="font-black uppercase text-5xl">
+                            Your time.
+                          </h1>
+                          <h1 className="font-black uppercase text-5xl">
+                            Your goals.
+                          </h1>
+                          <h1 className="font-black uppercase text-5xl">
+                            Your are the boss.
+                          </h1>
+                          <span className="text-2xl font-weight-light">
+                            Invest in your future
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex h-100 items-center z-20 justify-around">
+                        <ProductsSlider products={products} />
+                      </div>
                     </div>
-                    <div></div>
                   </div>
                 </div>
-                <div className="section pl-24 pt-20">
+                <div className="section pl-24 pt-14">
                   <FullPageSectionTitle title="Investors" />
-                  {investors && <InvestorNewBubble investors={investors} />}
-                  <span
-                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-top cursor-pointer"
-                    onClick={() => scrollFromInvestors("up")}
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </span>
-                  <span
-                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-bottom cursor-pointer"
-                    onClick={() => scrollFromInvestors("down")}
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </span>
+                  <div className="w-10/12 m-auto">
+                    <Slider slides={investors} />
+                  </div>
+                  <FullPageSectionTitle title="Co-founders" />
+                  <div className="w-10/12 m-auto">
+                    <Slider slides={cofounder} />
+                  </div>
                 </div>
                 {projects.map((project) => (
                   <div className="section pl-24 pt-20" key={project.ID}>
                     <Project project={project} />
                   </div>
                 ))}
-                <div className="section pl-24 pt-20">
+                <div className="section pl-24 pt-30">
                   <CounterList counter={counter} />
+                  <FullPageSectionTitle title="Team" />
+                  <div className="w-10/12 m-auto">
+                    <Slider slides={team} />
+                  </div>
                 </div>
               </ReactFullpage.Wrapper>
             );
@@ -261,7 +244,43 @@ export async function getServerSideProps({ locale }) {
       method: "social.links",
       data: {
         locale: locale,
-      }
+      },
+    }),
+      headers: {
+        ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+      },
+    });
+      
+  const resProducts = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "get.products.list",
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
+  const resCoFounder = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "get.cofounder.list",
+      data: {
+        locale,
+      },
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
+  const resTeam = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "get.team.list",
+      data: {
+        locale,
+      },
     }),
     headers: {
       ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
@@ -272,6 +291,9 @@ export async function getServerSideProps({ locale }) {
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
   let { data: mainLayoutSocial, } = await socials.json();
+  let { data: products } = await resProducts.json();
+  let { data: cofounder } = await resCoFounder.json();
+  let { data: team } = await resTeam.json();
   investors = investors || [];
 
   return {
@@ -280,6 +302,9 @@ export async function getServerSideProps({ locale }) {
       projects,
       counter,
       mainLayoutSocial,
+      products,
+      cofounder,
+      team,
     },
   };
 }

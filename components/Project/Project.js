@@ -81,15 +81,21 @@ function Project({ project }) {
       ref={ref}
       className={`flex h-full ${showYoutube ? "" : "items-center"}`}
     >
-    <div className={`absolute h-full ${styles.projectRandomObjects} w-full`}>
-      
-      {project.PROPERTY_PHOTOS && project.PROPERTY_PHOTOS.map(img => (
-        <img src={img} width={5} style={{
-          left: `${Math.floor(Math.random() * 100) + 1}%`,
-          top: `${Math.floor(Math.random() * 100) + 1}%`
-        }} />
-      ))}
-    </div>
+      <div
+        className={`absolute h-full z-10 ${styles.projectRandomObjects} w-full`}
+      >
+        {project.PROPERTY_PHOTOS &&
+          project.PROPERTY_PHOTOS.map((img, i) => (
+            <img
+              key={i}
+              src={img}
+              style={{
+                left: `${Math.floor(Math.random() * 80) + 1}%`,
+                top: `${Math.floor(Math.random() * 80) + 1}%`,
+              }}
+            />
+          ))}
+      </div>
       <motion.div
         animate={showYoutube ? "hidden" : "visible"}
         variants={contentBoxVariants}

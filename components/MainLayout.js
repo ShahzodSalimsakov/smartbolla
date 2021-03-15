@@ -9,6 +9,7 @@ import MainRightSide from "./MainRightSide/MainRightSide";
 import styles from "./MainLayout.module.css";
 import Social from "./Social/Social";
 import { useRouter } from "next/router";
+import Footer from "./Footer/Footer";
 
 export function MainLayout({ children, title = "", mainLayoutSocial }) {
   const { backgroundColor } = useSelector((state) => state.mainConfig);
@@ -56,6 +57,7 @@ export function MainLayout({ children, title = "", mainLayoutSocial }) {
           {children}
           { pathname != "/contacts" && <Social mainLayoutSocial={mainLayoutSocial} />}
         </div>
+        <Footer />
       </div>
       <style jsx global>{`
         html,
