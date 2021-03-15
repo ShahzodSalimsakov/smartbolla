@@ -11,6 +11,7 @@ import FullPageSectionTitle from "../components/FullPageSectionTitle/FullPageSec
 import InvestorNewBubble from "../components/InvestorNewBubble/InvestorNewBubble";
 import Project from "../components/Project/Project";
 import CounterList from "../components/CounterList/CounterList";
+import Slider from "../components/Slider/Slider";
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
@@ -19,18 +20,6 @@ const pluginWrapper = () => {
 function Home({ investors, projects, counter }) {
   const dispatch = useDispatch();
 
-  const [isAllowScroll, setIsAllowScroll] = useState(false);
-
-  const scrollFromInvestors = (direction) => {
-    setIsAllowScroll(true);
-    setTimeout(() => {
-      if (direction == "up") {
-        fullpage_api.moveSectionUp();
-      } else {
-        fullpage_api.moveSectionDown();
-      }
-    });
-  };
 
   const sectionsColor = ["#282c34", "#6135863d"];
 
@@ -53,20 +42,6 @@ function Home({ investors, projects, counter }) {
           navigationPosition={"left"}
           sectionsColor={sectionsColor}
           onLeave={(origin, destination, direction) => {
-            if (destination.index == 1) {
-              setIsAllowScroll(false);
-            }
-
-            if (
-              !isAllowScroll &&
-              origin.index == 1 &&
-              (direction == "up" || direction == "down")
-            ) {
-              return false;
-            }
-            // useEffect(() => {
-            // dispatch(changeMainBackground("red"));
-            // }, []);
           }}
           render={({ state, fullpageApi }) => {
             return (
@@ -86,24 +61,21 @@ function Home({ investors, projects, counter }) {
                   </div>
                 </div>
                 <div className="section pl-24 pt-20">
-                  <FullPageSectionTitle title="Investors" />
-                  {investors && <InvestorNewBubble investors={investors} />}
-                  <span
-                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-top cursor-pointer"
-                    onClick={() => scrollFromInvestors("up")}
+                  <motion.h1
+                    initial={{ scale: [14, 1] }}
+                    animate={{ scale: [1, 1] }}
+                    transition={{ duration: 0.8, ease: "easeIn", delay: 2 }}
                   >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </span>
-                  <span
-                    className="ct-btn-scroll ct-js-btn-scroll ct-btn-scroll-bottom cursor-pointer"
-                    onClick={() => scrollFromInvestors("down")}
+                    Investors
+                    <Slider slides={investors} />
+                  </motion.h1>
+                  <motion.h1
+                    initial={{ scale: [14, 1] }}
+                    animate={{ scale: [1, 1] }}
+                    transition={{ duration: 0.8, ease: "easeIn", delay: 2 }}
                   >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </span>
+                    Co-founders
+                  </motion.h1>
                 </div>
                 {projects.map((project) => (
                   <div className="section pl-24 pt-20" key={project.ID}>
