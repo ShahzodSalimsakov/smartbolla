@@ -42,7 +42,7 @@ export default function ProductsSlider({ products }) {
           verticalOffset="1rem"
           progressSize={8}
           trackColor="#eeeeee"
-          trackSize={8}
+          trackSize={20}
           data={sliderValues} //...
           dataIndex={0}
           onChange={(value) => {
