@@ -28,18 +28,15 @@ export default function ProductsSlider({ products }) {
 
   const addBasket = async () => {
     setisLoadingBasket(true);
-    const resCounter = await fetch("/api/basket", {
-      method: "GET",
-      body: JSON.stringify({
-        method: "add.basket.product",
-        data: {
-          id: currentProduct.ID,
+    const resCounter = await fetch(
+      "/api/basket?method=add.basket.product&id=" + currentProduct.ID,
+      {
+        method: "GET",
+        headers: {
+          ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
         },
-      }),
-      headers: {
-        ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
-      },
-    });
+      }
+    );
     setisLoadingBasket(false);
   };
 
