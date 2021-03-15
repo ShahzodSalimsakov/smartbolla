@@ -11,19 +11,21 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, Autoplay]);
 function Team() {
   const teamItems = teamData.map((team) => (
     <SwiperSlide>
-      <div className="md:p-8 p-2">
+      <div className="md:p-8 p-2 text-center">
         <Image
           className="w-full"
           src={team.photoLink}
           width={500}
           height={500}
         />
-        <h1 className="leading-none text-xl mt-1 capitalize truncate text-white">
-          {team.name}
-        </h1>
-        <div className="max-w-full">
-          <div className="text-base font-medium tracking-wide mt-1 text-white">
-            {team.description}
+        <div>
+          <h1 className="leading-none text-xl mt-1 capitalize truncate text-white">
+            {team.name}
+          </h1>
+          <div className="max-w-full">
+            <div className="text-base font-medium tracking-wide mt-1 text-white">
+              {team.description}
+            </div>
           </div>
         </div>
       </div>
@@ -34,7 +36,7 @@ function Team() {
       <div className="text-center text-2xl pb-6">Team</div>
       <Swiper
         spaceBetween={20}
-        slidesPerView={3}
+        slidesPerView={6}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
         autoplay={{ delay: 1000 }}
@@ -77,7 +79,7 @@ const teamData = [
       "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
   },
   {
-    name: "Doniyor",
+    name: "Yuldashev Doniyor",
     description: "Developer",
     photoLink:
       "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",

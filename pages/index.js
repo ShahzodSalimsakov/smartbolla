@@ -258,7 +258,7 @@ export async function getServerSideProps({ locale }) {
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
-
+  
   investors = investors || [];
 
   return {
