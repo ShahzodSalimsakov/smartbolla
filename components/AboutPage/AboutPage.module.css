@@ -8,3 +8,12 @@
   right: 48%;
   top: 30%;
 }
+
+.a {
+  color: #fff;
+}
+
+.a:hover {
+  text-decoration: none !important;
+  color: #f6c886;
+}

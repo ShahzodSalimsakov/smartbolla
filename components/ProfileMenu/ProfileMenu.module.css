@@ -1,0 +1,13 @@
+.ul {
+    background: #212e3c30;
+    border-radius: 9px;
+}
+
+.ul a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.ul a:hover {
+    color: #f6c886;
+}

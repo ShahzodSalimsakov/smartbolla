@@ -39,7 +39,7 @@ module.exports = {
     return config;
   },
   i18n: {
-    locales: ["en", "fr", "ru", "uz", "cn", "ae", "es"],
+    locales: ["en", "ru", "uz", "ae", "fr", "cn", "es"],
     defaultLocale: "en",
   },
   images: {

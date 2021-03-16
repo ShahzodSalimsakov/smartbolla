@@ -1,35 +1,39 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import styles from "./AboutPage.module.css";
+import { useTranslation } from 'next-i18next'
 
-export default function About({aboutText}) {
+function About({aboutText}) {
+  const { t } = useTranslation('aboutPage');
   return (
     <div className="font-extralight grid grid-cols-2">
       <div className={`${styles.aboutPageDivider} p-10`}>
-        <div className="text-2xl mb-1.5">About us:</div>
+        <div className="text-2xl mb-1.5">{t('title')}:</div>
         <div dangerouslySetInnerHTML={{__html: aboutText}}></div>
       </div>
       <div className="p-10">
-        <div className="text-2xl pb-3">Documents:</div>
+        <div className="text-2xl pb-3">{t('documentTitle')}:</div>
         <a
           href="https://smartbolla.com/upload/docs/Certificate_Registration.pdf"
-          className="flex pb-4"
+          className={`${styles.a} flex pb-4`}
         >
           <FontAwesomeIcon icon={faFile} className="w-10 text-5xl" />
-          <div className="text-2xl m-1.5 pl-4">
-            SmartBolla DMCC Registration certificate
+          <div className="m-1.5 pl-4">
+            {t('documentCertif')}
           </div>
         </a>
         <a
           href="https://smartbolla.com/upload/docs/Service_License.pdf"
-          className="flex"
+          className={`${styles.a} flex pb-4`}
         >
           <FontAwesomeIcon icon={faFile} className="w-10 text-5xl" />
-          <div className="text-2xl m-1.5 pl-4">
-            SmartBolla DMCC Service license
+          <div className="m-1.5 pl-4">
+            {t('documentLicen')}
           </div>
         </a>
       </div>
     </div>
   );
 }
+
+export default About

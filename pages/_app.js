@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { createWrapper } from "next-redux-wrapper";
 import { AnimateSharedLayout } from "framer-motion";
 import store from "../store/store";
+import { appWithTranslation } from 'next-i18next'
 
 const app = function MyApp({ Component, pageProps }) {
   return (
@@ -21,4 +22,4 @@ const app = function MyApp({ Component, pageProps }) {
 const makeStore = () => store;
 const wrapper = createWrapper(makeStore);
 
-export default wrapper.withRedux(app);
+export default wrapper.withRedux(appWithTranslation(app));

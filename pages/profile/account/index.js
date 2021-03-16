@@ -1,5 +1,7 @@
 import { MainLayout } from "../../../components/MainLayout";
+import styles from '../Profile.module.css'
 import { Formik, Field, Form } from "formik";
+import ProfileMenu from "../../../components/ProfileMenu/ProfileMenu";
 
 function Account({ orderProps, mainLayoutSocial }) {
   const renderField = (field, values) => {
@@ -10,7 +12,6 @@ function Account({ orderProps, mainLayoutSocial }) {
             type="text"
             name={field.CODE.toLowerCase()}
             id={field.CODE}
-            placeholder=""
             required
             defaultValue={values[field.CODE.toLowerCase()]}
             className="text-black w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
@@ -77,7 +78,7 @@ function Account({ orderProps, mainLayoutSocial }) {
                   <div className="mb-6" key={prop.ID}>
                     <label
                       htmlFor={prop.CODE}
-                      className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
+                      className="block mb-2 text-sm text-white-600 dark:text-white-400"
                     >
                       {prop.NAME}
                     </label>
@@ -87,7 +88,7 @@ function Account({ orderProps, mainLayoutSocial }) {
                 <div className="mb-6">
                   <button
                     type="submit"
-                    className="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none"
+                    className={`${styles.accountSubmitButton}`}
                     disabled={isSubmitting}
                   >
                     Submit
@@ -97,7 +98,9 @@ function Account({ orderProps, mainLayoutSocial }) {
             )}
           </Formik>
         </div>
-        <div></div>
+        <div>
+          <ProfileMenu />
+        </div>
       </div>
     </MainLayout>
   );
@@ -135,7 +138,6 @@ export async function getServerSideProps({ locale }) {
   let { data: orderProps } = await res.json();
   orderProps = orderProps || [];
 
-  console.log(orderProps);
   return {
     props: {
       orderProps,

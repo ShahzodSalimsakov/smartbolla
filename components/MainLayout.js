@@ -50,7 +50,7 @@ export function MainLayout({ children, title = "", mainLayoutSocial }) {
           </MainLeftSide>
           <MainRightSide className="fixed right-0.5 top-0 z-30">
             <header
-              className={`${styles.header} flex flex-row items-end justify-between`}
+              className={`${styles.header} ${pathname == "/" ? "" : styles.headerBack} flex flex-row items-end justify-between`}
             >
               <HeaderMenu />
               <Lang />

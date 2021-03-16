@@ -1,13 +1,14 @@
 import { MainLayout } from "../../components/MainLayout";
 import AboutPage from "../../components/AboutPage/AboutPage";
 import React from "react";
-import Slider from "../../components/Slider/Slider";
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-function About({ aboutText, mainLayoutSocial }) {
+function About({ aboutText, mainLayoutSocial }) { 
+  const { t } = useTranslation('aboutPage');
   return (
-    <MainLayout title={"About"} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout title={t('title')} mainLayoutSocial={mainLayoutSocial}>
       <AboutPage aboutText={aboutText}/>
-      <Slider slides={teamData} />
     </MainLayout>
   );
 }
@@ -47,46 +48,9 @@ export async function getServerSideProps({ locale }) {
     props: {
       aboutText,
       mainLayoutSocial,
+      ...await serverSideTranslations(locale, ['aboutPage']),
     },
   };
 }
 
 export default About;
-const teamData = [
-  {
-    name: "Shahzod",
-    description: "Developer",
-    photoLink:
-      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
-  },
-  {
-    name: "Davron",
-    description: "Developer",
-    photoLink:
-      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
-  },
-  {
-    name: "Bekzod",
-    description: "Developer",
-    photoLink:
-      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
-  },
-  {
-    name: "Nuriddin",
-    description: "Developer",
-    photoLink:
-      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
-  },
-  {
-    name: "Abdurahmon",
-    description: "Developer",
-    photoLink:
-      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
-  },
-  {
-    name: "Doniyor",
-    description: "Developer",
-    photoLink:
-      "https://smartbolla.com/upload/resize_cache/iblock/10a/800_800_1/10a462f49021c9cf8f96b8dff85ff53b.jpg",
-  },
-];

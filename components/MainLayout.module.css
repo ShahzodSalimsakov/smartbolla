@@ -2,3 +2,7 @@
   border-bottom: 1px solid #fff;
   height: 60px;
 }
+
+.headerBack {
+  background: linear-gradient(270deg, rgb(12, 14, 18) 0.14%, rgb(36, 44, 64) 100%);
+}
