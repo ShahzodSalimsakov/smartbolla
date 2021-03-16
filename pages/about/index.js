@@ -4,7 +4,7 @@ import React from "react";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-function About({ aboutText, mainLayoutSocial }) { 
+function About({ aboutText, mainLayoutSocial }) {
   const { t } = useTranslation('aboutPage');
   return (
     <MainLayout title={t('title')} mainLayoutSocial={mainLayoutSocial}>

@@ -1,37 +1,39 @@
 import { MainLayout } from "../../components/MainLayout";
 import ProfileMenu from "../../components/ProfileMenu/ProfileMenu";
 import styles from "./Profile.module.css";
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 function Profile({ mainLayoutSocial, balance }) {
-  
+  const { t } = useTranslation('profilePage');
   return (
-    <MainLayout title={"Profile"} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout title={t('title')} mainLayoutSocial={mainLayoutSocial}>
       <div className="grid grid-cols-3">
         <div className="col-span-2">
           <div>
-            <div className="font-bold text-4xl py-5">Your balance</div>
+            <div className="font-bold text-4xl py-5">{t('yourBalance')}</div>
             <div
               className={`${styles.tokenCount} bott flex-col items-center font-bold justify-center text-9xl`}
             >
               <span>{balance.TOKENS_COUNT}</span>
               <div className={`${styles.balanceColsText} font-bold text-4xl `}>
-                cols
+                {t('coins')}
               </div>
             </div>
           </div>
           <div>
-            <div className="py-5 font-bold text-4xl">Token orders</div>
+            <div className="py-5 font-bold text-4xl">{t('tokenOrders')}</div>
             <table
               className={`${styles.profileTable} table-fixed border-collapse w-full`}
             >
               <thead>
                 <tr>
-                  <th className="w-1/12">№</th>
-                  <th className="w-1/6">Date</th>
-                  <th className="w-1/6">TOKENS</th>
-                  <th className="w-1/6">PRICE</th>
-                  <th className="w-1/6">STATUS</th>
-                  <th className="w-1/6">ACTIONS</th>
+                  <th className="text-uppercase w-1/12">№</th>
+                  <th className="text-uppercase w-1/6">{t('date')}</th>
+                  <th className="text-uppercase w-1/6">{t('coins')}</th>
+                  <th className="text-uppercase w-1/6">{t('price')}</th>
+                  <th className="text-uppercase w-1/6">{t('status')}</th>
+                  <th className="text-uppercase w-1/6">{t('action')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -40,16 +42,16 @@ function Profile({ mainLayoutSocial, balance }) {
                     <tr>
                       <td>{order.ID}</td>
                       <td>{order.DATE_INSERT}</td>
-                      <td>{order.PROPERTIES.TOKEN_COUNTS.VALUE} coins</td>
+                      <td>{order.PROPERTIES.TOKEN_COUNTS.VALUE} {t('coins')}</td>
                       <td>${+order.PRICE}</td>
                       <td>
                         {order.PAYED == "Y" ? (
                           <div className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            Payed
+                            {t("paid")}
                           </div>
                         ) : (
                           <div className="bg-red-400 font-semibold inline-flex leading-5 px-2 rounded-full text-red-900 text-xs">
-                            Unpaid
+                            {t('unpaid')}
                           </div>
                         )}
                       </td>
@@ -103,6 +105,7 @@ export async function getServerSideProps({ locale }) {
     props: {
       balance,
       mainLayoutSocial,
+      ...await serverSideTranslations(locale, ['profilePage']),
     },
   };
 }

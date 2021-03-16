@@ -21,12 +21,12 @@ const mapData = {
 
 const coordinates = [[25.068318, 55.145064]];
 
-const { t } = useTranslation('contactPage');
 library.add(fab, faMapMarkerAlt, faPhoneAlt, faCircle);
 
 function Contacts({ contactAddress, social }) {
+  const { t } = useTranslation('contactPage');
   return (
-    <MainLayout  title={t('title')}>
+    <MainLayout title={t('title')}>
       <div className="my-10">
         <YMaps>
           <Map width="100%" height="400px" defaultState={mapData}>
@@ -169,7 +169,7 @@ function Contacts({ contactAddress, social }) {
                 />
                 <button
                   type="submit"
-                  className={styles.formControlSubmitButton}
+                  className={`${styles.formControlSubmitButton} text-uppercase`}
                   disabled={isSubmitting}
                 >
                   {t('submitButton')}
@@ -216,7 +216,7 @@ export async function getServerSideProps({ locale }) {
     props: {
       contactAddress,
       social,
-      ...await serverSideTranslations(locale, ['aboutPage']),
+      ...await serverSideTranslations(locale, ['contactPage']),
     },
   };
 }
