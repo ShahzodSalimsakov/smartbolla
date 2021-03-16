@@ -11,26 +11,70 @@ import Social from "./Social/Social";
 import { useRouter } from "next/router";
 import Footer from "./Footer/Footer";
 import FullPageSectionTitle from "./FullPageSectionTitle/FullPageSectionTitle";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 
 export function MainLayout({ children, title = "", mainLayoutSocial }) {
   const { backgroundColor } = useSelector((state) => state.mainConfig);
   const { pathname } = useRouter();
   return (
     <>
-      <Head>
-        <title>{title}</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      <div
-        style={{ background: backgroundColor }}
-        className={`${pathname == "/" ? "flex flex-row" : ""}`}
-      >
-        <MainLeftSide className="fixed left-0 z-30">
-          <div>
+      <BrowserView>
+        <Head>
+          <title>{title}</title>
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
+        <div
+          style={{ background: backgroundColor }}
+          className={`${pathname == "/" ? "flex flex-row" : ""}`}
+        >
+          <MainLeftSide className="fixed left-0 z-30">
+            <div>
+              <Link href="/">
+                <a className="flex flex-row items-center">
+                  <MainLeftLogo />
+                  <div className="font-bold ml-3 text-white uppercase text-2x1">
+                    SmartBolla
+                  </div>
+                </a>
+              </Link>
+            </div>
+          </MainLeftSide>
+          <MainRightSide className="fixed right-0.5 top-0 z-30">
+            <header
+              className={`${styles.header} flex flex-row items-end justify-between`}
+            >
+              <HeaderMenu />
+              <Lang />
+            </header>
+          </MainRightSide>
+          <div
+            className={`main-content ${pathname == "/" ? "" : "pl-24 pt-24"} ${
+              pathname == "/contacts" ? "px-24" : ""
+            }`}
+          >
+            {pathname !== "/" && <FullPageSectionTitle title={title} />}
+            {children}
+            {pathname != "/contacts" && (
+              <Social mainLayoutSocial={mainLayoutSocial} />
+            )}
+          </div>
+          <Footer />
+        </div>
+      </BrowserView>
+      <MobileView>
+        <MainRightSide className="fixed right-0.5 top-0 z-30">
+          <header
+            className={`${styles.header} flex flex-row items-end justify-around w-full`}
+          >
             <Link href="/">
               <a className="flex flex-row items-center">
                 <MainLeftLogo />
@@ -39,19 +83,11 @@ export function MainLayout({ children, title = "", mainLayoutSocial }) {
                 </div>
               </a>
             </Link>
-          </div>
-        </MainLeftSide>
-        <MainRightSide className="fixed right-0.5 top-0 z-30">
-          <header
-            className={`${styles.header} flex flex-row items-end justify-between`}
-          >
-            <HeaderMenu />
             <Lang />
           </header>
-          <footer></footer>
         </MainRightSide>
         <div
-          className={`main-content ${pathname == "/" ? "" : "pl-24 pt-24"} ${
+          className={`main-content ${pathname == "/" ? "" : "pt-24"} ${
             pathname == "/contacts" ? "px-24" : ""
           }`}
         >
@@ -61,8 +97,7 @@ export function MainLayout({ children, title = "", mainLayoutSocial }) {
             <Social mainLayoutSocial={mainLayoutSocial} />
           )}
         </div>
-        <Footer />
-      </div>
+      </MobileView>
       <style jsx global>{`
         html,
         body {

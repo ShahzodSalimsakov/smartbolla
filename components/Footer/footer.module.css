@@ -1,4 +1,3 @@
-.rotatedContentFooter::before {
-    content: '';
-    border: 1px solid
+.footerbody {
+    width: 95.7%;
 }
