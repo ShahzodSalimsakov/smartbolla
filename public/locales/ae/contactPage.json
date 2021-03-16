@@ -1,0 +1,11 @@
+{
+    "title": "اتصل بنا",
+    "namePlaceholder": "اسمك",
+    "emailPlaceholder": "بريدك الالكتروني",
+    "messagaPlaceholder": "رسالة",
+    "submitButton": "أرسل رسالة",
+    "nameError": "يرجى إدخال اسمك.",
+    "emailError": "أدخل البريد الإلكتروني الذي تريد تلقي الرد عليه.",
+    "emailInvalid": "يجب أن يحتوي عنوان البريد الإلكتروني على الرمز @.",
+    "messageError": "أنت لم ترسل رسالة."
+}

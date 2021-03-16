@@ -1,0 +1,11 @@
+{
+    "title": "Contact us",
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "Your E-mail",
+    "messagaPlaceholder": "Message",
+    "submitButton": "Send",
+    "nameError": "Please type your name.",
+    "emailError": "Provide a reply-to e-mail address.",
+    "emailInvalid": "The email address must contain the @ symbol.",
+    "messageError": "The message text is required."
+}

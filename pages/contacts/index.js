@@ -21,11 +21,12 @@ const mapData = {
 
 const coordinates = [[25.068318, 55.145064]];
 
+const { t } = useTranslation('contactPage');
 library.add(fab, faMapMarkerAlt, faPhoneAlt, faCircle);
 
 function Contacts({ contactAddress, social }) {
   return (
-    <MainLayout  title={"Contacts"}>
+    <MainLayout  title={t('title')}>
       <div className="my-10">
         <YMaps>
           <Map width="100%" height="400px" defaultState={mapData}>
@@ -86,18 +87,18 @@ function Contacts({ contactAddress, social }) {
             validate={(values) => {
               const errors = {};
               if (!values.email) {
-                errors.email = "Provide a reply-to e-mail address.";
+                errors.email = t('emailError')
               } else if (
                 !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
               ) {
-                errors.email = "Invalid email address";
+                errors.email = t('emailInvalid')
               }
 
               if (!values.name) {
-                errors.name = "Please type your name.";
+                errors.name = t('nameError');
               }
               if (!values.message) {
-                errors.message = "The message text is required.";
+                errors.message = t('messageError');
               }
               return errors;
             }}
@@ -143,7 +144,7 @@ function Contacts({ contactAddress, social }) {
                 <input
                   type="text"
                   name="name"
-                  placeholder="Name"
+                  placeholder={t('namePlaceholder')}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.name}
@@ -152,7 +153,7 @@ function Contacts({ contactAddress, social }) {
                 <input
                   type="email"
                   name="email"
-                  placeholder="Your E-mail"
+                  placeholder={t('emailPlaceholder')}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
@@ -160,7 +161,7 @@ function Contacts({ contactAddress, social }) {
                 />
                 <textarea
                   name="message"
-                  placeholder="Message"
+                  placeholder={t('messagaPlaceholder')}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.message}
@@ -171,7 +172,7 @@ function Contacts({ contactAddress, social }) {
                   className={styles.formControlSubmitButton}
                   disabled={isSubmitting}
                 >
-                  Submit
+                  {t('submitButton')}
                 </button>
               </form>
             )}

@@ -1,0 +1,11 @@
+{
+    "title": "Контакты",
+    "namePlaceholder": "Ваше имя",
+    "emailPlaceholder": "Ваш E-mail",
+    "messagaPlaceholder": "Сообщение",
+    "submitButton": "Отправить",
+    "nameError": "Укажите ваше имя.",
+    "emailError": "Укажите E-mail, на который хотите получить ответ.",
+    "emailInvalid": "Адрес электронной почты должен содержать символ @.",
+    "messageError": "Вы не написали сообщение."
+}
