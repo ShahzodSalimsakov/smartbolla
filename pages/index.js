@@ -14,6 +14,12 @@ import CounterList from "../components/CounterList/CounterList";
 import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
 import Slider from "../components/Slider/Slider";
 import Image from "next/image";
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect";
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
@@ -54,56 +60,110 @@ function Home({
           render={({ state, fullpageApi }) => {
             return (
               <ReactFullpage.Wrapper className="">
-                <div className="section pl-24">
-                  <div className="flex h-full items-center">
-                    <div className="grid grid-cols-2 h-full w-full pt-20">
-                      <div className="flex h-100 items-center">
-                        <div className="absolute h-5/6 left-0 w-9/12 w-90 z-10">
-                          <Image src="/img/portrait.webp" layout="fill" />
+                <BrowserView>
+                  <div className="section pl-24">
+                    <div className="flex h-full items-center">
+                      <div className="grid grid-cols-2 h-full w-full pt-20">
+                        <div className="flex h-100 items-center">
+                          <div className="absolute h-5/6 left-0 w-9/12 w-90 z-10">
+                            <Image src="/img/portrait.webp" layout="fill" />
+                          </div>
+                          <div className="absolute bg-black bottom-0 jsx-1377087279 p-4 w-2/4 z-20">
+                            <h1 className="font-black uppercase text-5xl">
+                              Your time.
+                            </h1>
+                            <h1 className="font-black uppercase text-5xl">
+                              Your goals.
+                            </h1>
+                            <h1 className="font-black uppercase text-5xl">
+                              Your are the boss.
+                            </h1>
+                            <span className="text-2xl font-weight-light">
+                              Invest in your future
+                            </span>
+                          </div>
                         </div>
-                        <div className="absolute bg-black bottom-0 jsx-1377087279 p-4 w-2/4 z-20">
-                          <h1 className="font-black uppercase text-5xl">
-                            Your time.
-                          </h1>
-                          <h1 className="font-black uppercase text-5xl">
-                            Your goals.
-                          </h1>
-                          <h1 className="font-black uppercase text-5xl">
-                            Your are the boss.
-                          </h1>
-                          <span className="text-2xl font-weight-light">
-                            Invest in your future
-                          </span>
+                        <div className="flex h-100 items-center z-20 justify-around">
+                          <ProductsSlider products={products} />
                         </div>
-                      </div>
-                      <div className="flex h-100 items-center z-20 justify-around">
-                        <ProductsSlider products={products} />
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="section pl-24 pt-14">
-                  <FullPageSectionTitle title="Investors" />
-                  <div className="w-10/12 m-auto">
-                    <Slider slides={investors} />
+                  <div className="section pl-24 pt-14">
+                    <FullPageSectionTitle title="Investors" />
+                    <div className="w-10/12 m-auto">
+                      <Slider slides={investors} />
+                    </div>
+                    <FullPageSectionTitle title="Co-founders" />
+                    <div className="w-10/12 m-auto">
+                      <Slider slides={cofounder} />
+                    </div>
                   </div>
-                  <FullPageSectionTitle title="Co-founders" />
-                  <div className="w-10/12 m-auto">
-                    <Slider slides={cofounder} />
+                  {projects.map((project) => (
+                    <div className="section pl-24 pt-20" key={project.ID}>
+                      <Project project={project} />
+                    </div>
+                  ))}
+                  <div className="section pl-24 pt-30">
+                    <CounterList counter={counter} />
+                    <FullPageSectionTitle title="Team" />
+                    <div className="w-10/12 m-auto">
+                      <Slider slides={team} />
+                    </div>
                   </div>
-                </div>
-                {projects.map((project) => (
-                  <div className="section pl-24 pt-20" key={project.ID}>
-                    <Project project={project} />
+                </BrowserView>
+                <MobileView>
+                  <div className="section pl-10">
+                    <div className="flex h-full items-center">
+                      <div className="grid grid-cols-2 h-full w-full pt-20">
+                        <div className="flex h-100 items-center">
+                          <div className="absolute h-5/6 left-0 w-9/12 w-90 z-10">
+                            <Image src="/img/portrait.webp" layout="fill" />
+                          </div>
+                          <div className="absolute bg-black bottom-0 jsx-1377087279 p-4 w-2/4 z-20">
+                            <h1 className="font-black uppercase text-5xl">
+                              Your time.
+                            </h1>
+                            <h1 className="font-black uppercase text-5xl">
+                              Your goals.
+                            </h1>
+                            <h1 className="font-black uppercase text-5xl">
+                              Your are the boss.
+                            </h1>
+                            <span className="text-2xl font-weight-light">
+                              Invest in your future
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex h-100 items-center z-20 justify-around">
+                          <ProductsSlider products={products} />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                ))}
-                <div className="section pl-24 pt-30">
-                  <CounterList counter={counter} />
-                  <FullPageSectionTitle title="Team" />
-                  <div className="w-10/12 m-auto">
-                    <Slider slides={team} />
+                  <div className="section pl-10 pt-14">
+                    <FullPageSectionTitle title="Investors" />
+                    <div className="w-10/12 m-auto">
+                      <Slider slides={investors} />
+                    </div>
+                    <FullPageSectionTitle title="Co-founders" />
+                    <div className="w-10/12 m-auto">
+                      <Slider slides={cofounder} />
+                    </div>
                   </div>
-                </div>
+                  {projects.map((project) => (
+                    <div className="section pl-10 pt-20" key={project.ID}>
+                      <Project project={project} />
+                    </div>
+                  ))}
+                  <div className="section pl-10 pt-30">
+                    <CounterList counter={counter} />
+                    <FullPageSectionTitle title="Team" />
+                    <div className="w-10/12 m-auto">
+                      <Slider slides={team} />
+                    </div>
+                  </div>
+                </MobileView>
               </ReactFullpage.Wrapper>
             );
           }}
