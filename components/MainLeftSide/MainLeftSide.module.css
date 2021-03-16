@@ -18,7 +18,7 @@
     background: #fff;
     width: calc(100% - 60px);
     position: absolute;
-    bottom: -14px;
+    bottom: -12px;
 }
 
 .rotatedContent a:hover {

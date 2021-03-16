@@ -10,6 +10,8 @@ import {
 import styles from "./Contact.module.css";
 import { YMaps, Map, Placemark } from "react-yandex-maps";
 import { Formik, Field, Form } from "formik";
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const mapData = {
   center: [25.068318, 55.145064],
@@ -19,23 +21,24 @@ const mapData = {
 
 const coordinates = [[25.068318, 55.145064]];
 
+const { t } = useTranslation('contactPage');
 library.add(fab, faMapMarkerAlt, faPhoneAlt, faCircle);
 
 function Contacts({ contactAddress, social }) {
   return (
-    <MainLayout>
-      <div className="mb-10">
+    <MainLayout  title={t('title')}>
+      <div className="my-10">
         <YMaps>
           <Map width="100%" height="400px" defaultState={mapData}>
             {coordinates.map((coordinate) => (
-              <Placemark geometry={coordinate} />
+              <Placemark key={coordinate} geometry={coordinate} />
             ))}
           </Map>
         </YMaps>
       </div>
       <div className="grid grid-cols-2">
         <div>
-          <div className="flex py-4">
+          <div className="flex p-4">
             <div className="flex">
               <FontAwesomeIcon
                 size="xs"
@@ -45,7 +48,7 @@ function Contacts({ contactAddress, social }) {
             </div>
             <div>{contactAddress.ADDRESS}</div>
           </div>
-          <div className="flex py-4">
+          <div className="flex p-4">
             <div className="flex">
               <FontAwesomeIcon
                 size="xs"
@@ -58,7 +61,7 @@ function Contacts({ contactAddress, social }) {
               dangerouslySetInnerHTML={{ __html: contactAddress.PHONE }}
             />
           </div>
-          <div className="py-2">
+          <div className="p-4">
             {social.SOC_ICONS.map((item) => (
               <span key={item.LINK} className="nav-item social-icons">
                 <span className={styles.faStack}>
@@ -84,18 +87,18 @@ function Contacts({ contactAddress, social }) {
             validate={(values) => {
               const errors = {};
               if (!values.email) {
-                errors.email = "Provide a reply-to e-mail address.";
+                errors.email = t('emailError')
               } else if (
                 !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
               ) {
-                errors.email = "Invalid email address";
+                errors.email = t('emailInvalid')
               }
 
               if (!values.name) {
-                errors.name = "Please type your name.";
+                errors.name = t('nameError');
               }
               if (!values.message) {
-                errors.message = "The message text is required.";
+                errors.message = t('messageError');
               }
               return errors;
             }}
@@ -141,7 +144,7 @@ function Contacts({ contactAddress, social }) {
                 <input
                   type="text"
                   name="name"
-                  placeholder="Name"
+                  placeholder={t('namePlaceholder')}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.name}
@@ -150,7 +153,7 @@ function Contacts({ contactAddress, social }) {
                 <input
                   type="email"
                   name="email"
-                  placeholder="Your E-mail"
+                  placeholder={t('emailPlaceholder')}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
@@ -158,7 +161,7 @@ function Contacts({ contactAddress, social }) {
                 />
                 <textarea
                   name="message"
-                  placeholder="Message"
+                  placeholder={t('messagaPlaceholder')}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.message}
@@ -169,7 +172,7 @@ function Contacts({ contactAddress, social }) {
                   className={styles.formControlSubmitButton}
                   disabled={isSubmitting}
                 >
-                  Submit
+                  {t('submitButton')}
                 </button>
               </form>
             )}
@@ -213,6 +216,7 @@ export async function getServerSideProps({ locale }) {
     props: {
       contactAddress,
       social,
+      ...await serverSideTranslations(locale, ['aboutPage']),
     },
   };
 }

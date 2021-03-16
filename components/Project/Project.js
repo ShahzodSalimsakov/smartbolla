@@ -81,7 +81,7 @@ function Project({ project }) {
       className={`flex h-full ${showYoutube ? "" : "items-center"}`}
     >
       <div
-        className={`absolute h-full z-10 ${styles.projectRandomObjects} w-full`}
+        className={`absolute h-full ${styles.projectRandomObjects} w-full`}
       >
         {project.PROPERTY_PHOTOS &&
           project.PROPERTY_PHOTOS.map((img, i) => (
