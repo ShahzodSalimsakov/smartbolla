@@ -60,8 +60,8 @@ function Contacts({ contactAddress, social }) {
           </div>
           <div className="py-2">
             {social.SOC_ICONS.map((item) => (
-              <span key={item.LINK} class="nav-item social-icons">
-                <span class={styles.faStack}>
+              <span key={item.LINK} className="nav-item social-icons">
+                <span className={styles.faStack}>
                   <a target="_blank" href={item.LINK}>
                     <FontAwesomeIcon
                       icon={faCircle}
@@ -185,6 +185,9 @@ export async function getServerSideProps({ locale }) {
     method: "POST",
     body: JSON.stringify({
       method: "get.contact.address",
+      data: {
+        locale: locale,
+      }
     }),
     headers: {
       ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
