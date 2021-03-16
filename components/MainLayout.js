@@ -10,6 +10,7 @@ import styles from "./MainLayout.module.css";
 import Social from "./Social/Social";
 import { useRouter } from "next/router";
 import Footer from "./Footer/Footer";
+import FullPageSectionTitle from "./FullPageSectionTitle/FullPageSectionTitle";
 
 export function MainLayout({ children, title = "", mainLayoutSocial }) {
   const { backgroundColor } = useSelector((state) => state.mainConfig);
@@ -54,8 +55,11 @@ export function MainLayout({ children, title = "", mainLayoutSocial }) {
             pathname == "/contacts" ? "px-24" : ""
           }`}
         >
+          {pathname !== "/" && <FullPageSectionTitle title={title} />}
           {children}
-          { pathname != "/contacts" && <Social mainLayoutSocial={mainLayoutSocial} />}
+          {pathname != "/contacts" && (
+            <Social mainLayoutSocial={mainLayoutSocial} />
+          )}
         </div>
         <Footer />
       </div>

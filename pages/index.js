@@ -19,7 +19,15 @@ const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({ investors, projects, counter, products, cofounder, team }) {
+function Home({
+  investors,
+  projects,
+  counter,
+  products,
+  cofounder,
+  team,
+  mainLayoutSocial,
+}) {
   const dispatch = useDispatch();
 
   const sectionsColor = ["#000000", "#6135863d"];
