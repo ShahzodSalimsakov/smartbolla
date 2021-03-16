@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { MainLayout } from "../../components/MainLayout";
 const InvestorPageItem = function ({ investorData }) {
-  console.log(investorData);
   return (
     <>
       <MainLayout title={"Smartbolla"}>
@@ -24,8 +23,6 @@ const InvestorPageItem = function ({ investorData }) {
 };
 
 export async function getServerSideProps({ params }) {
-  console.log(params.iniv);
-
   const res = await fetch("https://smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
@@ -41,7 +38,6 @@ export async function getServerSideProps({ params }) {
   let { data: investorData } = await res.json();
 
   investorData = investorData || {};
-  console.log(investorData);
   return {
     props: {
       investorData,

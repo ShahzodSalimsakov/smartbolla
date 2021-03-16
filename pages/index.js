@@ -19,7 +19,15 @@ const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({ investors, projects, counter, products, cofounder, team }) {
+function Home({
+  investors,
+  projects,
+  counter,
+  products,
+  cofounder,
+  team,
+  mainLayoutSocial,
+}) {
   const dispatch = useDispatch();
 
   const sectionsColor = ["#000000", "#6135863d"];
@@ -246,11 +254,11 @@ export async function getServerSideProps({ locale }) {
         locale: locale,
       },
     }),
-      headers: {
-        ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
-      },
-    });
-      
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+
   const resProducts = await fetch("https://smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
@@ -290,7 +298,7 @@ export async function getServerSideProps({ locale }) {
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
-  let { data: mainLayoutSocial, } = await socials.json();
+  let { data: mainLayoutSocial } = await socials.json();
   let { data: products } = await resProducts.json();
   let { data: cofounder } = await resCoFounder.json();
   let { data: team } = await resTeam.json();

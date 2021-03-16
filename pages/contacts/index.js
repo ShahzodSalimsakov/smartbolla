@@ -195,21 +195,20 @@ export async function getServerSideProps({ locale }) {
   });
   let { data: contactAddress } = await res.json();
 
-
-    const socials = await fetch("https://smartbolla.com/api/", {
-      method: "POST",
-      body: JSON.stringify({
-        method: "social.links",
-        data: {
-          locale: locale,
-        }
-      }),
-      headers: {
-        ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+  const socials = await fetch("https://smartbolla.com/api/", {
+    method: "POST",
+    body: JSON.stringify({
+      method: "social.links",
+      data: {
+        locale: locale,
       },
-    });
-    let { data: social, } = await socials.json();
-  
+    }),
+    headers: {
+      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+    },
+  });
+  let { data: social } = await socials.json();
+
   return {
     props: {
       contactAddress,

@@ -4,10 +4,6 @@ import { useRouter } from "next/router";
 
 const navButtons = [
   {
-    label: "projects",
-    path: "/projects",
-  },
-  {
     label: "about us",
     path: "/about",
   },
@@ -16,16 +12,12 @@ const navButtons = [
     path: "/media",
   },
   {
-    label: "invest",
-    path: "/invest",
-  },
-  {
-    label: "investors",
-    path: "/investors",
-  },
-  {
     label: "contacts",
     path: "/contacts",
+  },
+  {
+    label: "profile",
+    path: "/profile",
   },
 ];
 
