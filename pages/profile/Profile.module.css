@@ -2,6 +2,7 @@
     background-color: rgb(246 200 134);
     border-radius: 15px;
     color: #333;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 69%);
 }
 
 .profileTable th {

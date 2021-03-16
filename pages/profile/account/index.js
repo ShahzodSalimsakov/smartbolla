@@ -2,8 +2,11 @@ import { MainLayout } from "../../../components/MainLayout";
 import styles from '../Profile.module.css'
 import { Formik, Field, Form } from "formik";
 import ProfileMenu from "../../../components/ProfileMenu/ProfileMenu";
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 function Account({ orderProps, mainLayoutSocial }) {
+  const { t } = useTranslation('accountPage');
   const renderField = (field, values) => {
     switch (field.TYPE) {
       default:
@@ -22,7 +25,7 @@ function Account({ orderProps, mainLayoutSocial }) {
   };
 
   return (
-    <MainLayout title={"Account settings"} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout title={t('title')} mainLayoutSocial={mainLayoutSocial}>
       <div className="grid grid-cols-3">
         <div className="col-span-2">
           <Formik
@@ -142,6 +145,7 @@ export async function getServerSideProps({ locale }) {
     props: {
       orderProps,
       mainLayoutSocial,
+      ...await serverSideTranslations(locale, ['accountPage']),
     },
   };
 }

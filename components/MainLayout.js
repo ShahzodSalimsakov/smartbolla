@@ -57,9 +57,7 @@ export function MainLayout({ children, title = "", mainLayoutSocial }) {
             </header>
           </MainRightSide>
           <div
-            className={`main-content ${pathname == "/" ? "" : "pl-24 pt-24"} ${
-              pathname == "/contacts" ? "px-24" : ""
-            }`}
+            className={`main-content ${pathname == "/" ? "" : "py-24 pl-24 pr-10"}`}
           >
             {pathname !== "/" && <FullPageSectionTitle title={title} />}
             {children}
