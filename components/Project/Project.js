@@ -9,7 +9,6 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import YouTube from "react-youtube";
 import Image from "next/image";
 
-
 library.add(faYoutube, faArrowLeft);
 
 function Project({ project }) {
@@ -105,7 +104,7 @@ function Project({ project }) {
           key={project.ID}
           className="grid grid-cols-3 items-center overflow-hidden"
         >
-          <div className="col-span-2">
+          <div className="col-span-2 z-20">
             <motion.div
               initial="hidden"
               transition={{ duration: 0.6 }}
@@ -125,7 +124,7 @@ function Project({ project }) {
             </motion.div>
           </div>
           <motion.div initial="hidden" animate={controls} variants={logoBlock}>
-            <div className="flex items-center h-full justify-around relative">
+            <div className="flex items-center h-full justify-around relative z-20">
               <img src={project.DETAIL_PICTURE} className="w-8/12" />
               {project.PROPERTY_YOUTUBE_LINK_VALUE && (
                 <div className="absolute" onClick={() => setshowYoutube(true)}>
@@ -146,7 +145,7 @@ function Project({ project }) {
           variants={youtubeBoxVariants}
           transition={{ ease: "easeInOut" }}
         >
-          <div>
+          <div className="z-20">
             <div
               className="cursor-pointer flex items-center pb-4 px-16"
               onClick={() => setshowYoutube(false)}
