@@ -23,19 +23,19 @@ library.add(fab, faMapMarkerAlt, faPhoneAlt, faCircle);
 
 function Contacts({ contactAddress, social }) {
   return (
-    <MainLayout>
-      <div className="mb-10">
+    <MainLayout  title={"Contacts"}>
+      <div className="my-10">
         <YMaps>
           <Map width="100%" height="400px" defaultState={mapData}>
             {coordinates.map((coordinate) => (
-              <Placemark geometry={coordinate} />
+              <Placemark key={coordinate} geometry={coordinate} />
             ))}
           </Map>
         </YMaps>
       </div>
       <div className="grid grid-cols-2">
         <div>
-          <div className="flex py-4">
+          <div className="flex p-4">
             <div className="flex">
               <FontAwesomeIcon
                 size="xs"
@@ -45,7 +45,7 @@ function Contacts({ contactAddress, social }) {
             </div>
             <div>{contactAddress.ADDRESS}</div>
           </div>
-          <div className="flex py-4">
+          <div className="flex p-4">
             <div className="flex">
               <FontAwesomeIcon
                 size="xs"
@@ -58,7 +58,7 @@ function Contacts({ contactAddress, social }) {
               dangerouslySetInnerHTML={{ __html: contactAddress.PHONE }}
             />
           </div>
-          <div className="py-2">
+          <div className="p-4">
             {social.SOC_ICONS.map((item) => (
               <span key={item.LINK} className="nav-item social-icons">
                 <span className={styles.faStack}>

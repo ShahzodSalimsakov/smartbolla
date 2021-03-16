@@ -9,7 +9,7 @@
 
 .headerMenuItem a.is-active,
 .headerMenuItem a:hover {
-  color: yellow;
+  color: #f6c886;
 }
 
 .headerMenuItem a span {
