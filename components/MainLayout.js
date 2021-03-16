@@ -95,6 +95,7 @@ export function MainLayout({ children, title = "", mainLayoutSocial }) {
             <Social mainLayoutSocial={mainLayoutSocial} />
           )}
         </div>
+        <Footer />
       </MobileView>
       <style jsx global>{`
         html,
