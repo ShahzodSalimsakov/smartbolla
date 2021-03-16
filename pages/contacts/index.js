@@ -10,6 +10,8 @@ import {
 import styles from "./Contact.module.css";
 import { YMaps, Map, Placemark } from "react-yandex-maps";
 import { Formik, Field, Form } from "formik";
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const mapData = {
   center: [25.068318, 55.145064],
@@ -213,6 +215,7 @@ export async function getServerSideProps({ locale }) {
     props: {
       contactAddress,
       social,
+      ...await serverSideTranslations(locale, ['aboutPage']),
     },
   };
 }
