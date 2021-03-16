@@ -1,7 +1,9 @@
 import { MainLayout } from "../../components/MainLayout";
+import ProfileMenu from "../../components/ProfileMenu/ProfileMenu";
 import styles from "./Profile.module.css";
 
 function Profile({ mainLayoutSocial, balance }) {
+  
   return (
     <MainLayout title={"Profile"} mainLayoutSocial={mainLayoutSocial}>
       <div className="grid grid-cols-3">
@@ -60,13 +62,7 @@ function Profile({ mainLayoutSocial, balance }) {
         </div>
 
         <div>
-          <ul className="list-unstyled sidebar-menu shadow">
-            <li>
-              <a></a>
-            </li>
-            <li></li>
-            <li></li>
-          </ul>
+          <ProfileMenu />
         </div>
       </div>
     </MainLayout>
@@ -80,13 +76,14 @@ export async function getServerSideProps({ locale }) {
       method: "get.profile.balance",
       data: {
         userId: 5,
+        locale: locale
       },
     }),
     headers: {
       ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
     },
   });
-
+  
   const socials = await fetch("https://smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
