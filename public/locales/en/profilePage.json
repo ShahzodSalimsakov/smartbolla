@@ -8,5 +8,8 @@
     "status": "Status",
     "action": "Actions",
     "paid": "Paid",
-    "unpaid": "Unpaid"
+    "unpaid": "Unpaid",
+    "balance": "Balans",
+    "accountSetings": "Account Settings",
+    "logOut": "Logout"
 }

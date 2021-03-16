@@ -1,0 +1,11 @@
+{
+    "title": "Configuraciones de la cuenta",
+    "NAME": "Nombre*",
+    "LAST_NAME": "Apellido*",
+    "PHONE": "Teléfono*",
+    "PASPORT": "Pasaporte*",
+    "submit": "Aplicar",
+    "balance": "Equilibrio",
+    "accountSetings": "Configuraciones de la cuenta",
+    "logOut": "Cerrar sesión"
+}

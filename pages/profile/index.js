@@ -1,39 +1,42 @@
 import { MainLayout } from "../../components/MainLayout";
 import ProfileMenu from "../../components/ProfileMenu/ProfileMenu";
 import styles from "./Profile.module.css";
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 function Profile({ mainLayoutSocial, balance }) {
-  const { t } = useTranslation('profilePage');
+  const { t } = useTranslation("profilePage");
+  const profileBalance = t("balance");
+  const accountSetings = t("accountSetings");
+  const logOut = t("logOut");
   return (
-    <MainLayout title={t('title')} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout title={t("title")} mainLayoutSocial={mainLayoutSocial}>
       <div className="grid grid-cols-3">
         <div className="col-span-2">
           <div>
-            <div className="font-bold text-4xl py-5">{t('yourBalance')}</div>
+            <div className="font-bold text-4xl py-5">{t("yourBalance")}</div>
             <div
               className={`${styles.tokenCount} bott flex-col items-center font-bold justify-center text-9xl`}
             >
               <span>{balance.TOKENS_COUNT}</span>
               <div className={`${styles.balanceColsText} font-bold text-4xl `}>
-                {t('coins')}
+                {t("coins")}
               </div>
             </div>
           </div>
           <div>
-            <div className="py-5 font-bold text-4xl">{t('tokenOrders')}</div>
+            <div className="py-5 font-bold text-4xl">{t("tokenOrders")}</div>
             <table
               className={`${styles.profileTable} table-fixed border-collapse w-full`}
             >
               <thead>
                 <tr>
                   <th className="text-uppercase w-1/12">№</th>
-                  <th className="text-uppercase w-1/6">{t('date')}</th>
-                  <th className="text-uppercase w-1/6">{t('coins')}</th>
-                  <th className="text-uppercase w-1/6">{t('price')}</th>
-                  <th className="text-uppercase w-1/6">{t('status')}</th>
-                  <th className="text-uppercase w-1/6">{t('action')}</th>
+                  <th className="text-uppercase w-1/6">{t("date")}</th>
+                  <th className="text-uppercase w-1/6">{t("coins")}</th>
+                  <th className="text-uppercase w-1/6">{t("price")}</th>
+                  <th className="text-uppercase w-1/6">{t("status")}</th>
+                  <th className="text-uppercase w-1/6">{t("action")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -42,7 +45,9 @@ function Profile({ mainLayoutSocial, balance }) {
                     <tr>
                       <td>{order.ID}</td>
                       <td>{order.DATE_INSERT}</td>
-                      <td>{order.PROPERTIES.TOKEN_COUNTS.VALUE} {t('coins')}</td>
+                      <td>
+                        {order.PROPERTIES.TOKEN_COUNTS.VALUE} {t("coins")}
+                      </td>
                       <td>${+order.PRICE}</td>
                       <td>
                         {order.PAYED == "Y" ? (
@@ -51,7 +56,7 @@ function Profile({ mainLayoutSocial, balance }) {
                           </div>
                         ) : (
                           <div className="bg-red-400 font-semibold inline-flex leading-5 px-2 rounded-full text-red-900 text-xs">
-                            {t('unpaid')}
+                            {t("unpaid")}
                           </div>
                         )}
                       </td>
@@ -64,7 +69,11 @@ function Profile({ mainLayoutSocial, balance }) {
         </div>
 
         <div>
-          <ProfileMenu />
+          <ProfileMenu
+            balance={profileBalance}
+            accountSetings={accountSetings}
+            logOut={logOut}
+          />
         </div>
       </div>
     </MainLayout>
@@ -78,14 +87,14 @@ export async function getServerSideProps({ locale }) {
       method: "get.profile.balance",
       data: {
         userId: 5,
-        locale: locale
+        locale: locale,
       },
     }),
     headers: {
       ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
     },
   });
-  
+
   const socials = await fetch("https://smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
@@ -105,7 +114,7 @@ export async function getServerSideProps({ locale }) {
     props: {
       balance,
       mainLayoutSocial,
-      ...await serverSideTranslations(locale, ['profilePage']),
+      ...(await serverSideTranslations(locale, ["profilePage"])),
     },
   };
 }

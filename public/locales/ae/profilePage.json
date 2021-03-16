@@ -8,5 +8,8 @@
     "status": "حالة",
     "action": "أجراءات",
     "paid": "المدفوع",
-    "unpaid": "غير مدفوعة"
+    "unpaid": "غير مدفوعة",
+    "balance": "توازن",
+    "accountSetings": "إعدادت الحساب",
+    "logOut": "تسجيل خروج"
 }
