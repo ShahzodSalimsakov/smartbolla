@@ -8,5 +8,8 @@
     "status": "状态",
     "action": "动作",
     "paid": "付清",
-    "unpaid": "未付"
+    "unpaid": "未付",
+    "balance": "平衡",
+    "accountSetings": "帐号设定",
+    "logOut": "登出"
 }

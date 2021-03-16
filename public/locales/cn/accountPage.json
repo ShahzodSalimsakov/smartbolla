@@ -1,0 +1,11 @@
+{
+    "title": "帐号设定",
+    "NAME": "姓名*",
+    "LAST_NAME": "姓*",
+    "PHONE": "电话*",
+    "PASPORT": "护照*",
+    "submit": "申请",
+    "balance": "平衡",
+    "accountSetings": "帐号设定",
+    "logOut": "登出"
+}

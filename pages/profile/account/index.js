@@ -1,15 +1,30 @@
 import { MainLayout } from "../../../components/MainLayout";
-import styles from '../Profile.module.css'
+import styles from "../Profile.module.css";
 import { Formik, Field, Form } from "formik";
 import ProfileMenu from "../../../components/ProfileMenu/ProfileMenu";
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 function Account({ orderProps, mainLayoutSocial }) {
-  const { t } = useTranslation('accountPage');
+  const { t } = useTranslation("accountPage");
+  const balance = t("balance");
+  const accountSetings = t("accountSetings");
+  const logOut = t("logOut");
   const renderField = (field, values) => {
     switch (field.TYPE) {
       default:
+        if (field.CODE == "NAME") {
+          field.NAME = t("NAME");
+        }
+        if (field.CODE == "LAST_NAME") {
+          field.NAME = t("LAST_NAME");
+        }
+        if (field.CODE == "PHONE") {
+          field.NAME = t("PHONE");
+        }
+        if (field.CODE == "PASPORT") {
+          field.NAME = t("PASPORT");
+        }
         return (
           <input
             type="text"
@@ -25,7 +40,7 @@ function Account({ orderProps, mainLayoutSocial }) {
   };
 
   return (
-    <MainLayout title={t('title')} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout title={t("title")} mainLayoutSocial={mainLayoutSocial}>
       <div className="grid grid-cols-3">
         <div className="col-span-2">
           <Formik
@@ -33,6 +48,18 @@ function Account({ orderProps, mainLayoutSocial }) {
             validate={(values) => {
               const errors = {};
               orderProps.map((prop) => {
+                if (prop.CODE == "NAME") {
+                  prop.NAME = t("NAME");
+                }
+                if (prop.CODE == "LAST_NAME") {
+                  prop.NAME = t("LAST_NAME");
+                }
+                if (prop.CODE == "PHONE") {
+                  prop.NAME = t("PHONE");
+                }
+                if (prop.CODE == "PASPORT") {
+                  prop.NAME = t("PASPORT");
+                }
                 if (prop.REQUIRED == "Y" && !values[prop.CODE.toLowerCase()]) {
                   errors[
                     prop.CODE.toLowerCase()
@@ -91,10 +118,10 @@ function Account({ orderProps, mainLayoutSocial }) {
                 <div className="mb-6">
                   <button
                     type="submit"
-                    className={`${styles.accountSubmitButton}`}
+                    className={`${styles.accountSubmitButton} text-uppercase`}
                     disabled={isSubmitting}
                   >
-                    Submit
+                    {t("submit")}
                   </button>
                 </div>
               </form>
@@ -102,7 +129,11 @@ function Account({ orderProps, mainLayoutSocial }) {
           </Formik>
         </div>
         <div>
-          <ProfileMenu />
+          <ProfileMenu
+            balance={balance}
+            accountSetings={accountSetings}
+            logOut={logOut}
+          />
         </div>
       </div>
     </MainLayout>
@@ -145,7 +176,7 @@ export async function getServerSideProps({ locale }) {
     props: {
       orderProps,
       mainLayoutSocial,
-      ...await serverSideTranslations(locale, ['accountPage']),
+      ...(await serverSideTranslations(locale, ["accountPage"])),
     },
   };
 }

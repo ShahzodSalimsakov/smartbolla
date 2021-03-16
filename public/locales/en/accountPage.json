@@ -1,0 +1,11 @@
+{
+    "title": "Account Settings",
+    "NAME": "Name*",
+    "LAST_NAME": "Surname*",
+    "PHONE": "Telephone*",
+    "PASPORT": "Passport*",
+    "submit": "Apply",
+    "balance": "Balans",
+    "accountSetings": "Account Settings",
+    "logOut": "Logout"
+}
