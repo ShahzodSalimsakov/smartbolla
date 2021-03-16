@@ -21,7 +21,7 @@ function Slider({ slides }) {
             grabCursor={true}
             centeredSlides={true}
             spaceBetween={1}
-            slidesPerView={4}
+            slidesPerView={1}
             navigation
             preloadImages={false}
             activeSlideKey={5}

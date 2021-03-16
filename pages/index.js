@@ -114,27 +114,8 @@ function Home({
                 </BrowserView>
                 <MobileView>
                   <div className="section pl-10">
-                    <div className="flex h-full items-center">
-                      <div className="grid grid-cols-2 h-full w-full pt-20">
-                        <div className="flex h-100 items-center">
-                          <div className="absolute h-5/6 left-0 w-9/12 w-90 z-10">
-                            <Image src="/img/portrait.webp" layout="fill" />
-                          </div>
-                          <div className="absolute bg-black bottom-0 jsx-1377087279 p-4 w-2/4 z-20">
-                            <h1 className="font-black uppercase text-5xl">
-                              Your time.
-                            </h1>
-                            <h1 className="font-black uppercase text-5xl">
-                              Your goals.
-                            </h1>
-                            <h1 className="font-black uppercase text-5xl">
-                              Your are the boss.
-                            </h1>
-                            <span className="text-2xl font-weight-light">
-                              Invest in your future
-                            </span>
-                          </div>
-                        </div>
+                    <div className="flex h-full">
+                      <div className="w-full">
                         <div className="flex h-100 items-center z-20 justify-around">
                           <ProductsSlider products={products} />
                         </div>
