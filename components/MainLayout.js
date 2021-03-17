@@ -18,7 +18,7 @@ import {
   isMobile,
 } from "react-device-detect";
 
-export function MainLayout({ children, title = "", mainLayoutSocial }) {
+export function MainLayout({ children, title = "", mainLayoutSocial, commonLang }) {
   const { backgroundColor } = useSelector((state) => state.mainConfig);
   const { pathname } = useRouter();
   return (
@@ -52,7 +52,7 @@ export function MainLayout({ children, title = "", mainLayoutSocial }) {
             <header
               className={`${styles.header} ${pathname == "/" ? "" : styles.headerBack} flex flex-row items-end justify-between`}
             >
-              <HeaderMenu />
+              <HeaderMenu commonLang={commonLang} />
               <Lang />
             </header>
           </MainRightSide>

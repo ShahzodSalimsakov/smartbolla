@@ -1,4 +1,8 @@
 {
+    "about": "About us",
+    "media": "Media",
+    "contact": "Contact",
+    "profile": "Profle",
     "title": "Account Settings",
     "NAME": "Name*",
     "LAST_NAME": "Surname*",

@@ -6,8 +6,15 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 function About({ aboutText, mainLayoutSocial }) {
   const { t } = useTranslation('aboutPage');
+  
+  const commonLang = {
+    about: t('about'),
+    media: t('media'),
+    contact: t('contact'),
+    profile: t('profile'),
+  }
   return (
-    <MainLayout title={t('title')} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout title={t('title')} commonLang={commonLang} mainLayoutSocial={mainLayoutSocial}>
       <AboutPage aboutText={aboutText}/>
     </MainLayout>
   );

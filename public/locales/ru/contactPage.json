@@ -1,4 +1,8 @@
 {
+    "about": "О нас",
+    "media": "Медиа",
+    "contact": "Контакты",
+    "profile": "Профиль",
     "title": "Контакты",
     "namePlaceholder": "Ваше имя",
     "emailPlaceholder": "Ваш E-mail",

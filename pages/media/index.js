@@ -2,6 +2,8 @@ import React, { useState, useCallback } from "react";
 import { MainLayout } from "../../components/MainLayout";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const photos = [];
 
@@ -19,9 +21,16 @@ function Media({mainLayoutSocial}) {
     setViewerIsOpen(false);
   };
 
+  const { t } = useTranslation('mediaPage');
+  const commonLang = {
+    about: t('about'),
+    media: t('media'),
+    contact: t('contact'),
+    profile: t('profile'),
+  }
   return (
     <>
-      <MainLayout mainLayoutSocial={mainLayoutSocial}>
+      <MainLayout commonLang={commonLang} mainLayoutSocial={mainLayoutSocial}>
         <div>
           <Gallery photos={photos} onClick={openLightbox} />
           <ModalGateway>
@@ -65,6 +74,7 @@ export async function getServerSideProps({ locale }) {
   return {
     props: {
       mainLayoutSocial,
+      ...await serverSideTranslations(locale, ['aboutPage']),
     },
   };
 }
