@@ -12,6 +12,7 @@ import { YMaps, Map, Placemark } from "react-yandex-maps";
 import { Formik, Field, Form } from "formik";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { isMobile } from "react-device-detect";
 
 const mapData = {
   center: [25.068318, 55.145064],
@@ -26,7 +27,7 @@ library.add(fab, faMapMarkerAlt, faPhoneAlt, faCircle);
 function Contacts({ contactAddress, social }) {
   const { t } = useTranslation('contactPage');
   return (
-    <MainLayout title={t('title')}>
+    <MainLayout title={t("title")}>
       <div className="my-10">
         <YMaps>
           <Map width="100%" height="400px" defaultState={mapData}>
@@ -36,8 +37,8 @@ function Contacts({ contactAddress, social }) {
           </Map>
         </YMaps>
       </div>
-      <div className="grid grid-cols-2">
-        <div>
+      <div className={`${isMobile ? "col" : "grid grid-cols-2"}`}>
+        <div className={`${isMobile ? "col" : ""}`}>
           <div className="flex p-4">
             <div className="flex">
               <FontAwesomeIcon
@@ -81,24 +82,24 @@ function Contacts({ contactAddress, social }) {
             ))}
           </div>
         </div>
-        <div>
+        <div className={`${isMobile ? "col" : ""}`}>
           <Formik
             initialValues={{ name: "", email: "", message: "" }}
             validate={(values) => {
               const errors = {};
               if (!values.email) {
-                errors.email = t('emailError')
+                errors.email = t("emailError");
               } else if (
                 !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
               ) {
-                errors.email = t('emailInvalid')
+                errors.email = t("emailInvalid");
               }
 
               if (!values.name) {
-                errors.name = t('nameError');
+                errors.name = t("nameError");
               }
               if (!values.message) {
-                errors.message = t('messageError');
+                errors.message = t("messageError");
               }
               return errors;
             }}
@@ -131,7 +132,7 @@ function Contacts({ contactAddress, social }) {
               isSubmitting,
               /* and other goodies */
             }) => (
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="pb-10">
                 <div className="text-red-500">
                   {errors.name && touched.name && errors.name}
                 </div>
@@ -144,7 +145,7 @@ function Contacts({ contactAddress, social }) {
                 <input
                   type="text"
                   name="name"
-                  placeholder={t('namePlaceholder')}
+                  placeholder={t("namePlaceholder")}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.name}
@@ -153,7 +154,7 @@ function Contacts({ contactAddress, social }) {
                 <input
                   type="email"
                   name="email"
-                  placeholder={t('emailPlaceholder')}
+                  placeholder={t("emailPlaceholder")}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
@@ -161,7 +162,7 @@ function Contacts({ contactAddress, social }) {
                 />
                 <textarea
                   name="message"
-                  placeholder={t('messagaPlaceholder')}
+                  placeholder={t("messagaPlaceholder")}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.message}
@@ -172,7 +173,7 @@ function Contacts({ contactAddress, social }) {
                   className={`${styles.formControlSubmitButton} text-uppercase`}
                   disabled={isSubmitting}
                 >
-                  {t('submitButton')}
+                  {t("submitButton")}
                 </button>
               </form>
             )}

@@ -94,6 +94,8 @@ function Home({
                     <div className="w-10/12 m-auto">
                       <Slider slides={investors} />
                     </div>
+                  </div>
+                  <div className="section pl-24 pt-14">
                     <FullPageSectionTitle title="Co-founders" />
                     <div className="w-10/12 m-auto">
                       <Slider slides={cofounder} />

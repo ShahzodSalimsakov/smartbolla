@@ -6,8 +6,8 @@ import { useTranslation } from "next-i18next";
 function About({ aboutText }) {
   const { t } = useTranslation("aboutPage");
   return (
-    <div className="font-extralight grid grid-cols-2">
-      <div className={`${styles.aboutPageDivider} p-10`}>
+    <div className="font-extralight grid-cols-2">
+      <div className={'p-10'}>
         <div className="text-2xl mb-1.5">{t("title")}:</div>
         <div dangerouslySetInnerHTML={{ __html: aboutText }}></div>
       </div>
