@@ -98,10 +98,7 @@ function Project({ project }) {
         variants={contentBoxVariants}
         transition={{ ease: "easeInOut" }}
       >
-        <div
-          key={project.ID}
-          className=""
-        >
+        <div key={project.ID} className="ml-3 w-10/12 text-xs">
           <div className="z-20">
             <motion.div
               initial="hidden"
@@ -112,7 +109,7 @@ function Project({ project }) {
               <div>
                 <div className={styles.textBlock}>
                   <div>
-                    <h1 className="font-extralight text-5xl text-center">
+                    <h1 className="font-extralight text-center">
                       {project.NAME}
                     </h1>
                     {project.PREVIEW_TEXT}

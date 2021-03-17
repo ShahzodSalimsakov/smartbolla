@@ -133,7 +133,7 @@ function Home({
                     </div>
                   </div>
                   {projects.map((project) => (
-                    <div className="section pl-10 pt-20" key={project.ID}>
+                    <div className="section pl-10" key={project.ID}>
                       <Project project={project} />
                     </div>
                   ))}
