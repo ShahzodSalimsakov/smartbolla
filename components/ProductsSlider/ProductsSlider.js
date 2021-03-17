@@ -37,7 +37,7 @@ export default function ProductsSlider({ products }) {
       // setCartItem("cartItem", currentProduct.ID);
       const resCounter = await fetch("https://api.smartbolla.com/api/", {
         method: "POST",
-        mode: "no-cors",
+        // mode: "no-cors",
         body: JSON.stringify({
           method: "add.basket.product",
           data: {
