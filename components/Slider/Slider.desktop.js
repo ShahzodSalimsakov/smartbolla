@@ -8,55 +8,62 @@ import SwiperCore, {
 import { Swiper, SwiperSlide } from "swiper/react";
 import InView, { useInView } from "react-intersection-observer";
 import Delayed from "../Delayed/Delayed";
+import chunk from "../../helpers/chunk";
 SwiperCore.use([EffectCoverflow, Navigation, Lazy, Autoplay]);
 
 function Slider({ slides }) {
   const { ref, inView } = useInView();
+  const resSlides = chunk(slides, 8);
   return (
     <div ref={ref}>
       {InView && (
         <Delayed>
           <Swiper
-            effect="coverflow"
-            grabCursor={true}
-            centeredSlides={true}
-            spaceBetween={1}
-            slidesPerView={4}
+            slidesPerView={1}
+            loop={true}
+            spaceBetween={20}
+            pagination
+            clickable={true}
             navigation
-            preloadImages={false}
-            activeSlideKey={5}
             autoplay={{
-              delay: 1000,
-            }}
-            lazy={true}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: 70,
-              depth: 150,
-              modifier: 2,
-              slideShadows: false,
+              delay: 3000,
             }}
           >
-            {slides.map((item, i) => (
-              <SwiperSlide key={i}>
-                <div className="text-center w-8/12">
-                  <Image
-                    src={item.PREVIEW_PICTURE ? `${item.PREVIEW_PICTURE}` : "/"}
-                    width={200}
-                    height={200}
-                  />
-                  {/* <img src={item.PREVIEW_PICTURE} /> */}
-                  <h1 className="font-extralight mt-1 text-base">
-                    {item.NAME}
-                  </h1>
-                  <div className="">
-                    <div className="text-base font-medium tracking-wide mt-1 font-mono">
-                      {/* {item.description} */}
+            {resSlides.map((item, i) => {
+              const rows = chunk(item, 4);
+              return (
+                <SwiperSlide key={i} className="">
+                  {rows.map((
+                    row,
+                    rowIndex // Davay v botim, chtobi rasskazal ideyu
+                  ) => (
+                    <div
+                      className={`flex ${
+                        rowIndex == 0
+                          ? "justify-start"
+                          : "justify-end left-24 position-relative"
+                      }`}
+                      key={rowIndex}
+                    >
+                      {row.map((slide) => (
+                        <div className="col">
+                          <Image
+                            src={
+                              slide.PREVIEW_PICTURE
+                                ? `${slide.PREVIEW_PICTURE}`
+                                : "/"
+                            }
+                            width={200}
+                            height={200}
+                          />
+                          <div>{slide.NAME}</div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
+                  ))}
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </Delayed>
       )}
