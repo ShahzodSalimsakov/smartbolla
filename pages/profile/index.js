@@ -9,8 +9,15 @@ function Profile({ mainLayoutSocial, balance }) {
   const profileBalance = t("balance");
   const accountSetings = t("accountSetings");
   const logOut = t("logOut");
+  
+  const commonLang = {
+    about: t('about'),
+    media: t('media'),
+    contact: t('contact'),
+    profile: t('profile'),
+  }
   return (
-    <MainLayout title={t("title")} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout commonLang={commonLang} title={t("title")} mainLayoutSocial={mainLayoutSocial}>
       <div className="grid grid-cols-3">
         <div className="col-span-2">
           <div>

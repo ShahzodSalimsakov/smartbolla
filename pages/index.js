@@ -14,6 +14,8 @@ import CounterList from "../components/CounterList/CounterList";
 import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
 import Slider from "../components/Slider/Slider";
 import Image from "next/image";
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import {
   BrowserView,
   MobileView,
@@ -34,7 +36,15 @@ function Home({
   team,
   mainLayoutSocial,
 }) {
+  const { t } = useTranslation('common');
   const dispatch = useDispatch();
+
+  const commonLang = {
+    about: t('about'),
+    media: t('media'),
+    contact: t('contact'),
+    profile: t('profile'),
+  }
 
   const sectionsColor = ["#000000", "#6135863d"];
 
@@ -45,10 +55,9 @@ function Home({
       sectionsColor.push("#152331");
     }
   });
-
   return (
     <>
-      <MainLayout title={"Smartbolla"} mainLayoutSocial={mainLayoutSocial}>
+      <MainLayout title={"Smartbolla"} commonLang={commonLang} mainLayoutSocial={mainLayoutSocial}>
         <ReactFullpage
           //fullpage options
           licenseKey={""}
@@ -356,6 +365,7 @@ export async function getServerSideProps({ locale }) {
       products,
       cofounder,
       team,
+      ...await serverSideTranslations(locale, ['common']),
     },
   };
 }

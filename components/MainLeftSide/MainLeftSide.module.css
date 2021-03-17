@@ -24,3 +24,7 @@
 .rotatedContent a:hover {
     text-decoration: none;
 }
+
+.rotatedContent a:hover div:last-child {
+    color: #f6c886!important;
+}

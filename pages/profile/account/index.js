@@ -10,7 +10,15 @@ function Account({ orderProps, mainLayoutSocial }) {
   const balance = t("balance");
   const accountSetings = t("accountSetings");
   const logOut = t("logOut");
+  
+  const commonLang = {
+    about: t('about'),
+    media: t('media'),
+    contact: t('contact'),
+    profile: t('profile'),
+  }
   const renderField = (field, values) => {
+    console.log(field.NAME);
     switch (field.TYPE) {
       default:
         if (field.CODE == "NAME") {
@@ -40,7 +48,7 @@ function Account({ orderProps, mainLayoutSocial }) {
   };
 
   return (
-    <MainLayout title={t("title")} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout commonLang={commonLang} title={t("title")} mainLayoutSocial={mainLayoutSocial}>
       <div className="grid grid-cols-3">
         <div className="col-span-2">
           <Formik

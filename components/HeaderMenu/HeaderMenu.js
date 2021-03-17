@@ -2,28 +2,28 @@ import Link from "next/link";
 import styles from "./HeaderMenu.module.css";
 import { useRouter } from "next/router";
 
-const navButtons = [
-  {
-    label: "about us",
-    path: "/about",
-  },
-  {
-    label: "media",
-    path: "/media",
-  },
-  {
-    label: "contacts",
-    path: "/contacts",
-  },
-  {
-    label: "profile",
-    path: "/profile",
-  },
-];
 
-export default function HeaderMenu() {
+export default function HeaderMenu({ commonLang }) {
+  console.log(commonLang);
+  const navButtons = [
+    {
+      label: commonLang.about,
+      path: "/about",
+    },
+    {
+      label: commonLang.media,
+      path: "/media",
+    },
+    {
+      label: commonLang.contact,
+      path: "/contacts",
+    },
+    {
+      label: commonLang.profile,
+      path: "/profile",
+    },
+  ];
   const { pathname } = useRouter();
-
   return (
     <>
       <nav className="h-full">
@@ -36,7 +36,7 @@ export default function HeaderMenu() {
               <Link href={button.path}>
                 <a
                   className={`${
-                    pathname === button.path ? "is-active" : ""
+                    pathname === button.path ? styles.isActive : ""
                   } text-decoration-none h-full items-end flex font-extralight uppercase mr-3`}
                 >
                   <span>{button.label}</span>

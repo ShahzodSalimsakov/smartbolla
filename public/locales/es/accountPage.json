@@ -1,4 +1,8 @@
 {
+    "about": "Sobre nosotros",
+    "media": "Medios de comunicación",
+    "contact": "Contactos",
+    "profile": "Perfil",
     "title": "Configuraciones de la cuenta",
     "NAME": "Nombre*",
     "LAST_NAME": "Apellido*",
