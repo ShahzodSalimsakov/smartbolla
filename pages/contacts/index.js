@@ -25,8 +25,14 @@ library.add(fab, faMapMarkerAlt, faPhoneAlt, faCircle);
 
 function Contacts({ contactAddress, social }) {
   const { t } = useTranslation('contactPage');
+  const commonLang = {
+    about: t('about'),
+    media: t('media'),
+    contact: t('contact'),
+    profile: t('profile'),
+  }
   return (
-    <MainLayout title={t('title')}>
+    <MainLayout commonLang={commonLang} title={t('title')}>
       <div className="my-10">
         <YMaps>
           <Map width="100%" height="400px" defaultState={mapData}>

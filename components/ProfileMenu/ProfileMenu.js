@@ -4,25 +4,35 @@ import styles from "./ProfileMenu.module.css";
 
 function ProfileMenu({ balance, accountSetings, logOut }) {
   const router = useRouter();
-  const { locale } = router;
+  const { locale, pathname } = router;
+
+  const navButtons = [
+    {
+      label: balance,
+      path: "/profile",
+    },
+    {
+      label: accountSetings,
+      path: "/profile/account",
+    },
+    {
+      label: logOut,
+      path: "/",
+    },
+  ];
   return (
     <>
       <ul className={`${styles.ul} m-12 p-4 shadow sidebar-menu`}>
-        <li className="p-2">
-          <Link href={`/${locale}/profile/`}>
-            <a>{balance}</a>
-          </Link>
-        </li>
-        <li className="p-2">
-          <Link href={`/${locale}/profile/account/`}>
-            <a>{accountSetings}</a>
-          </Link>
-        </li>
-        <li className="p-2">
-          <Link href={`/${locale}/`}>
-            <a>{logOut}</a>
-          </Link>
-        </li>
+        {navButtons.map((button) => (
+          <li className="p-2" key={button.label}>
+            <Link href={`/${locale}${button.path}`}>
+              <a
+                  className={`${
+                    pathname === button.path ? styles.isActive : ""
+                  }`}>{button.label}</a>
+            </Link>
+          </li>
+        ))}
       </ul>
     </>
   );

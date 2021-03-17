@@ -1,4 +1,8 @@
 {
+    "about": "关于我们",
+    "media": "媒体",
+    "contact": "联系我们",
+    "profile": "轮廓",
     "title": "帐号设定",
     "NAME": "姓名*",
     "LAST_NAME": "姓*",

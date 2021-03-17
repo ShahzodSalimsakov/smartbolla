@@ -1,4 +1,8 @@
 {
+    "about": "Sobre nosotros",
+    "media": "Medios de comunicación",
+    "contact": "Contactos",
+    "profile": "Perfil",
     "title": "Perfil",
     "yourBalance": "Tu balance",
     "tokenOrders": "Órdenes de tokens",

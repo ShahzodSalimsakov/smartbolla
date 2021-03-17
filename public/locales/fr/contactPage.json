@@ -1,4 +1,8 @@
 {
+    "about": "À propos de nous",
+    "media": "Médias",
+    "contact": "Contacts",
+    "profile": "Profil",
     "title": "Nous contacter",
     "namePlaceholder": "Votre nom",
     "emailPlaceholder": "Votre e-mail",

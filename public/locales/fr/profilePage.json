@@ -1,4 +1,8 @@
 {
+    "about": "À propos de nous",
+    "media": "Médias",
+    "contact": "Contacts",
+    "profile": "Profil",
     "title": "Profil",
     "yourBalance": "Votre solde",
     "tokenOrders": "Commandes de jetons",
