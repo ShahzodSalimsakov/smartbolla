@@ -9,15 +9,15 @@ export default function CounterList({ counter, countLang }) {
     c.CODE == 'co-founders' ? c.NAME = countLang.cofounders : c.NAME
   ))
   return (
-    <div className="">
-      <FullPageSectionTitle title={countLang.blockTitle} />
-      <div className="flex justify-content-around">
+    <div className="text-center">
+      <div className="gap-5 grid">
+        <FullPageSectionTitle title={countLang.blockTitle} />
         {counter.map((c) => (
           <>
-          <div className="" key={c.ID}>
-            <NeonText text={c.PROPERTY_COUNT_VALUE} />
-            <h1 className="font-extralight uppercase">{c.NAME}</h1>
-          </div>
+            <div className="" key={c.ID}>
+              <NeonText text={c.PROPERTY_COUNT_VALUE} />
+              <div className="font-extralight uppercase">{c.NAME}</div>
+            </div>
           </>
         ))}
       </div>

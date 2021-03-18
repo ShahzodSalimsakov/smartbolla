@@ -49,11 +49,11 @@ export default function Footer() {
                 icon={button.icon}
                 className={`${
                   pathname === button.path
-                    ? "text-warning text-2xl"
-                    : "text-white text-2xl"
+                    ? "text-warning"
+                    : "text-white"
                 }`}
               />
-              <span className="tab tab-whishlist block text-white">
+              <span className="tab tab-whishlist block text-white text-xs">
                 {button.label}
               </span>
             </a>
