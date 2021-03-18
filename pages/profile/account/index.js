@@ -18,7 +18,6 @@ function Account({ orderProps, mainLayoutSocial }) {
     profile: t('profile'),
   }
   const renderField = (field, values) => {
-    console.log(field.NAME);
     switch (field.TYPE) {
       default:
         if (field.CODE == "NAME") {

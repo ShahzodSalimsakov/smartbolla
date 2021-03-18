@@ -1,4 +1,5 @@
-module.exports = {
+const withPWA = require("next-pwa");
+module.exports = withPWA({
   async headers() {
     return [
       {
@@ -45,4 +46,7 @@ module.exports = {
   images: {
     domains: ["smartbolla.com"],
   },
-};
+  pwa: {
+    dest: "public",
+  },
+});
