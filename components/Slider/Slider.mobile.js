@@ -51,7 +51,7 @@ function Slider({ slides }) {
                   </h1>
                   <div className="">
                     <div className="text-base font-medium tracking-wide mt-1 font-mono">
-                      {/* {item.description} */}
+                      {/* {item.PROPERTY_POSITION_NEW_PROPERTY_RU_VALUE} */}
                     </div>
                   </div>
                 </div>

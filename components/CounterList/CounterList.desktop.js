@@ -4,7 +4,6 @@ import NeonText from "../NeonText/NeonText";
 export default function CounterList({ counter }) {
   return (
     <div className="">
-      <FullPageSectionTitle title="Наши показатели" />
       <div className="flex justify-content-around">
         {counter.map((c) => (
           <div className="" key={c.ID}>
