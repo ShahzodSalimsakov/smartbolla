@@ -45,4 +45,7 @@ module.exports = {
   images: {
     domains: ["smartbolla.com"],
   },
+  pwa: {
+    dest: "public",
+  },
 };
