@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 
 
 export default function HeaderMenu({ commonLang }) {
-  console.log(commonLang);
   const navButtons = [
     {
       label: commonLang.about,

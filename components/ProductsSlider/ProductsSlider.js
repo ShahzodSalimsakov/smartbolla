@@ -13,7 +13,7 @@ function thousands_separators(num) {
   return num_parts.join(".");
 }
 
-export default function ProductsSlider({ products }) {
+export default function ProductsSlider({ products, investLang }) {
   const router = useRouter();
 
   const idsByPrice = {};
@@ -113,7 +113,7 @@ export default function ProductsSlider({ products }) {
               ></path>
             </svg>
           )}
-          {!isLoadingBasket && "Invest"}
+          {!isLoadingBasket && investLang}
         </button>
       </div>
     </motion.div>
