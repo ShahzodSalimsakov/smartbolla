@@ -34,24 +34,11 @@ export default function ProductsSlider({ products }) {
   const addBasket = async () => {
     if (!isLoadingBasket) {
       setisLoadingBasket(true);
-      // setCartItem("cartItem", currentProduct.ID);
-      const resCounter = await fetch("https://api.smartbolla.com/api/", {
-        method: "POST",
-        // mode: "no-cors",
-        body: JSON.stringify({
-          method: "add.basket.product",
-          data: {
-            id: currentProduct.ID,
-          },
-        }),
-        headers: {
-          ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
-        },
-      });
+      setCartItem("cartItem", currentProduct.ID);
       setisLoadingBasket(false);
-      // router.push("/order/", undefined, {
-      //   shallow: true,
-      // });
+      router.push("/order/", undefined, {
+        shallow: true,
+      });
     }
   };
 
