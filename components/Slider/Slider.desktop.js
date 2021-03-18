@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import InView, { useInView } from "react-intersection-observer";
 import Delayed from "../Delayed/Delayed";
 import chunk from "../../helpers/chunk";
+import styles from "./Slider.module.css"
 SwiperCore.use([EffectCoverflow, Navigation, Lazy, Autoplay]);
 
 function Slider({ slides }) {
@@ -26,9 +27,9 @@ function Slider({ slides }) {
             clickable={true}
             grabCursor={true}
             navigation
-            // autoplay={{
-            //   delay: 3000,
-            // }}
+            autoplay={{
+              delay: 3000,
+            }}
           >
             {resSlides.map((item, i) => {
               const rows = chunk(item, 4);
@@ -40,9 +41,7 @@ function Slider({ slides }) {
                   ) => (
                     <div
                       className={`flex justify-center ${
-                        rowIndex == 0
-                          ? "mb-5"
-                          : "left-20 position-relative"
+                        rowIndex == 0 ? "mb-5" : "left-20 position-relative"
                       }`}
                       key={rowIndex}
                     >
@@ -56,8 +55,14 @@ function Slider({ slides }) {
                             }
                             width={500}
                             height={500}
+                            className={styles.sliderImg}
                           />
                           <div>{slide.NAME}</div>
+                          <div className="">
+                            <div className="text-xs font-medium tracking-wide mt-1 font-mono">
+                              {slide.PROPERTY_POSITION_NEW_PROPERTY_RU_VALUE}
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>

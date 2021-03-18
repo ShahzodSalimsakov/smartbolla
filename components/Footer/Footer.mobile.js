@@ -34,9 +34,9 @@ const navButtons = [
 export default function Footer() {
   const { pathname } = useRouter();
   return (
-    <section
+    <div
       id="bottom-navigation"
-      className="block fixed inset-x-0 bottom-0 z-10 shadow bg-black col"
+      className="block fixed inset-x-0 bottom-0 z-10 shadow bg-black"
       style={{
         background: "linear-gradient(270deg, #0C0E12 0.14%, #242C40 100%)",
       }}
@@ -49,8 +49,8 @@ export default function Footer() {
                 icon={button.icon}
                 className={`${
                   pathname === button.path
-                    ? "text-warning text-3xl"
-                    : "text-white text-3xl"
+                    ? "text-warning text-2xl"
+                    : "text-white text-2xl"
                 }`}
               />
               <span className="tab tab-whishlist block text-white">
@@ -60,6 +60,6 @@ export default function Footer() {
           </Link>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
