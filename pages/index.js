@@ -98,15 +98,15 @@ function Home({
                       </div>
                     </div>
                   </div>
-                  <div className="section pl-24 pt-14">
+                  <div className="section pl-24">
                     <FullPageSectionTitle title="Investors" />
-                    <div className="w-10/12 m-auto">
+                    <div className=" m-auto">
                       <Slider slides={investors} />
                     </div>
                   </div>
-                  <div className="section pl-24 pt-14">
+                  <div className="section pl-24">
                     <FullPageSectionTitle title="Co-founders" />
-                    <div className="w-10/12 m-auto">
+                    <div className="m-auto">
                       <Slider slides={cofounder} />
                     </div>
                   </div>
@@ -115,10 +115,10 @@ function Home({
                       <Project project={project} />
                     </div>
                   ))}
-                  <div className="section pl-24 pt-30">
+                  <div className="section pl-24">
                     <CounterList counter={counter} />
                     <FullPageSectionTitle title="Team" />
-                    <div className="w-10/12 m-auto">
+                    <div className="m-auto">
                       <Slider slides={team} />
                     </div>
                   </div>
