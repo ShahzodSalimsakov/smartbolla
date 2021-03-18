@@ -138,7 +138,7 @@ function Contacts({ contactAddress, social }) {
               isSubmitting,
               /* and other goodies */
             }) => (
-              <form onSubmit={handleSubmit} className="pb-10">
+              <form onSubmit={handleSubmit} className="pb-20">
                 <div className="text-red-500">
                   {errors.name && touched.name && errors.name}
                 </div>
