@@ -17,6 +17,11 @@ function Account({ orderProps, mainLayoutSocial }) {
     contact: t('contact'),
     profile: t('profile'),
   }
+  
+  const footerLang = {
+    allRightsRes: t('allRightsRes'),
+    weWoldLike: t("weWoldLike")
+  }
   const renderField = (field, values) => {
     switch (field.TYPE) {
       default:
@@ -47,7 +52,7 @@ function Account({ orderProps, mainLayoutSocial }) {
   };
 
   return (
-    <MainLayout commonLang={commonLang} title={t("title")} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout commonLang={commonLang} footerLang={footerLang} title={t("title")} mainLayoutSocial={mainLayoutSocial}>
       <div className="grid grid-cols-3">
         <div className="col-span-2">
           <Formik

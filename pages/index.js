@@ -45,12 +45,18 @@ function Home({
     contact: t('contact'),
     profile: t('profile'),
   }
+
   const countLang = {
     blockTitle: t('title'),
     developers: t('team'),
     investors: t('investors'),
     applications: t('applications'),
     cofounders: t('cofounders'),
+  }
+
+  const footerLang = {
+    allRightsRes: t('allRightsRes'),
+    weWoldLike: t("weWoldLike")
   }
 
   const sectionsColor = ["#000000", "#6135863d"];
@@ -64,7 +70,7 @@ function Home({
   });
   return (
     <>
-      <MainLayout title={"Smartbolla"} commonLang={commonLang} mainLayoutSocial={mainLayoutSocial}>
+      <MainLayout title={"Smartbolla"} commonLang={commonLang} footerLang={footerLang} mainLayoutSocial={mainLayoutSocial}>
         <ReactFullpage
           //fullpage options
           licenseKey={""}
@@ -112,7 +118,7 @@ function Home({
                     </div>
                   </div>
                   <div className="section pl-24 pt-14">
-                    <FullPageSectionTitle title={t('coFounders')} />
+                    <FullPageSectionTitle title={t('cofounders')} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={cofounder} />
                     </div>
@@ -175,15 +181,15 @@ function Home({
             #fp-nav ul li a span,
             .fp-slidesNav ul li a span {
               background: transparent !important;
-              border: 3px solid #fff !important;
-              width: 12px !important;
-              height: 12px !important;
+              border: 1px solid #f6c886  !important;
+              width: 10px !important;
+              height: 10px !important;
               margin: -6px 0 0 -6px !important;
             }
             #fp-nav ul li a.active span,
             .fp-slidesNav ul li a.active span {
-              background: #fff !important;
-              border: 3px solid #fff !important;
+              background: #f6c886 !important;
+              border: 1px solid #f6c886 !important;
             }
 
             .ct-btn-scroll {

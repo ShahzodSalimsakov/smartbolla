@@ -11,5 +11,7 @@
     "nameError": "Por favor, escriba su nombre.",
     "emailError": "Ingrese el correo electrónico al que desea recibir respuesta.",
     "emailInvalid": "La dirección de correo electrónico debe contener el símbolo @.",
-    "messageError": "No ha publicado un mensaje."
+    "messageError": "No ha publicado un mensaje.",
+    "allRightsRes": "Reservados todos los derechos.",
+    "weWoldLike": "Nos gustaría recibir sus comentarios"
 }

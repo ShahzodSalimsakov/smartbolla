@@ -16,7 +16,7 @@ export default function CounterList({ counter, countLang  }) {
         {counter.map((c) => (
           <div className="" key={c.ID}>
             <NeonText text={c.PROPERTY_COUNT_VALUE} />
-            <h1 className="font-extralight uppercase">{c.NAME}</h1>
+            <div className="font-extralight uppercase">{c.NAME}</div>
           </div>
         ))}
       </div>

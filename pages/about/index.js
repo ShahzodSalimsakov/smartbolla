@@ -13,8 +13,13 @@ function About({ aboutText, mainLayoutSocial }) {
     contact: t('contact'),
     profile: t('profile'),
   }
+  
+  const footerLang = {
+    allRightsRes: t('allRightsRes'),
+    weWoldLike: t("weWoldLike")
+  }
   return (
-    <MainLayout title={t('title')} commonLang={commonLang} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout title={t('title')} commonLang={commonLang} footerLang={footerLang} mainLayoutSocial={mainLayoutSocial}>
       <AboutPage aboutText={aboutText}/>
     </MainLayout>
   );

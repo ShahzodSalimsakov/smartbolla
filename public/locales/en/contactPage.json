@@ -11,5 +11,7 @@
     "nameError": "Please type your name.",
     "emailError": "Provide a reply-to e-mail address.",
     "emailInvalid": "The email address must contain the @ symbol.",
-    "messageError": "The message text is required."
+    "messageError": "The message text is required.",
+    "allRightsRes": "All rights reserved.",
+    "weWoldLike": "We would like to hear from you"
 }
