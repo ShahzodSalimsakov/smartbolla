@@ -23,6 +23,7 @@ export function MainLayout({
   title = "",
   mainLayoutSocial,
   commonLang,
+  footerLang
 }) {
   const { backgroundColor } = useSelector((state) => state.mainConfig);
   const { pathname } = useRouter();
@@ -158,7 +159,7 @@ export function MainLayout({
               <Social mainLayoutSocial={mainLayoutSocial} />
             )}
           </div>
-          <Footer />
+          <Footer footerLang={footerLang} />
         </div>
       </BrowserView>
       <MobileView>
@@ -174,7 +175,7 @@ export function MainLayout({
                 </div>
               </a>
             </Link>
-            <Lang />
+            <Lang/>
           </header>
         </MainRightSide>
         <div
@@ -191,7 +192,7 @@ export function MainLayout({
             <Social mainLayoutSocial={mainLayoutSocial} />
           )}
         </div>
-        <Footer />
+        <Footer commonLang={commonLang} />
       </MobileView>
       <style jsx global>{`
         html,

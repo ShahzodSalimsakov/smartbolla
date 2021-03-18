@@ -11,5 +11,7 @@
     "nameError": "S'il vous plaît entrez votre nom.",
     "emailError": "Saisissez l'e-mail auquel vous souhaitez recevoir une réponse.",
     "emailInvalid": "L'adresse e-mail doit contenir le symbole @.",
-    "messageError": "Vous n'avez pas posté de message."
+    "messageError": "Vous n'avez pas posté de message.",
+    "allRightsRes": "Tous droits reçus.",
+    "weWoldLike": "Nous aimerions recevoir vos commentaires"
 }

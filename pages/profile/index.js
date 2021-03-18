@@ -17,11 +17,17 @@ function Profile({ mainLayoutSocial, balance }) {
     contact: t('contact'),
     profile: t('profile'),
   }
+  
+  const footerLang = {
+    allRightsRes: t('allRightsRes'),
+    weWoldLike: t("weWoldLike")
+  }
   return (
     <MainLayout
       commonLang={commonLang}
       title={t("title")}
       mainLayoutSocial={mainLayoutSocial}
+      footerLang={footerLang}
     >
       <div className={isMobile ? "col" : "grid grid-cols-3"}>
         <div className={isMobile ? "" : "col-span-2"}>

@@ -8,30 +8,31 @@ import {
   faAddressCard,
 } from "@fortawesome/free-solid-svg-icons";
 
+
+export default function Footer( { commonLang } ) {
+  
 const navButtons = [
   {
-    label: "about us",
+    label: commonLang.about,
     path: "/about",
     icon: faAddressCard,
   },
   {
-    label: "media",
+    label: commonLang.media,
     path: "/media",
     icon: faPhotoVideo,
   },
   {
-    label: "contacts",
+    label: commonLang.contact,
     path: "/contacts",
     icon: faMapMarkerAlt,
   },
   {
-    label: "profile",
+    label: commonLang.profile,
     path: "/profile",
     icon: faUser,
   },
 ];
-
-export default function Footer() {
   const { pathname } = useRouter();
   return (
     <div
