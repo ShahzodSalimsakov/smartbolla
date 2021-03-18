@@ -34,38 +34,32 @@ const navButtons = [
 export default function Footer() {
   const { pathname } = useRouter();
   return (
-    <div className="w-full h-screen">
-      <section
-        id="bottom-navigation"
-        className="md:hidden block fixed inset-x-0 bottom-0 z-10 shadow bg-black"
-      />
-      <section
-        id="bottom-navigation"
-        className="block fixed inset-x-0 bottom-0 z-10 shadow bg-black"
-        style={{
-          background: "linear-gradient(270deg, #0C0E12 0.14%, #242C40 100%)",
-        }}
-      >
-        <div id="tabs" className="flex justify-around">
-          {navButtons.map((button) => (
-            <Link href={button.path}>
-              <a className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 text-decoration-none">
-                <FontAwesomeIcon
-                  icon={button.icon}
-                  className={`${
-                    pathname === button.path
-                      ? "text-warning text-3xl"
-                      : "text-white text-3xl"
-                  }`}
-                />
-                <span className="tab tab-whishlist block text-white">
-                  {button.label}
-                </span>
-              </a>
-            </Link>
-          ))}
-        </div>
-      </section>
-    </div>
+    <section
+      id="bottom-navigation"
+      className="block fixed inset-x-0 bottom-0 z-10 shadow bg-black col"
+      style={{
+        background: "linear-gradient(270deg, #0C0E12 0.14%, #242C40 100%)",
+      }}
+    >
+      <div id="tabs" className="flex justify-around">
+        {navButtons.map((button) => (
+          <Link href={button.path}>
+            <a className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 text-decoration-none">
+              <FontAwesomeIcon
+                icon={button.icon}
+                className={`${
+                  pathname === button.path
+                    ? "text-warning text-3xl"
+                    : "text-white text-3xl"
+                }`}
+              />
+              <span className="tab tab-whishlist block text-white">
+                {button.label}
+              </span>
+            </a>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }

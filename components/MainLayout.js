@@ -50,14 +50,18 @@ export function MainLayout({ children, title = "", mainLayoutSocial, commonLang 
           </MainLeftSide>
           <MainRightSide className="fixed right-0.5 top-0 z-30">
             <header
-              className={`${styles.header} ${pathname == "/" ? "" : styles.headerBack} flex flex-row items-end justify-between`}
+              className={`${styles.header} ${
+                pathname == "/" ? "" : styles.headerBack
+              } flex flex-row items-end justify-between`}
             >
               <HeaderMenu commonLang={commonLang} />
               <Lang />
             </header>
           </MainRightSide>
           <div
-            className={`main-content ${pathname == "/" ? "" : "py-24 pl-24 pr-10"}`}
+            className={`main-content ${
+              pathname == "/" ? "" : "py-24 pl-24 pr-10"
+            }`}
           >
             {pathname !== "/" && <FullPageSectionTitle title={title} />}
             {children}
@@ -69,7 +73,7 @@ export function MainLayout({ children, title = "", mainLayoutSocial, commonLang 
         </div>
       </BrowserView>
       <MobileView>
-        <MainRightSide className="fixed right-0.5 top-0 z-30">
+        <MainRightSide className="fixed w-100 top-0 z-30">
           <header
             className={`${styles.header} flex flex-row items-end justify-around w-full`}
           >
@@ -85,11 +89,14 @@ export function MainLayout({ children, title = "", mainLayoutSocial, commonLang 
           </header>
         </MainRightSide>
         <div
-          className={`main-content ${pathname == "/" ? "" : "pt-24"} ${
-            pathname == "/contacts" ? "px-24" : ""
+          className={`main-content ${pathname == "/" ? "" : "pt-10"} ${
+            pathname == "/contacts" ? "" : ""
           }`}
+          style={{ background: backgroundColor }}
         >
-          {pathname !== "/" && <FullPageSectionTitle title={title} />}
+          <div className="pl-10">
+            {pathname !== "/" && <FullPageSectionTitle title={title} />}
+          </div>
           {children}
           {pathname != "/contacts" && (
             <Social mainLayoutSocial={mainLayoutSocial} />
