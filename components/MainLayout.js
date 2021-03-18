@@ -183,7 +183,7 @@ export function MainLayout({
           }`}
           style={{ background: backgroundColor }}
         >
-          <div className="pl-10">
+          <div className="pl-10 pt-10">
             {pathname !== "/" && <FullPageSectionTitle title={title} />}
           </div>
           {children}
