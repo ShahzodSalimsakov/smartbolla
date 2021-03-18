@@ -92,33 +92,36 @@ function Home({
                           </div>
                           <div className="absolute bg-black bottom-0 jsx-1377087279 p-4 w-2/4 z-20">
                             <h1 className="font-black uppercase text-5xl">
-                              {t('yourTime')}
+                              {t("yourTime")}
                             </h1>
                             <h1 className="font-black uppercase text-5xl">
-                              {t('yourGoals')}
+                              {t("yourGoals")}
                             </h1>
                             <h1 className="font-black uppercase text-5xl">
-                              {t('yourBoss')}
+                              {t("yourBoss")}
                             </h1>
                             <span className="text-2xl font-weight-light">
-                              {t('yourInvest')}
+                              {t("yourInvest")}
                             </span>
                           </div>
                         </div>
                         <div className="flex h-100 items-center z-20 justify-around">
-                          <ProductsSlider products={products} investLang={t('invest')}/>
+                          <ProductsSlider
+                            products={products}
+                            investLang={t("invest")}
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="section pl-24 pt-14">
-                    <FullPageSectionTitle title={t('investors')} />
+                    <FullPageSectionTitle title={t("investors")} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={investors} />
                     </div>
                   </div>
                   <div className="section pl-24 pt-14">
-                    <FullPageSectionTitle title={t('cofounders')} />
+                    <FullPageSectionTitle title={t("cofounders")} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={cofounder} />
                     </div>
@@ -129,8 +132,8 @@ function Home({
                     </div>
                   ))}
                   <div className="section pl-24 pt-30">
-                    <CounterList counter={counter}  countLang={countLang}/>
-                    <FullPageSectionTitle title={t('team')} />
+                    <CounterList counter={counter} countLang={countLang} />
+                    <FullPageSectionTitle title={t("team")} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={team} />
                     </div>
@@ -146,13 +149,15 @@ function Home({
                       </div>
                     </div>
                   </div>
-                  <div className="section pl-10 pt-14">
-                    <FullPageSectionTitle title={t('investors')} />
-                    <div className="w-10/12 m-auto">
+                  <div className="section pl-10">
+                    <FullPageSectionTitle title={t("investors")} />
+                    <div className="">
                       <Slider slides={investors} />
                     </div>
-                    <FullPageSectionTitle title={t('coFounders')} />
-                    <div className="w-10/12 m-auto">
+                  </div>
+                  <div className="section pl-10">
+                    <FullPageSectionTitle title={t("coFounders")} />
+                    <div className="">
                       <Slider slides={cofounder} />
                     </div>
                   </div>
@@ -161,12 +166,14 @@ function Home({
                       <Project project={project} />
                     </div>
                   ))}
-                  <div className="section pl-10 pt-30">
-                    <CounterList counter={counter} countLang={countLang}/>
-                    <FullPageSectionTitle title={t('team')} />
-                    <div className="w-10/12 m-auto">
+                  <div className="section pl-10">
+                    <FullPageSectionTitle title={t("team")} />
+                    <div className="">
                       <Slider slides={team} />
                     </div>
+                  </div>
+                  <div className="section pl-10">
+                    <CounterList counter={counter} countLang={countLang} />
                   </div>
                 </MobileView>
               </ReactFullpage.Wrapper>
