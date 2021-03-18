@@ -36,7 +36,7 @@ function Home({
   team,
   mainLayoutSocial,
 }) {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('indexPage');
   const dispatch = useDispatch();
 
   const commonLang = {
@@ -44,6 +44,13 @@ function Home({
     media: t('media'),
     contact: t('contact'),
     profile: t('profile'),
+  }
+  const countLang = {
+    blockTitle: t('title'),
+    developers: t('team'),
+    investors: t('investors'),
+    applications: t('applications'),
+    cofounders: t('cofounders'),
   }
 
   const sectionsColor = ["#000000", "#6135863d"];
@@ -79,34 +86,34 @@ function Home({
                           </div>
                           <div className="absolute bg-black bottom-0 jsx-1377087279 p-4 w-2/4 z-20">
                             <h1 className="font-black uppercase text-5xl">
-                              Your time.
+                              {t('yourTime')}
                             </h1>
                             <h1 className="font-black uppercase text-5xl">
-                              Your goals.
+                              {t('yourGoals')}
                             </h1>
                             <h1 className="font-black uppercase text-5xl">
-                              Your are the boss.
+                              {t('yourBoss')}
                             </h1>
                             <span className="text-2xl font-weight-light">
-                              Invest in your future
+                              {t('yourInvest')}
                             </span>
                           </div>
                         </div>
                         <div className="flex h-100 items-center z-20 justify-around">
-                          <ProductsSlider products={products} />
+                          <ProductsSlider products={products} investLang={t('invest')}/>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="section pl-24">
-                    <FullPageSectionTitle title="Investors" />
-                    <div className=" m-auto">
+                  <div className="section pl-24 pt-14">
+                    <FullPageSectionTitle title={t('investors')} />
+                    <div className="w-10/12 m-auto">
                       <Slider slides={investors} />
                     </div>
                   </div>
-                  <div className="section pl-24">
-                    <FullPageSectionTitle title="Co-founders" />
-                    <div className="m-auto">
+                  <div className="section pl-24 pt-14">
+                    <FullPageSectionTitle title={t('coFounders')} />
+                    <div className="w-10/12 m-auto">
                       <Slider slides={cofounder} />
                     </div>
                   </div>
@@ -115,10 +122,10 @@ function Home({
                       <Project project={project} />
                     </div>
                   ))}
-                  <div className="section pl-24">
-                    <CounterList counter={counter} />
-                    <FullPageSectionTitle title="Team" />
-                    <div className="m-auto">
+                  <div className="section pl-24 pt-30">
+                    <CounterList counter={counter}  countLang={countLang}/>
+                    <FullPageSectionTitle title={t('team')} />
+                    <div className="w-10/12 m-auto">
                       <Slider slides={team} />
                     </div>
                   </div>
@@ -134,11 +141,11 @@ function Home({
                     </div>
                   </div>
                   <div className="section pl-10 pt-14">
-                    <FullPageSectionTitle title="Investors" />
+                    <FullPageSectionTitle title={t('investors')} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={investors} />
                     </div>
-                    <FullPageSectionTitle title="Co-founders" />
+                    <FullPageSectionTitle title={t('coFounders')} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={cofounder} />
                     </div>
@@ -149,8 +156,8 @@ function Home({
                     </div>
                   ))}
                   <div className="section pl-10 pt-30">
-                    <CounterList counter={counter} />
-                    <FullPageSectionTitle title="Team" />
+                    <CounterList counter={counter} countLang={countLang}/>
+                    <FullPageSectionTitle title={t('team')} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={team} />
                     </div>
@@ -365,7 +372,7 @@ export async function getServerSideProps({ locale }) {
       products,
       cofounder,
       team,
-      ...await serverSideTranslations(locale, ['common']),
+      ...await serverSideTranslations(locale, ['indexPage']),
     },
   };
 }
