@@ -24,37 +24,38 @@ function Slider({ slides }) {
             spaceBetween={20}
             pagination
             clickable={true}
+            grabCursor={true}
             navigation
-            autoplay={{
-              delay: 3000,
-            }}
+            // autoplay={{
+            //   delay: 3000,
+            // }}
           >
             {resSlides.map((item, i) => {
               const rows = chunk(item, 4);
               return (
-                <SwiperSlide key={i} className="">
+                <SwiperSlide key={i} className="w-screen">
                   {rows.map((
                     row,
                     rowIndex // Davay v botim, chtobi rasskazal ideyu
                   ) => (
                     <div
-                      className={`flex ${
+                      className={`flex justify-center ${
                         rowIndex == 0
-                          ? "justify-start"
-                          : "justify-end left-24 position-relative"
+                          ? "mb-5"
+                          : "left-20 position-relative"
                       }`}
                       key={rowIndex}
                     >
                       {row.map((slide) => (
-                        <div className="col">
+                        <div className="col-2">
                           <Image
                             src={
                               slide.PREVIEW_PICTURE
                                 ? `${slide.PREVIEW_PICTURE}`
                                 : "/"
                             }
-                            width={200}
-                            height={200}
+                            width={500}
+                            height={500}
                           />
                           <div>{slide.NAME}</div>
                         </div>
