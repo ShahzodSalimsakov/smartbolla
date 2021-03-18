@@ -1,4 +1,5 @@
-module.exports = {
+const withPWA = require("next-pwa");
+module.exports = withPWA({
   async headers() {
     return [
       {
@@ -48,4 +49,4 @@ module.exports = {
   pwa: {
     dest: "public",
   },
-};
+});
