@@ -14,8 +14,9 @@ import CounterList from "../components/CounterList/CounterList";
 import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
 import Slider from "../components/Slider/Slider";
 import Image from "next/image";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
 import {
   BrowserView,
   MobileView,
@@ -38,6 +39,8 @@ function Home({
 }) {
   const { t } = useTranslation("indexPage");
   const dispatch = useDispatch();
+  const router = useRouter();
+  const locale = router.locale.toUpperCase();
 
   const commonLang = {
     about: t("about"),
@@ -140,7 +143,7 @@ function Home({
                     <CounterList counter={counter} countLang={countLang} />
                     <FullPageSectionTitle title={t("team")} />
                     <div className="w-10/12 m-auto">
-                      <Slider slides={team} />
+                      <Slider slides={team} locale={locale} />
                     </div>
                   </div>
                 </BrowserView>
