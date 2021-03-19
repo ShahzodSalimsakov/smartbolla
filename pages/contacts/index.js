@@ -32,8 +32,13 @@ function Contacts({ contactAddress, social }) {
     contact: t('contact'),
     profile: t('profile'),
   }
+  
+  const footerLang = {
+    allRightsRes: t('allRightsRes'),
+    weWoldLike: t("weWoldLike")
+  }
   return (
-    <MainLayout commonLang={commonLang} title={t('title')}>
+    <MainLayout commonLang={commonLang} footerLang={footerLang} title={t('title')}>
       <div className="my-10">
         <YMaps>
           <Map width="100%" height="400px" defaultState={mapData}>
@@ -138,7 +143,7 @@ function Contacts({ contactAddress, social }) {
               isSubmitting,
               /* and other goodies */
             }) => (
-              <form onSubmit={handleSubmit} className="pb-10">
+              <form onSubmit={handleSubmit} className="pb-20">
                 <div className="text-red-500">
                   {errors.name && touched.name && errors.name}
                 </div>

@@ -1,6 +1,6 @@
 import styles from "./footer.module.css";
 
-export default function Footer() {
+export default function Footer({ footerLang }) {
   let today = new Date();
   let year = today.getFullYear();
   return (
@@ -9,12 +9,12 @@ export default function Footer() {
     >
       <div className="border-t flex">
         <p className="m-0 ml-auto mt-2 position-relative pr-10 text-gray-400">
-          &copy; {year} Smartbolla. all rights reserved
+          &copy; {year} Smartbolla. { footerLang.allRightsRes }
         </p>
       </div>
       <div className="border-t flex">
         <p className="m-0 mb-2 ml-auto pr-10 text-gray-400">
-          We would like to hear from you
+          { footerLang.weWoldLike }
           <a
             href="mailto:info@smartbolla.com"
             className="font-bold text-decoration-none text-gray-400"

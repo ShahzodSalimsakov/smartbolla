@@ -28,25 +28,36 @@ function Media({mainLayoutSocial}) {
     contact: t('contact'),
     profile: t('profile'),
   }
+  
+  const footerLang = {
+    allRightsRes: t('allRightsRes'),
+    weWoldLike: t("weWoldLike")
+  }
+
+  const photos = [
+    { src: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599', width: 4, height: 3 },
+    { src: 'https://source.unsplash.com/Dm-qxdynoEc/800x799', width: 1, height: 1 },
+    { src: 'https://source.unsplash.com/qDkso9nvCg0/600x799', width: 3, height: 4 },
+    { src: 'https://source.unsplash.com/iecJiKe_RNg/600x799', width: 3, height: 4 },
+    { src: 'https://source.unsplash.com/epcsn8Ed8kY/600x799', width: 3, height: 4 },
+    { src: 'https://source.unsplash.com/NQSWvyVRIJk/800x599', width: 4, height: 3 },
+    { src: 'https://source.unsplash.com/zh7GEuORbUw/600x799', width: 3, height: 4 },
+    { src: 'https://source.unsplash.com/PpOHJezOalU/800x599', width: 4, height: 3 },
+    { src: 'https://source.unsplash.com/I1ASdgphUH4/800x599', width: 4, height: 3 }
+  ];
+
   return (
     <>
-      <MainLayout commonLang={commonLang} mainLayoutSocial={mainLayoutSocial}>
+      <MainLayout title={t('title')} commonLang={commonLang} footerLang={footerLang} mainLayoutSocial={mainLayoutSocial}>
         <div>
           <Gallery photos={photos} onClick={openLightbox} />
-          <ModalGateway>
-            {viewerIsOpen ? (
-              <Modal onClose={closeLightbox}>
-                <Carousel
-                  currentIndex={currentImage}
-                  views={photos.map((x) => ({
-                    ...x,
-                    srcset: x.srcSet,
-                    caption: x.title,
-                  }))}
-                />
-              </Modal>
-            ) : null}
-          </ModalGateway>
+          <a data-fancybox data-options='{"caption" : "My caption", "src" : "https://codepen.io/about/", "type" : "iframe"}' href="javascript:;" class="btn btn-primary">
+              Example #1
+          </a>
+
+          <a data-fancybox data-animation-effect="false" href="https://source.unsplash.com/0JYgd2QuMfw/1500x1000" class="btn btn-primary">
+              Example #2
+          </a>
         </div>
       </MainLayout>
     </>

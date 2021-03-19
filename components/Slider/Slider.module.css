@@ -1,0 +1,7 @@
+.sliderImg {
+  filter: grayscale(100%);
+}
+
+.sliderImg:hover {
+    filter: grayscale(0)
+}

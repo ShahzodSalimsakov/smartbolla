@@ -11,5 +11,7 @@
     "nameError": "請輸入你的名字。",
     "emailError": "輸入您想收到回复的電子郵件。",
     "emailInvalid": "电子邮件地址必须包含@符号。",
-    "messageError": "您尚未發布消息。"
+    "messageError": "您尚未發布消息。",
+    "allRightsRes": "保留所有权利.",
+    "weWoldLike": "我们希望收到你的来信"
 }

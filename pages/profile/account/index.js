@@ -17,22 +17,26 @@ function Account({ orderProps, mainLayoutSocial }) {
     contact: t('contact'),
     profile: t('profile'),
   }
+  
+  const footerLang = {
+    allRightsRes: t('allRightsRes'),
+    weWoldLike: t("weWoldLike")
+  }
   const renderField = (field, values) => {
-    console.log(field.NAME);
+    if (field.CODE == "NAME") {
+      field.NAME = t("NAME");
+    }
+    if (field.CODE == "LAST_NAME") {
+      field.NAME = t("LAST_NAME");
+    }
+    if (field.CODE == "PHONE") {
+      field.NAME = t("PHONE");
+    }
+    if (field.CODE == "PASPORT") {
+      field.NAME = t("PASPORT");
+    }
     switch (field.TYPE) {
       default:
-        if (field.CODE == "NAME") {
-          field.NAME = t("NAME");
-        }
-        if (field.CODE == "LAST_NAME") {
-          field.NAME = t("LAST_NAME");
-        }
-        if (field.CODE == "PHONE") {
-          field.NAME = t("PHONE");
-        }
-        if (field.CODE == "PASPORT") {
-          field.NAME = t("PASPORT");
-        }
         return (
           <input
             type="text"
@@ -48,7 +52,7 @@ function Account({ orderProps, mainLayoutSocial }) {
   };
 
   return (
-    <MainLayout commonLang={commonLang} title={t("title")} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout commonLang={commonLang} footerLang={footerLang} title={t("title")} mainLayoutSocial={mainLayoutSocial}>
       <div className="grid grid-cols-3">
         <div className="col-span-2">
           <Formik

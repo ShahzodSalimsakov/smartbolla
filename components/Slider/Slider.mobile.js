@@ -19,39 +19,34 @@ function Slider({ slides }) {
           <Swiper
             effect="coverflow"
             grabCursor={true}
-            centeredSlides={true}
-            spaceBetween={1}
-            slidesPerView={1}
             navigation
             preloadImages={false}
-            activeSlideKey={5}
-            autoplay={{
-              delay: 1000,
-            }}
-            lazy={true}
+            // autoplay={{
+            //   delay: 1000,
+            // }}
             coverflowEffect={{
-              rotate: 0,
-              stretch: 70,
+              rotate: 50,
+              stretch: 20,
               depth: 150,
-              modifier: 2,
-              slideShadows: false,
+              modifier: 1,
+              slideShadows: true,
             }}
           >
             {slides.map((item, i) => (
               <SwiperSlide key={i}>
-                <div className="text-center w-8/12">
+                <div className="">
                   <Image
                     src={item.PREVIEW_PICTURE ? `${item.PREVIEW_PICTURE}` : "/"}
-                    width={200}
-                    height={200}
+                    width={320}
+                    height={320}
                   />
                   {/* <img src={item.PREVIEW_PICTURE} /> */}
                   <h1 className="font-extralight mt-1 text-base">
                     {item.NAME}
                   </h1>
                   <div className="">
-                    <div className="text-base font-medium tracking-wide mt-1 font-mono">
-                      {/* {item.description} */}
+                    <div className="text-base font-medium tracking-wide mt-1">
+                      {item.PROPERTY_POSITION_NEW_PROPERTY_RU_VALUE}
                     </div>
                   </div>
                 </div>

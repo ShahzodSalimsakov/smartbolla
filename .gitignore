@@ -34,3 +34,4 @@ yarn.lock
 package-lock.json
 .history
 .vscode
+public/sw.js.map

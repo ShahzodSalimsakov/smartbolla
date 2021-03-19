@@ -4,6 +4,7 @@ import styles from "./Profile.module.css";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { parseCookies } from "../../helpers/";
+import { isMobile } from "react-device-detect";
 
 function Profile({ mainLayoutSocial, balance }) {
   const { t } = useTranslation("profilePage");
@@ -22,9 +23,10 @@ function Profile({ mainLayoutSocial, balance }) {
       commonLang={commonLang}
       title={t("title")}
       mainLayoutSocial={mainLayoutSocial}
+      footerLang={footerLang}
     >
-      <div className="grid grid-cols-3">
-        <div className="col-span-2">
+      <div className={isMobile ? "col" : "grid grid-cols-3"}>
+        <div className={isMobile ? "" : "col-span-2"}>
           <div>
             <div className="font-bold text-4xl py-5">{t("yourBalance")}</div>
             <div
@@ -39,7 +41,11 @@ function Profile({ mainLayoutSocial, balance }) {
           <div>
             <div className="py-5 font-bold text-4xl">{t("tokenOrders")}</div>
             <table
-              className={`${styles.profileTable} table-fixed border-collapse w-full`}
+              className={`${
+                isMobile
+                  ? styles.profileTable
+                  : `${styles.profileTable} "table-fixed border-collapse w-full col"`
+              }`}
             >
               <thead>
                 <tr>

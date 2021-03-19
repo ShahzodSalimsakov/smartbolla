@@ -8,35 +8,36 @@ import {
   faAddressCard,
 } from "@fortawesome/free-solid-svg-icons";
 
+
+export default function Footer( { commonLang } ) {
+  
 const navButtons = [
   {
-    label: "about us",
+    label: commonLang.about,
     path: "/about",
     icon: faAddressCard,
   },
   {
-    label: "media",
+    label: commonLang.media,
     path: "/media",
     icon: faPhotoVideo,
   },
   {
-    label: "contacts",
+    label: commonLang.contact,
     path: "/contacts",
     icon: faMapMarkerAlt,
   },
   {
-    label: "profile",
+    label: commonLang.profile,
     path: "/profile",
     icon: faUser,
   },
 ];
-
-export default function Footer() {
   const { pathname } = useRouter();
   return (
-    <section
+    <div
       id="bottom-navigation"
-      className="block fixed inset-x-0 bottom-0 z-10 shadow bg-black col"
+      className="block fixed inset-x-0 bottom-0 z-10 shadow bg-black"
       style={{
         background: "linear-gradient(270deg, #0C0E12 0.14%, #242C40 100%)",
       }}
@@ -49,17 +50,17 @@ export default function Footer() {
                 icon={button.icon}
                 className={`${
                   pathname === button.path
-                    ? "text-warning text-3xl"
-                    : "text-white text-3xl"
+                    ? "text-warning"
+                    : "text-white"
                 }`}
               />
-              <span className="tab tab-whishlist block text-white">
+              <span className="tab tab-whishlist block text-white text-xs">
                 {button.label}
               </span>
             </a>
           </Link>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
