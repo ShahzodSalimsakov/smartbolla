@@ -14,8 +14,8 @@ import CounterList from "../components/CounterList/CounterList";
 import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
 import Slider from "../components/Slider/Slider";
 import Image from "next/image";
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import {
   BrowserView,
   MobileView,
@@ -36,28 +36,28 @@ function Home({
   team,
   mainLayoutSocial,
 }) {
-  const { t } = useTranslation('indexPage');
+  const { t } = useTranslation("indexPage");
   const dispatch = useDispatch();
 
   const commonLang = {
-    about: t('about'),
-    media: t('media'),
-    contact: t('contact'),
-    profile: t('profile'),
-  }
+    about: t("about"),
+    media: t("media"),
+    contact: t("contact"),
+    profile: t("profile"),
+  };
 
   const countLang = {
-    blockTitle: t('title'),
-    developers: t('team'),
-    investors: t('investors'),
-    applications: t('applications'),
-    cofounders: t('cofounders'),
-  }
+    blockTitle: t("title"),
+    developers: t("team"),
+    investors: t("investors"),
+    applications: t("applications"),
+    cofounders: t("cofounders"),
+  };
 
   const footerLang = {
-    allRightsRes: t('allRightsRes'),
-    weWoldLike: t("weWoldLike")
-  }
+    allRightsRes: t("allRightsRes"),
+    weWoldLike: t("weWoldLike"),
+  };
 
   const sectionsColor = ["#000000", "#6135863d"];
 
@@ -70,7 +70,12 @@ function Home({
   });
   return (
     <>
-      <MainLayout title={"Smartbolla"} commonLang={commonLang} footerLang={footerLang} mainLayoutSocial={mainLayoutSocial}>
+      <MainLayout
+        title={"Smartbolla"}
+        commonLang={commonLang}
+        footerLang={footerLang}
+        mainLayoutSocial={mainLayoutSocial}
+      >
         <ReactFullpage
           //fullpage options
           licenseKey={""}
@@ -188,7 +193,7 @@ function Home({
             #fp-nav ul li a span,
             .fp-slidesNav ul li a span {
               background: transparent !important;
-              border: 1px solid #f6c886  !important;
+              border: 1px solid #f6c886 !important;
               width: 10px !important;
               height: 10px !important;
               margin: -6px 0 0 -6px !important;
@@ -385,7 +390,7 @@ export async function getServerSideProps({ locale }) {
       products,
       cofounder,
       team,
-      ...await serverSideTranslations(locale, ['indexPage']),
+      ...(await serverSideTranslations(locale, ["indexPage"])),
     },
   };
 }
