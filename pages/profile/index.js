@@ -18,6 +18,12 @@ function Profile({ mainLayoutSocial, balance }) {
     contact: t("contact"),
     profile: t("profile"),
   };
+
+  const footerLang = {
+    allRightsRes: t("allRightsRes"),
+    weWoldLike: t("weWoldLike"),
+  };
+
   return (
     <MainLayout
       commonLang={commonLang}
@@ -100,7 +106,6 @@ function Profile({ mainLayoutSocial, balance }) {
 
 export async function getServerSideProps({ locale, req, res }) {
   const cookieData = parseCookies(req);
-  console.log(cookieData);
   let authPage = "/auth";
   if (locale != "en") {
     authPage =
@@ -125,7 +130,6 @@ export async function getServerSideProps({ locale, req, res }) {
     });
 
     const { data: tokenData } = await profileBalance.json();
-    console.log(tokenData);
     if (!tokenData.result) {
       res.writeHead(302, { Location: authPage });
       return res.end();
@@ -137,7 +141,7 @@ export async function getServerSideProps({ locale, req, res }) {
     body: JSON.stringify({
       method: "get.profile.balance",
       data: {
-        userId: 5,
+        authToken: cookieData.userAuthToken,
         locale: locale,
       },
     }),
@@ -158,7 +162,6 @@ export async function getServerSideProps({ locale, req, res }) {
       ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
     },
   });
-
   let { data: balance } = await profileBalance.json();
   let { data: mainLayoutSocial } = await socials.json();
   return {
