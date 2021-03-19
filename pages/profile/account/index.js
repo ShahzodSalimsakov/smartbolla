@@ -23,20 +23,20 @@ function Account({ orderProps, mainLayoutSocial }) {
     weWoldLike: t("weWoldLike")
   }
   const renderField = (field, values) => {
+    if (field.CODE == "NAME") {
+      field.NAME = t("NAME");
+    }
+    if (field.CODE == "LAST_NAME") {
+      field.NAME = t("LAST_NAME");
+    }
+    if (field.CODE == "PHONE") {
+      field.NAME = t("PHONE");
+    }
+    if (field.CODE == "PASPORT") {
+      field.NAME = t("PASPORT");
+    }
     switch (field.TYPE) {
       default:
-        if (field.CODE == "NAME") {
-          field.NAME = t("NAME");
-        }
-        if (field.CODE == "LAST_NAME") {
-          field.NAME = t("LAST_NAME");
-        }
-        if (field.CODE == "PHONE") {
-          field.NAME = t("PHONE");
-        }
-        if (field.CODE == "PASPORT") {
-          field.NAME = t("PASPORT");
-        }
         return (
           <input
             type="text"
@@ -60,6 +60,7 @@ function Account({ orderProps, mainLayoutSocial }) {
             validate={(values) => {
               const errors = {};
               orderProps.map((prop) => {
+                console.log();
                 if (prop.CODE == "NAME") {
                   prop.NAME = t("NAME");
                 }
