@@ -14,8 +14,8 @@ import CounterList from "../components/CounterList/CounterList";
 import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
 import Slider from "../components/Slider/Slider";
 import Image from "next/image";
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import {
   BrowserView,
   MobileView,
@@ -36,15 +36,15 @@ function Home({
   team,
   mainLayoutSocial,
 }) {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   const dispatch = useDispatch();
 
   const commonLang = {
-    about: t('about'),
-    media: t('media'),
-    contact: t('contact'),
-    profile: t('profile'),
-  }
+    about: t("about"),
+    media: t("media"),
+    contact: t("contact"),
+    profile: t("profile"),
+  };
 
   const sectionsColor = ["#000000", "#6135863d"];
 
@@ -57,7 +57,11 @@ function Home({
   });
   return (
     <>
-      <MainLayout title={"Smartbolla"} commonLang={commonLang} mainLayoutSocial={mainLayoutSocial}>
+      <MainLayout
+        title={"Smartbolla"}
+        commonLang={commonLang}
+        mainLayoutSocial={mainLayoutSocial}
+      >
         <ReactFullpage
           //fullpage options
           licenseKey={""}
@@ -85,7 +89,7 @@ function Home({
                               Your goals.
                             </h1>
                             <h1 className="font-black uppercase text-5xl">
-                              Your are the boss.
+                              You are the boss.
                             </h1>
                             <span className="text-2xl font-weight-light">
                               Invest in your future
@@ -365,7 +369,7 @@ export async function getServerSideProps({ locale }) {
       products,
       cofounder,
       team,
-      ...await serverSideTranslations(locale, ['common']),
+      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }
