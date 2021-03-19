@@ -48,7 +48,7 @@ function Profile({ mainLayoutSocial, balance }) {
               className={`${
                 isMobile
                   ? styles.profileTable
-                  : "table-fixed border-collapse w-full"
+                  : `${styles.profileTable} "table-fixed border-collapse w-full col"`
               }`}
             >
               <thead>
