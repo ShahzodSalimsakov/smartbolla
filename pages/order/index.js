@@ -137,7 +137,7 @@ export async function getServerSideProps({ locale, req, res }) {
   const cookieData = parseCookies(req);
 
   if (res && !cookieData.cartItem) {
-    res.writeHead(301, { Location: "/" });
+    res.writeHead(302, { Location: "/" });
     return res.end();
   }
 

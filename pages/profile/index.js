@@ -3,25 +3,27 @@ import ProfileMenu from "../../components/ProfileMenu/ProfileMenu";
 import styles from "./Profile.module.css";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { isMobile } from 'react-device-detect';
+import { parseCookies } from "../../helpers/";
+import { isMobile } from "react-device-detect";
 
 function Profile({ mainLayoutSocial, balance }) {
   const { t } = useTranslation("profilePage");
   const profileBalance = t("balance");
   const accountSetings = t("accountSetings");
   const logOut = t("logOut");
-  
+
   const commonLang = {
-    about: t('about'),
-    media: t('media'),
-    contact: t('contact'),
-    profile: t('profile'),
-  }
-  
+    about: t("about"),
+    media: t("media"),
+    contact: t("contact"),
+    profile: t("profile"),
+  };
+
   const footerLang = {
-    allRightsRes: t('allRightsRes'),
-    weWoldLike: t("weWoldLike")
-  }
+    allRightsRes: t("allRightsRes"),
+    weWoldLike: t("weWoldLike"),
+  };
+
   return (
     <MainLayout
       commonLang={commonLang}
@@ -102,13 +104,44 @@ function Profile({ mainLayoutSocial, balance }) {
   );
 }
 
-export async function getServerSideProps({ locale }) {
+export async function getServerSideProps({ locale, req, res }) {
+  const cookieData = parseCookies(req);
+  let authPage = "/auth";
+  if (locale != "en") {
+    authPage =
+      "/" + locale + authPage + "?backUrl=" + "/" + locale + "/profile";
+  }
+
+  if (res && !cookieData.userAuthToken) {
+    res.writeHead(302, { Location: authPage });
+    return res.end();
+  } else {
+    const profileBalance = await fetch("https://smartbolla.com/api/", {
+      method: "POST",
+      body: JSON.stringify({
+        method: "check.auth.token",
+        data: {
+          authToken: cookieData.userAuthToken,
+        },
+      }),
+      headers: {
+        ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+      },
+    });
+
+    const { data: tokenData } = await profileBalance.json();
+    if (!tokenData.result) {
+      res.writeHead(302, { Location: authPage });
+      return res.end();
+    }
+  }
+
   const profileBalance = await fetch("https://smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "get.profile.balance",
       data: {
-        userId: 5,
+        authToken: cookieData.userAuthToken,
         locale: locale,
       },
     }),
@@ -129,7 +162,6 @@ export async function getServerSideProps({ locale }) {
       ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
     },
   });
-
   let { data: balance } = await profileBalance.json();
   let { data: mainLayoutSocial } = await socials.json();
   return {

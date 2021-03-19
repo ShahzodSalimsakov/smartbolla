@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./ProfileMenu.module.css";
 import { isMobile } from "react-device-detect";
+import { useCookies } from "react-cookie";
 
 function ProfileMenu({ balance, accountSetings, logOut }) {
   const router = useRouter();
@@ -16,16 +17,24 @@ function ProfileMenu({ balance, accountSetings, logOut }) {
       label: accountSetings,
       path: "/profile/account",
     },
-    {
-      label: logOut,
-      path: "/",
-    },
   ];
+
+  const [userAuthToken, setUserAuthToken] = useCookies(["userAuthToken"]);
+
+  const logout = async () => {
+    setUserAuthToken("userAuthToken", "");
+    return router.push("/", undefined, {
+      shallow: true,
+    });
+  };
+
   return (
     <>
       <ul
         className={`${styles.ul} ${
-          isMobile ? "p-4 shadow sidebar-menu mb-10" : "m-12 p-4 shadow sidebar-menu"
+          isMobile
+            ? "p-4 shadow sidebar-menu mb-10"
+            : "m-12 p-4 shadow sidebar-menu"
         }`}
       >
         {navButtons.map((button) => (
@@ -39,6 +48,16 @@ function ProfileMenu({ balance, accountSetings, logOut }) {
             </Link>
           </li>
         ))}
+        <li className="p-2">
+          <a
+            className="cursor-pointer"
+            onClick={() => {
+              logout();
+            }}
+          >
+            {logOut}
+          </a>
+        </li>
       </ul>
     </>
   );
