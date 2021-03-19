@@ -150,7 +150,7 @@ export function MainLayout({
           </MainRightSide>
           <div
             className={`main-content ${
-              pathname == "/" ? "" : "py-24 pl-24 pr-10"
+              pathname == "/" ? "" : `${styles.minHeight} py-24 pl-24 pr-10`
             }`}
           >
             {pathname !== "/" && <FullPageSectionTitle title={title} />}

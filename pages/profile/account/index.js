@@ -60,7 +60,6 @@ function Account({ orderProps, mainLayoutSocial }) {
             validate={(values) => {
               const errors = {};
               orderProps.map((prop) => {
-                console.log();
                 if (prop.CODE == "NAME") {
                   prop.NAME = t("NAME");
                 }
