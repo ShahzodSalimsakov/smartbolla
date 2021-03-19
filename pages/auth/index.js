@@ -21,6 +21,11 @@ function AuthPage({ mainLayoutSocial }) {
     profile: t("profile"),
   };
 
+  const footerLang = {
+    allRightsRes: t("allRightsRes"),
+    weWoldLike: t("weWoldLike"),
+  };
+
   const [submitErrors, setSubmitError] = useState("");
 
   const [isSmsCode, setIsSmsCode] = useState(false);
@@ -89,6 +94,7 @@ function AuthPage({ mainLayoutSocial }) {
       title={"Auth page"}
       commonLang={commonLang}
       mainLayoutSocial={mainLayoutSocial}
+      footerLang={footerLang}
     >
       <div
         className={`${
@@ -216,9 +222,13 @@ function AuthPage({ mainLayoutSocial }) {
                   if (data.AUTH_TOKEN) {
                     setUserAuthToken("userAuthToken", data.AUTH_TOKEN);
                     if (backUrl) {
-                      return router.push(backUrl);
+                      return router.push(backUrl, undefined, {
+                        shallow: true,
+                      });
                     } else {
-                      return router.push("/");
+                      return router.push("/", undefined, {
+                        shallow: true,
+                      });
                     }
                   } else {
                     setSubmitError("Указан неверный код");
