@@ -10,18 +10,18 @@ function Account({ orderProps, mainLayoutSocial }) {
   const balance = t("balance");
   const accountSetings = t("accountSetings");
   const logOut = t("logOut");
-  
+
   const commonLang = {
-    about: t('about'),
-    media: t('media'),
-    contact: t('contact'),
-    profile: t('profile'),
-  }
-  
+    about: t("about"),
+    media: t("media"),
+    contact: t("contact"),
+    profile: t("profile"),
+  };
+
   const footerLang = {
-    allRightsRes: t('allRightsRes'),
-    weWoldLike: t("weWoldLike")
-  }
+    allRightsRes: t("allRightsRes"),
+    weWoldLike: t("weWoldLike"),
+  };
   const renderField = (field, values) => {
     if (field.CODE == "NAME") {
       field.NAME = t("NAME");
@@ -52,7 +52,12 @@ function Account({ orderProps, mainLayoutSocial }) {
   };
 
   return (
-    <MainLayout commonLang={commonLang} footerLang={footerLang} title={t("title")} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout
+      commonLang={commonLang}
+      footerLang={footerLang}
+      title={t("title")}
+      mainLayoutSocial={mainLayoutSocial}
+    >
       <div className="grid grid-cols-3">
         <div className="col-span-2">
           <Formik
