@@ -1,17 +1,17 @@
 
 import SliderMobile from "./Slider.mobile";
-import SliderDesktop from "./Slider.desktop";
+import SliderDesktop from "./Slider.desktop"
 import {
   isMobile,
 } from "react-device-detect";
 
-function Slider({slides}) {
+function Slider({ slides, locale }) {
   return (
     <>
       {isMobile ? (
-        <SliderMobile slides={slides} />
+        <SliderMobile slides={slides} locale={locale} />
       ) : (
-        <SliderDesktop slides={slides} />
+        <SliderDesktop slides={slides} locale={locale} />
       )}
     </>
   );
