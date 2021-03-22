@@ -165,7 +165,7 @@ export function MainLayout({
       <MobileView>
         <MainRightSide className="fixed w-100 top-0 z-30">
           <header
-            className={`${styles.header} flex flex-row items-end justify-around w-full`}
+            className={`${styles.header} flex flex-row items-end justify-around w-full z-10`}
           >
             <Link href="/">
               <a className="flex flex-row items-center">
@@ -184,9 +184,11 @@ export function MainLayout({
           }`}
           style={{ background: backgroundColor }}
         >
-          <div className="pl-10 pt-10">
-            {pathname !== "/" && <FullPageSectionTitle title={title} />}
-          </div>
+          {pathname !== "/" && 
+            <div className="pl-10 pt-10">
+              {pathname !== "/" && <FullPageSectionTitle title={title} />}
+            </div>
+          }
           {children}
           {pathname != "/contacts" && (
             <Social mainLayoutSocial={mainLayoutSocial} />

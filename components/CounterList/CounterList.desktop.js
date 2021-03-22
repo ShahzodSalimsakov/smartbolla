@@ -13,7 +13,7 @@ export default function CounterList({ counter, countLang }) {
   return (
     <>
       <div className="">
-        <FullPageSectionTitle title={countLang.blockTitle} />
+        {/* <FullPageSectionTitle title={countLang.blockTitle} /> */}
         <div className="flex justify-content-around">
           {counter.map((c) => (
             <div className="" key={c.ID}>

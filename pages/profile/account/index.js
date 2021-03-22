@@ -4,25 +4,33 @@ import { Formik, Field, Form } from "formik";
 import ProfileMenu from "../../../components/ProfileMenu/ProfileMenu";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { parseCookies } from "../../../helpers/";
+import asyncForEach from "../../../helpers/asyncForEach";
 
-function Account({ orderProps, mainLayoutSocial }) {
+function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
   const { t } = useTranslation("accountPage");
   const balance = t("balance");
   const accountSetings = t("accountSetings");
   const logOut = t("logOut");
-  
+
   const commonLang = {
-    about: t('about'),
-    media: t('media'),
-    contact: t('contact'),
-    profile: t('profile'),
-  }
-  
+    about: t("about"),
+    media: t("media"),
+    contact: t("contact"),
+    profile: t("profile"),
+  };
+
   const footerLang = {
-    allRightsRes: t('allRightsRes'),
-    weWoldLike: t("weWoldLike")
-  }
-  const renderField = (field, values) => {
+    allRightsRes: t("allRightsRes"),
+    weWoldLike: t("weWoldLike"),
+  };
+  const renderField = (
+    field,
+    values,
+    handleChange,
+    handleBlur,
+    setFieldValue
+  ) => {
     if (field.CODE == "NAME") {
       field.NAME = t("NAME");
     }
@@ -35,15 +43,34 @@ function Account({ orderProps, mainLayoutSocial }) {
     if (field.CODE == "PASPORT") {
       field.NAME = t("PASPORT");
     }
+
+    console.log("fileType", field.TYPE);
+
     switch (field.TYPE) {
+      case "FILE":
+        return (
+          <input
+            type="file"
+            name={field.ID}
+            id={field.CODE}
+            required
+            onChange={(event) => {
+              setFieldValue(field.ID, event.currentTarget.files[0]);
+            }}
+            className="dark:bg-gray-700 dark:border-gray-600 dark:focus:border-gray-500 dark:focus:ring-gray-900 dark:placeholder-gray-500 dark:text-white focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100 placeholder-gray-300 px-3 py-2 rounded-md w-full"
+          />
+        );
+
       default:
         return (
           <input
             type="text"
-            name={field.CODE.toLowerCase()}
+            name={field.ID}
             id={field.CODE}
             required
-            defaultValue={values[field.CODE.toLowerCase()]}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values[field.ID]}
             className="text-black w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
           />
         );
@@ -51,15 +78,22 @@ function Account({ orderProps, mainLayoutSocial }) {
     }
   };
 
+  const initialValues = orderProps["ORDER_PROP_FIELDS_VALUE"];
+
   return (
-    <MainLayout commonLang={commonLang} footerLang={footerLang} title={t("title")} mainLayoutSocial={mainLayoutSocial}>
+    <MainLayout
+      commonLang={commonLang}
+      footerLang={footerLang}
+      title={t("title")}
+      mainLayoutSocial={mainLayoutSocial}
+    >
       <div className="grid grid-cols-3">
         <div className="col-span-2">
           <Formik
-            initialValues={{ name: "", email: "", message: "" }}
+            initialValues={initialValues}
             validate={(values) => {
               const errors = {};
-              orderProps.map((prop) => {
+              orderProps["ORDER_PROP_FIELDS"].map((prop) => {
                 if (prop.CODE == "NAME") {
                   prop.NAME = t("NAME");
                 }
@@ -72,21 +106,30 @@ function Account({ orderProps, mainLayoutSocial }) {
                 if (prop.CODE == "PASPORT") {
                   prop.NAME = t("PASPORT");
                 }
-                if (prop.REQUIRED == "Y" && !values[prop.CODE.toLowerCase()]) {
-                  errors[
-                    prop.CODE.toLowerCase()
-                  ] = `Field "${prop.NAME}" is required`;
+                if (prop.REQUIRED == "Y" && !values[prop.ID]) {
+                  errors[prop.ID] = `Field "${prop.NAME}" is required`;
                 }
               });
               return errors;
             }}
             onSubmit={async (values, { setSubmitting }) => {
               try {
-                const res = await fetch("https://smartbolla.com/api/", {
+                await asyncForEach(
+                  orderProps["ORDER_PROP_FIELDS"],
+                  async (prop) => {
+                    if (prop.TYPE == "FILE") {
+                      values[prop.ID] = await new Response(
+                        values[prop.ID]
+                      ).text();
+                    }
+                  }
+                );
+
+                const res = await fetch("/api/orderPropData", {
                   method: "POST",
                   body: JSON.stringify({
-                    method: "submit.contact.feedback",
-                    data: values,
+                    method: "post.order.properties",
+                    data: { ...values, authToken: userAuthToken },
                   }),
                   headers: {
                     ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
@@ -107,6 +150,7 @@ function Account({ orderProps, mainLayoutSocial }) {
               handleBlur,
               handleSubmit,
               isSubmitting,
+              setFieldValue,
               /* and other goodies */
             }) => (
               <form onSubmit={handleSubmit} className="pt-4 w-7/12">
@@ -116,7 +160,7 @@ function Account({ orderProps, mainLayoutSocial }) {
                 <div className="text-red-500">
                   {errors.email && touched.email && errors.email}
                 </div>
-                {orderProps.map((prop) => (
+                {orderProps["ORDER_PROP_FIELDS"].map((prop) => (
                   <div className="mb-6" key={prop.ID}>
                     <label
                       htmlFor={prop.CODE}
@@ -124,7 +168,13 @@ function Account({ orderProps, mainLayoutSocial }) {
                     >
                       {prop.NAME}
                     </label>
-                    {renderField(prop, values)}
+                    {renderField(
+                      prop,
+                      values,
+                      handleChange,
+                      handleBlur,
+                      setFieldValue
+                    )}
                   </div>
                 ))}
                 <div className="mb-6">
@@ -152,13 +202,43 @@ function Account({ orderProps, mainLayoutSocial }) {
   );
 }
 
-export async function getServerSideProps({ locale }) {
-  const res = await fetch("https://smartbolla.com/api/", {
+export async function getServerSideProps({ locale, req, res }) {
+  const cookieData = parseCookies(req);
+  let authPage = "/auth";
+  if (locale != "en") {
+    authPage =
+      "/" + locale + authPage + "?backUrl=" + "/" + locale + "/profile/account";
+  }
+
+  if (res && !cookieData.userAuthToken) {
+    res.writeHead(302, { Location: authPage });
+    return res.end();
+  } else {
+    const profileBalance = await fetch("https://smartbolla.com/api/", {
+      method: "POST",
+      body: JSON.stringify({
+        method: "check.auth.token",
+        data: {
+          authToken: cookieData.userAuthToken,
+        },
+      }),
+      headers: {
+        ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+      },
+    });
+
+    const { data: tokenData } = await profileBalance.json();
+    if (!tokenData.result) {
+      res.writeHead(302, { Location: authPage });
+      return res.end();
+    }
+  }
+  const resProps = await fetch("https://smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "get.order.properties",
       data: {
-        userId: 5,
+        authToken: cookieData.userAuthToken,
       },
     }),
     headers: {
@@ -181,13 +261,14 @@ export async function getServerSideProps({ locale }) {
 
   let { data: mainLayoutSocial } = await socials.json();
 
-  let { data: orderProps } = await res.json();
+  let { data: orderProps } = await resProps.json();
   orderProps = orderProps || [];
 
   return {
     props: {
       orderProps,
       mainLayoutSocial,
+      userAuthToken: cookieData.userAuthToken,
       ...(await serverSideTranslations(locale, ["accountPage"])),
     },
   };

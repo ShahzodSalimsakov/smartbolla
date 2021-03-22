@@ -12,7 +12,7 @@ import chunk from "../../helpers/chunk";
 import styles from "./Slider.module.css"
 SwiperCore.use([EffectCoverflow, Navigation, Lazy, Autoplay]);
 
-function Slider({ slides }) {
+function Slider({ slides, locale }) {
   const { ref, inView } = useInView();
   const resSlides = chunk(slides, 8);
   return (
@@ -45,7 +45,7 @@ function Slider({ slides }) {
                       }`}
                       key={rowIndex}
                     >
-                      {row.map((slide) => (
+                      {row.map((slide, i) => (
                         <div className="col-2">
                           <Image
                             src={
@@ -56,11 +56,14 @@ function Slider({ slides }) {
                             width={500}
                             height={500}
                             className={styles.sliderImg}
+                            key={i}
                           />
                           <div>{slide.NAME}</div>
                           <div className="">
                             <div className="text-xs font-medium tracking-wide mt-1 font-mono">
-                              {slide.PROPERTY_POSITION_NEW_PROPERTY_RU_VALUE}
+                              {
+                                slide[`PROPERTY_POSITION_NEW_PROPERTY_${locale}_VALUE`]
+                              }
                             </div>
                           </div>
                         </div>
