@@ -10,7 +10,7 @@ import InView, { useInView } from "react-intersection-observer";
 import Delayed from "../Delayed/Delayed";
 SwiperCore.use([EffectCoverflow, Navigation, Lazy, Autoplay]);
 
-function Slider({ slides }) {
+function Slider({ slides, locale }) {
   const { ref, inView } = useInView();
   return (
     <div ref={ref}>
@@ -21,9 +21,9 @@ function Slider({ slides }) {
             grabCursor={true}
             navigation
             preloadImages={false}
-            // autoplay={{
-            //   delay: 1000,
-            // }}
+            autoplay={{
+              delay: 2000,
+            }}
             coverflowEffect={{
               rotate: 50,
               stretch: 20,
@@ -46,7 +46,7 @@ function Slider({ slides }) {
                   </h1>
                   <div className="">
                     <div className="text-base font-medium tracking-wide mt-1">
-                      {item.PROPERTY_POSITION_NEW_PROPERTY_RU_VALUE}
+                      {item[`PROPERTY_POSITION_NEW_PROPERTY_${locale}_VALUE`]}
                     </div>
                   </div>
                 </div>

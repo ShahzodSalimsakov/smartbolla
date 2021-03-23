@@ -8,12 +8,13 @@ import { useCookies } from "react-cookie";
 import "react-phone-input-2/lib/style.css";
 import styles from "./Auth.module.css";
 import { useRouter } from "next/router";
+import {isMobile} from 'react-device-detect'
 
 let timerInvetval = null;
 let intervalTime = 60;
 
 function AuthPage({ mainLayoutSocial }) {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation("authPage");
   const commonLang = {
     about: t("about"),
     media: t("media"),
@@ -91,15 +92,17 @@ function AuthPage({ mainLayoutSocial }) {
 
   return (
     <MainLayout
-      title={"Auth page"}
+      title={t('title')}
       commonLang={commonLang}
       mainLayoutSocial={mainLayoutSocial}
       footerLang={footerLang}
     >
       <div
-        className={`${
-          isAjaxLoading ? styles.isAuthLoading : ""
-        } items-center mt-16 mx-auto text-center w-5/12 relative`}
+        className={`${isAjaxLoading ? styles.isAuthLoading : ""} ${
+          isMobile
+            ? "col col-11 h-screen"
+            : "items-center mt-16 mx-auto text-center w-5/12 relative"
+        } `}
       >
         {!isSmsCode && (
           <Formik
@@ -108,7 +111,7 @@ function AuthPage({ mainLayoutSocial }) {
               const errors = {};
 
               if (!values.phone) {
-                errors.phone = "Phone must be filled";
+                errors.phone = t('phoneFilled');
               }
               return errors;
             }}
@@ -141,9 +144,9 @@ function AuthPage({ mainLayoutSocial }) {
                     ))}
                   </div>
                 )}
-                <div className="mb-6">
-                  <label className="block mb-3" htmlFor="">
-                    Введите номер телефона
+                <div className="mb-6 text-black">
+                  <label className="block mb-3 text-white" htmlFor="">
+                    {t('typingPhone')}
                   </label>
                   <PhoneInput
                     country={"us"}
@@ -159,15 +162,13 @@ function AuthPage({ mainLayoutSocial }) {
                   />
                 </div>
                 <div className="mb-6">
-                  В случае если ваш номер зарегистрирован в системе, вам
-                  останется просто ввести пароль, если нет мы вас
-                  зарегистрируем.
+                  {t('authRegText')}
                 </div>
                 <button
                   type="submit"
                   className={styles.formControlSubmitButton}
                 >
-                  Sign in
+                  {t("signIn")}
                 </button>
               </form>
             )}
@@ -176,7 +177,7 @@ function AuthPage({ mainLayoutSocial }) {
         {isSmsCode && (
           <div>
             <div className="alert alert-success compact">
-              На ваш номер было выслано СМС с кодом авторизации.
+              {t("sendSms")}
             </div>
             <Formik
               initialValues={{ code: "" }}
@@ -184,7 +185,7 @@ function AuthPage({ mainLayoutSocial }) {
                 const errors = {};
 
                 if (!values.code) {
-                  errors.code = "Sms Code must be filled";
+                  errors.code = t('smsFilled');
                 }
                 return errors;
               }}
@@ -231,7 +232,7 @@ function AuthPage({ mainLayoutSocial }) {
                       });
                     }
                   } else {
-                    setSubmitError("Указан неверный код");
+                    setSubmitError(t('incorrectCode'));
                   }
                   setIsSmsCode(data.SHOW_SMS_FIELD);
                   setSubmitData(data);
@@ -264,7 +265,7 @@ function AuthPage({ mainLayoutSocial }) {
                     )}
                     <div className="mb-6">
                       <label className="block mb-3" htmlFor="">
-                        Код авторизации из СМС
+                        {t('codeFromSms')}
                       </label>
                       <input
                         type="text"
@@ -279,12 +280,12 @@ function AuthPage({ mainLayoutSocial }) {
                       type="submit"
                       className={styles.formControlSubmitButton}
                     >
-                      Sign in
+                      {t("signIn")}
                     </button>
                   </form>
                   {smsTimer > 0 && (
                     <div>
-                      Вы сможете отправить код повторно через {smsTimer} сек.
+                      {t('resendCode')} {smsTimer} {t('resendCodeSek')}.
                     </div>
                   )}
                   {smsTimer == 0 && (
@@ -294,7 +295,7 @@ function AuthPage({ mainLayoutSocial }) {
                       }}
                       className="cursor-pointer text-green-300 underline"
                     >
-                      Отправить код повторно
+                      {t("sendCode")}
                     </div>
                   )}
                 </>
@@ -326,7 +327,7 @@ export async function getServerSideProps({ locale }) {
   return {
     props: {
       mainLayoutSocial,
-      ...(await serverSideTranslations(locale, ["common"])),
+      ...(await serverSideTranslations(locale, ["authPage"])),
     },
   };
 }

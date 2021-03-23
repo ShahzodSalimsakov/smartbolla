@@ -152,7 +152,10 @@ function Home({
                     <div className="flex h-full">
                       <div className="w-full">
                         <div className="flex h-100 items-center z-20 justify-around">
-                          <ProductsSlider products={products} />
+                          <ProductsSlider
+                            products={products}
+                            investLang={t("invest")}
+                          />
                         </div>
                       </div>
                     </div>
@@ -164,7 +167,7 @@ function Home({
                     </div>
                   </div>
                   <div className="section pl-10">
-                    <FullPageSectionTitle title={t("coFounders")} />
+                    <FullPageSectionTitle title={t("cofounders")} />
                     <div className="">
                       <Slider slides={cofounder} />
                     </div>

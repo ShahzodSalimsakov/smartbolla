@@ -6,6 +6,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { parseCookies } from "../../../helpers/";
 import asyncForEach from "../../../helpers/asyncForEach";
+import { isMobile } from 'react-device-detect';
 
 function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
   const { t } = useTranslation("accountPage");
@@ -44,21 +45,28 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
       field.NAME = t("PASPORT");
     }
 
-    console.log("fileType", field.TYPE);
 
     switch (field.TYPE) {
       case "FILE":
         return (
+          <>
+          <label 
+            htmlFor={field.CODE} 
+            className={`${styles.accountFileButton} cursor-pointer`}>
+              {t("downloadButtonText")}
+          </label>
           <input
-            type="file"
+            type={"file"}
             name={field.ID}
             id={field.CODE}
+            style={{visibility:"hidden"}}
             required
             onChange={(event) => {
               setFieldValue(field.ID, event.currentTarget.files[0]);
             }}
             className="dark:bg-gray-700 dark:border-gray-600 dark:focus:border-gray-500 dark:focus:ring-gray-900 dark:placeholder-gray-500 dark:text-white focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100 placeholder-gray-300 px-3 py-2 rounded-md w-full"
           />
+          </>
         );
 
       default:
@@ -87,8 +95,8 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
       title={t("title")}
       mainLayoutSocial={mainLayoutSocial}
     >
-      <div className="grid grid-cols-3">
-        <div className="col-span-2">
+      <div className={`${isMobile ? "col" : "grid grid-cols-3"}`}>
+        <div className={`${isMobile ? "col" : "col-span-2"}`}>
           <Formik
             initialValues={initialValues}
             validate={(values) => {
@@ -153,7 +161,10 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
               setFieldValue,
               /* and other goodies */
             }) => (
-              <form onSubmit={handleSubmit} className="pt-4 w-7/12">
+              <form
+                onSubmit={handleSubmit}
+                className={`${isMobile ? "col pt-4" : "pt-4 w-7/12"}`}
+              >
                 <div className="text-red-500">
                   {errors.name && touched.name && errors.name}
                 </div>
