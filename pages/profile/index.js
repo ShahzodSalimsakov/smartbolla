@@ -46,7 +46,7 @@ function Profile({ mainLayoutSocial, balance }) {
           </div>
           <div>
             <div className="py-5 font-bold text-4xl">{t("tokenOrders")}</div>
-            <table
+            <div
               className={`${
                 isMobile
                   ? styles.profileTable
@@ -88,7 +88,7 @@ function Profile({ mainLayoutSocial, balance }) {
                     </tr>
                   ))}
               </tbody>
-            </table>
+            </div>
           </div>
         </div>
 

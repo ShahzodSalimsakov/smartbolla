@@ -8,6 +8,7 @@ import { useCookies } from "react-cookie";
 import "react-phone-input-2/lib/style.css";
 import styles from "./Auth.module.css";
 import { useRouter } from "next/router";
+import {isMobile} from 'react-device-detect'
 
 let timerInvetval = null;
 let intervalTime = 60;
@@ -97,9 +98,11 @@ function AuthPage({ mainLayoutSocial }) {
       footerLang={footerLang}
     >
       <div
-        className={`${
-          isAjaxLoading ? styles.isAuthLoading : ""
-        } items-center mt-16 mx-auto text-center w-5/12 relative`}
+        className={`${isAjaxLoading ? styles.isAuthLoading : ""} ${
+          isMobile
+            ? "col col-11 h-screen"
+            : "items-center mt-16 mx-auto text-center w-5/12 relative"
+        } `}
       >
         {!isSmsCode && (
           <Formik
@@ -141,8 +144,8 @@ function AuthPage({ mainLayoutSocial }) {
                     ))}
                   </div>
                 )}
-                <div className="mb-6">
-                  <label className="block mb-3" htmlFor="">
+                <div className="mb-6 text-black">
+                  <label className="block mb-3 text-white" htmlFor="">
                     Введите номер телефона
                   </label>
                   <PhoneInput
