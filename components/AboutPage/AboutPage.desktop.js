@@ -14,14 +14,14 @@ function About({ aboutText }) {
       <div className="p-10">
         <div className="text-2xl pb-3">{t("documentTitle")}:</div>
         <a
-          href="https://smartbolla.com/upload/docs/Certificate_Registration.pdf"
+          href="https://api.smartbolla.com/upload/docs/Certificate_Registration.pdf"
           className={`${styles.a} flex pb-4`}
         >
           <FontAwesomeIcon icon={faFile} className="w-10 text-5xl" />
           <div className="m-1.5 pl-4">{t("documentCertif")}</div>
         </a>
         <a
-          href="https://smartbolla.com/upload/docs/Service_License.pdf"
+          href="https://api.smartbolla.com/upload/docs/Service_License.pdf"
           className={`${styles.a} flex pb-4`}
         >
           <FontAwesomeIcon icon={faFile} className="w-10 text-5xl" />

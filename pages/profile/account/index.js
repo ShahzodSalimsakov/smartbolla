@@ -6,7 +6,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { parseCookies } from "../../../helpers/";
 import asyncForEach from "../../../helpers/asyncForEach";
-import { isMobile } from 'react-device-detect';
+import { isMobile } from "react-device-detect";
 
 function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
   const { t } = useTranslation("accountPage");
@@ -45,27 +45,27 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
       field.NAME = t("PASPORT");
     }
 
-
     switch (field.TYPE) {
       case "FILE":
         return (
           <>
-          <label 
-            htmlFor={field.CODE} 
-            className={`${styles.accountFileButton} cursor-pointer`}>
+            <label
+              htmlFor={field.CODE}
+              className={`${styles.accountFileButton} cursor-pointer`}
+            >
               {t("downloadButtonText")}
-          </label>
-          <input
-            type={"file"}
-            name={field.ID}
-            id={field.CODE}
-            style={{visibility:"hidden"}}
-            required
-            onChange={(event) => {
-              setFieldValue(field.ID, event.currentTarget.files[0]);
-            }}
-            className="dark:bg-gray-700 dark:border-gray-600 dark:focus:border-gray-500 dark:focus:ring-gray-900 dark:placeholder-gray-500 dark:text-white focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100 placeholder-gray-300 px-3 py-2 rounded-md w-full"
-          />
+            </label>
+            <input
+              type={"file"}
+              name={field.ID}
+              id={field.CODE}
+              style={{ visibility: "hidden" }}
+              required
+              onChange={(event) => {
+                setFieldValue(field.ID, event.currentTarget.files[0]);
+              }}
+              className="dark:bg-gray-700 dark:border-gray-600 dark:focus:border-gray-500 dark:focus:ring-gray-900 dark:placeholder-gray-500 dark:text-white focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100 placeholder-gray-300 px-3 py-2 rounded-md w-full"
+            />
           </>
         );
 
@@ -225,7 +225,7 @@ export async function getServerSideProps({ locale, req, res }) {
     res.writeHead(302, { Location: authPage });
     return res.end();
   } else {
-    const profileBalance = await fetch("https://smartbolla.com/api/", {
+    const profileBalance = await fetch("https://api.smartbolla.com/api/", {
       method: "POST",
       body: JSON.stringify({
         method: "check.auth.token",
@@ -244,7 +244,7 @@ export async function getServerSideProps({ locale, req, res }) {
       return res.end();
     }
   }
-  const resProps = await fetch("https://smartbolla.com/api/", {
+  const resProps = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "get.order.properties",
@@ -257,7 +257,7 @@ export async function getServerSideProps({ locale, req, res }) {
     },
   });
 
-  const socials = await fetch("https://smartbolla.com/api/", {
+  const socials = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "social.links",

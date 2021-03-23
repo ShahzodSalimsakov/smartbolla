@@ -10,8 +10,8 @@ import {
 import styles from "./Contact.module.css";
 import { YMaps, Map, Placemark } from "react-yandex-maps";
 import { Formik, Field, Form } from "formik";
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { isMobile } from "react-device-detect";
 
 const mapData = {
@@ -25,20 +25,24 @@ const coordinates = [[25.068318, 55.145064]];
 library.add(fab, faMapMarkerAlt, faPhoneAlt, faCircle);
 
 function Contacts({ contactAddress, social }) {
-  const { t } = useTranslation('contactPage');
+  const { t } = useTranslation("contactPage");
   const commonLang = {
-    about: t('about'),
-    media: t('media'),
-    contact: t('contact'),
-    profile: t('profile'),
-  }
-  
+    about: t("about"),
+    media: t("media"),
+    contact: t("contact"),
+    profile: t("profile"),
+  };
+
   const footerLang = {
-    allRightsRes: t('allRightsRes'),
-    weWoldLike: t("weWoldLike")
-  }
+    allRightsRes: t("allRightsRes"),
+    weWoldLike: t("weWoldLike"),
+  };
   return (
-    <MainLayout commonLang={commonLang} footerLang={footerLang} title={t('title')}>
+    <MainLayout
+      commonLang={commonLang}
+      footerLang={footerLang}
+      title={t("title")}
+    >
       <div className="my-10">
         <YMaps>
           <Map width="100%" height="400px" defaultState={mapData}>
@@ -116,7 +120,7 @@ function Contacts({ contactAddress, social }) {
             }}
             onSubmit={async (values, { setSubmitting }) => {
               try {
-                const res = await fetch("https://smartbolla.com/api/", {
+                const res = await fetch("https://api.smartbolla.com/api/", {
                   method: "POST",
                   body: JSON.stringify({
                     method: "submit.contact.feedback",
@@ -196,13 +200,13 @@ function Contacts({ contactAddress, social }) {
 }
 
 export async function getServerSideProps({ locale }) {
-  const res = await fetch("https://smartbolla.com/api/", {
+  const res = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "get.contact.address",
       data: {
         locale: locale,
-      }
+      },
     }),
     headers: {
       ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
@@ -210,7 +214,7 @@ export async function getServerSideProps({ locale }) {
   });
   let { data: contactAddress } = await res.json();
 
-  const socials = await fetch("https://smartbolla.com/api/", {
+  const socials = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "social.links",
@@ -228,7 +232,7 @@ export async function getServerSideProps({ locale }) {
     props: {
       contactAddress,
       social,
-      ...await serverSideTranslations(locale, ['contactPage']),
+      ...(await serverSideTranslations(locale, ["contactPage"])),
     },
   };
 }

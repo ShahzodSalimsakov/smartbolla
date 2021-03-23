@@ -14,9 +14,9 @@ import CounterList from "../components/CounterList/CounterList";
 import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
 import Slider from "../components/Slider/Slider";
 import Image from "next/image";
-import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useRouter } from 'next/router'
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
 import {
   BrowserView,
   MobileView,
@@ -293,7 +293,7 @@ function Home({
 }
 
 export async function getServerSideProps({ locale }) {
-  const res = await fetch("https://smartbolla.com/api/", {
+  const res = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "get.investor.list",
@@ -303,7 +303,7 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
-  const resProjects = await fetch("https://smartbolla.com/api/", {
+  const resProjects = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "get.projects.list",
@@ -316,7 +316,7 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
-  const resCounter = await fetch("https://smartbolla.com/api/", {
+  const resCounter = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "get.counter.list",
@@ -329,7 +329,7 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
-  const socials = await fetch("https://smartbolla.com/api/", {
+  const socials = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "social.links",
@@ -342,7 +342,7 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
-  const resProducts = await fetch("https://smartbolla.com/api/", {
+  const resProducts = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "get.products.list",
@@ -352,7 +352,7 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
-  const resCoFounder = await fetch("https://smartbolla.com/api/", {
+  const resCoFounder = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "get.cofounder.list",
@@ -365,7 +365,7 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
-  const resTeam = await fetch("https://smartbolla.com/api/", {
+  const resTeam = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "get.team.list",

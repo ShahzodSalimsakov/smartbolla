@@ -8,7 +8,7 @@ import { useCookies } from "react-cookie";
 import "react-phone-input-2/lib/style.css";
 import styles from "./Auth.module.css";
 import { useRouter } from "next/router";
-import {isMobile} from 'react-device-detect'
+import { isMobile } from "react-device-detect";
 
 let timerInvetval = null;
 let intervalTime = 60;
@@ -92,7 +92,7 @@ function AuthPage({ mainLayoutSocial }) {
 
   return (
     <MainLayout
-      title={t('title')}
+      title={t("title")}
       commonLang={commonLang}
       mainLayoutSocial={mainLayoutSocial}
       footerLang={footerLang}
@@ -111,7 +111,7 @@ function AuthPage({ mainLayoutSocial }) {
               const errors = {};
 
               if (!values.phone) {
-                errors.phone = t('phoneFilled');
+                errors.phone = t("phoneFilled");
               }
               return errors;
             }}
@@ -146,7 +146,7 @@ function AuthPage({ mainLayoutSocial }) {
                 )}
                 <div className="mb-6 text-black">
                   <label className="block mb-3 text-white" htmlFor="">
-                    {t('typingPhone')}
+                    {t("typingPhone")}
                   </label>
                   <PhoneInput
                     country={"us"}
@@ -161,9 +161,7 @@ function AuthPage({ mainLayoutSocial }) {
                     autoComplete="off"
                   />
                 </div>
-                <div className="mb-6">
-                  {t('authRegText')}
-                </div>
+                <div className="mb-6">{t("authRegText")}</div>
                 <button
                   type="submit"
                   className={styles.formControlSubmitButton}
@@ -176,16 +174,14 @@ function AuthPage({ mainLayoutSocial }) {
         )}
         {isSmsCode && (
           <div>
-            <div className="alert alert-success compact">
-              {t("sendSms")}
-            </div>
+            <div className="alert alert-success compact">{t("sendSms")}</div>
             <Formik
               initialValues={{ code: "" }}
               validate={(values) => {
                 const errors = {};
 
                 if (!values.code) {
-                  errors.code = t('smsFilled');
+                  errors.code = t("smsFilled");
                 }
                 return errors;
               }}
@@ -232,7 +228,7 @@ function AuthPage({ mainLayoutSocial }) {
                       });
                     }
                   } else {
-                    setSubmitError(t('incorrectCode'));
+                    setSubmitError(t("incorrectCode"));
                   }
                   setIsSmsCode(data.SHOW_SMS_FIELD);
                   setSubmitData(data);
@@ -265,7 +261,7 @@ function AuthPage({ mainLayoutSocial }) {
                     )}
                     <div className="mb-6">
                       <label className="block mb-3" htmlFor="">
-                        {t('codeFromSms')}
+                        {t("codeFromSms")}
                       </label>
                       <input
                         type="text"
@@ -285,7 +281,7 @@ function AuthPage({ mainLayoutSocial }) {
                   </form>
                   {smsTimer > 0 && (
                     <div>
-                      {t('resendCode')} {smsTimer} {t('resendCodeSek')}.
+                      {t("resendCode")} {smsTimer} {t("resendCodeSek")}.
                     </div>
                   )}
                   {smsTimer == 0 && (
@@ -309,7 +305,7 @@ function AuthPage({ mainLayoutSocial }) {
 }
 
 export async function getServerSideProps({ locale }) {
-  const socials = await fetch("https://smartbolla.com/api/", {
+  const socials = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "social.links",

@@ -51,4 +51,9 @@ module.exports = withPWA({
     dest: "public",
     disable: prod ? false : true,
   },
+  api: {
+    bodyParser: {
+      sizeLimit: "100mb",
+    },
+  },
 });
