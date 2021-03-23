@@ -10,3 +10,9 @@
 .minHeight {
   min-height: 100vh;
 }
+
+.headerMob {
+  background: linear-gradient(270deg, #0C0E12 0.14%, #242C40 100%);
+  border-bottom: 1px solid #fff;
+  height: 60px;
+}
