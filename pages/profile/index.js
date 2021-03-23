@@ -118,7 +118,7 @@ export async function getServerSideProps({ locale, req, res }) {
     res.writeHead(302, { Location: authPage });
     return res.end();
   } else {
-    const profileBalance = await fetch("https://smartbolla.com/api/", {
+    const profileBalance = await fetch("https://api.smartbolla.com/api/", {
       method: "POST",
       body: JSON.stringify({
         method: "check.auth.token",
@@ -138,7 +138,7 @@ export async function getServerSideProps({ locale, req, res }) {
     }
   }
 
-  const profileBalance = await fetch("https://smartbolla.com/api/", {
+  const profileBalance = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "get.profile.balance",
@@ -152,7 +152,7 @@ export async function getServerSideProps({ locale, req, res }) {
     },
   });
 
-  const socials = await fetch("https://smartbolla.com/api/", {
+  const socials = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "social.links",

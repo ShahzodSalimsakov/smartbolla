@@ -367,7 +367,7 @@ export async function getServerSideProps({ locale, req, res }) {
     return res.end();
   }
 
-  const socials = await fetch("https://smartbolla.com/api/", {
+  const socials = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "social.links",
@@ -380,7 +380,7 @@ export async function getServerSideProps({ locale, req, res }) {
     },
   });
 
-  const resOrder = await fetch("http://localhost:3000/api/order", {
+  const resOrder = await fetch("https://smartbolla.com/api/order", {
     method: "POST",
     body: JSON.stringify({
       method: "get.order.data",

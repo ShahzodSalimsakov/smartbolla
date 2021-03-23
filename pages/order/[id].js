@@ -51,7 +51,7 @@ export async function getServerSideProps({ locale, req, query }) {
   const cookieData = parseCookies(req);
   const { id } = query;
 
-  const socials = await fetch("https://smartbolla.com/api/", {
+  const socials = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
       method: "social.links",
