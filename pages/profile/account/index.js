@@ -6,6 +6,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { parseCookies } from "../../../helpers/";
 import asyncForEach from "../../../helpers/asyncForEach";
+import { isMobile } from 'react-device-detect';
 
 function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
   const { t } = useTranslation("accountPage");
@@ -87,8 +88,8 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
       title={t("title")}
       mainLayoutSocial={mainLayoutSocial}
     >
-      <div className="grid grid-cols-3">
-        <div className="col-span-2">
+      <div className={`${isMobile ? "col" : "grid grid-cols-3"}`}>
+        <div className={`${isMobile ? "col" : "col-span-2"}`}>
           <Formik
             initialValues={initialValues}
             validate={(values) => {
@@ -153,7 +154,10 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
               setFieldValue,
               /* and other goodies */
             }) => (
-              <form onSubmit={handleSubmit} className="pt-4 w-7/12">
+              <form
+                onSubmit={handleSubmit}
+                className={`${isMobile ? "col pt-4" : "pt-4 w-7/12"}`}
+              >
                 <div className="text-red-500">
                   {errors.name && touched.name && errors.name}
                 </div>
