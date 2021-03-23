@@ -1,8 +1,8 @@
 {
     "name": "SmartBolla",
     "short_name": "SmartBolla",
-    "theme_color": "#2196f3",
-    "background_color": "#2196f3",
+    "theme_color": "#f6c886",
+    "background_color": "#f6c886",
     "display": "fullscreen",
     "orientation": "portrait",
     "scope": "/",
