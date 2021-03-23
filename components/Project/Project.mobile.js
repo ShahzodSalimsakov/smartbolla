@@ -140,7 +140,7 @@ function Project({ project }) {
           variants={youtubeBoxVariants}
           transition={{ ease: "easeInOut" }}
         >
-          <div className="z-20">
+          <div className="top-32 position-absolute w-5/6 z-20">
             <div
               className="cursor-pointer flex items-center pb-4 px-16"
               onClick={() => setshowYoutube(false)}
