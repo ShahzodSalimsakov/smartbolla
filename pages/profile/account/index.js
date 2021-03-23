@@ -45,21 +45,28 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
       field.NAME = t("PASPORT");
     }
 
-    console.log("fileType", field.TYPE);
 
     switch (field.TYPE) {
       case "FILE":
         return (
+          <>
+          <label 
+            htmlFor={field.CODE} 
+            className={`${styles.accountFileButton} cursor-pointer`}>
+              {t("downloadButtonText")}
+          </label>
           <input
-            type="file"
+            type={"file"}
             name={field.ID}
             id={field.CODE}
+            style={{visibility:"hidden"}}
             required
             onChange={(event) => {
               setFieldValue(field.ID, event.currentTarget.files[0]);
             }}
             className="dark:bg-gray-700 dark:border-gray-600 dark:focus:border-gray-500 dark:focus:ring-gray-900 dark:placeholder-gray-500 dark:text-white focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100 placeholder-gray-300 px-3 py-2 rounded-md w-full"
           />
+          </>
         );
 
       default:
