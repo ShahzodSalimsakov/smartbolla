@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styles from "./footer.module.css";
 import {
   faPhotoVideo,
   faMapMarkerAlt,
@@ -50,11 +51,15 @@ const navButtons = [
                 icon={button.icon}
                 className={`${
                   pathname === button.path
-                    ? "text-warning"
-                    : "text-white"
+                    ? "text-white"
+                    : styles.siteGoldColor
                 }`}
               />
-              <span className="tab tab-whishlist block text-white text-xs">
+              <span className={`${
+                  pathname === button.path
+                    ? "text-white"
+                    : styles.siteGoldColor
+                  } tab tab-whishlist block text-xs`}>
                 {button.label}
               </span>
             </a>

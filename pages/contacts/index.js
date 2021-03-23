@@ -53,7 +53,7 @@ function Contacts({ contactAddress, social }) {
           <div className="flex p-4">
             <div className="flex">
               <FontAwesomeIcon
-                size="xs"
+                size="2x"
                 icon={faMapMarkerAlt}
                 className="mr-3 w-5 text-white"
               />
@@ -63,7 +63,7 @@ function Contacts({ contactAddress, social }) {
           <div className="flex p-4">
             <div className="flex">
               <FontAwesomeIcon
-                size="xs"
+                size="2x"
                 icon={faPhoneAlt}
                 className="mr-3 w-5 text-white"
               />

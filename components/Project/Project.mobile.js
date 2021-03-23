@@ -109,7 +109,7 @@ function Project({ project }) {
               <div>
                 <div className={styles.textBlock}>
                   <div>
-                    <h1 className="font-extralight text-center">
+                    <h1 className="fa-2x font-extralight text-center">
                       {project.NAME}
                     </h1>
                     {project.PREVIEW_TEXT}
@@ -120,7 +120,7 @@ function Project({ project }) {
           </div>
           <motion.div initial="hidden" animate={controls} variants={logoBlock}>
             <div className="flex items-center h-full justify-around relative z-20">
-              <img src={project.DETAIL_PICTURE} className="w-8/12" />
+              <img src={project.DETAIL_PICTURE} className="w-8/12 my-4" />
               {project.PROPERTY_YOUTUBE_LINK_VALUE && (
                 <div className="absolute" onClick={() => setshowYoutube(true)}>
                   <FontAwesomeIcon
