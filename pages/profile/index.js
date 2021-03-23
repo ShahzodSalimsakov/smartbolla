@@ -5,6 +5,8 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { parseCookies } from "../../helpers/";
 import { isMobile } from "react-device-detect";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 function Profile({ mainLayoutSocial, balance }) {
   const { t } = useTranslation("profilePage");
@@ -46,34 +48,34 @@ function Profile({ mainLayoutSocial, balance }) {
           </div>
           <div>
             <div className="py-5 font-bold text-4xl">{t("tokenOrders")}</div>
-            <div
+            <Table
               className={`${
                 isMobile
                   ? styles.profileTable
                   : `${styles.profileTable} "table-fixed border-collapse w-full col"`
               }`}
             >
-              <thead>
-                <tr>
-                  <th className="text-uppercase w-1/12">№</th>
-                  <th className="text-uppercase w-1/6">{t("date")}</th>
-                  <th className="text-uppercase w-1/6">{t("coins")}</th>
-                  <th className="text-uppercase w-1/6">{t("price")}</th>
-                  <th className="text-uppercase w-1/6">{t("status")}</th>
-                  <th className="text-uppercase w-1/6">{t("action")}</th>
-                </tr>
-              </thead>
-              <tbody>
+              <Thead>
+                <Tr>
+                  <Th className="text-uppercase w-1/12">№</Th>
+                  <Th className="text-uppercase w-1/6">{t("date")}</Th>
+                  <Th className="text-uppercase w-1/6">{t("coins")}</Th>
+                  <Th className="text-uppercase w-1/6">{t("price")}</Th>
+                  <Th className="text-uppercase w-1/6">{t("status")}</Th>
+                  <Th className="text-uppercase w-1/6">{t("action")}</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
                 {balance.ORDERS &&
                   balance.ORDERS.map((order) => (
-                    <tr>
-                      <td>{order.ID}</td>
-                      <td>{order.DATE_INSERT}</td>
-                      <td>
+                    <Tr>
+                      <Td>{order.ID}</Td>
+                      <Td>{order.DATE_INSERT}</Td>
+                      <Td>
                         {order.PROPERTIES.TOKEN_COUNTS.VALUE} {t("coins")}
-                      </td>
-                      <td>${+order.PRICE}</td>
-                      <td>
+                      </Td>
+                      <Td>${+order.PRICE}</Td>
+                      <Td>
                         {order.PAYED == "Y" ? (
                           <div className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                             {t("paid")}
@@ -83,12 +85,12 @@ function Profile({ mainLayoutSocial, balance }) {
                             {t("unpaid")}
                           </div>
                         )}
-                      </td>
-                      <td></td>
-                    </tr>
+                      </Td>
+                      <Td></Td>
+                    </Tr>
                   ))}
-              </tbody>
-            </div>
+              </Tbody>
+            </Table>
           </div>
         </div>
 

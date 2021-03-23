@@ -44,6 +44,7 @@
     "react-photo-gallery": "^8.0.0",
     "react-redux": "^7.2.2",
     "react-scroll-parallax": "^2.3.5",
+    "react-super-responsive-table": "^5.2.0",
     "react-yandex-maps": "^4.6.0",
     "react-youtube": "^7.13.1",
     "redux": "^4.0.5",
