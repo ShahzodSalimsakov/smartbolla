@@ -61,12 +61,13 @@ function Project({ project }) {
 
   const youtubeBoxVariants = {
     hidden: {
-      width: ["100vw", "0vw"],
+      width: ["90%", "0%"],
       opacity: [1, 0],
     },
     visible: {
-      width: ["0vw", "100vw"],
+      width: ["0%", "90%"],
       opacity: [0, 1],
+      position: "absolute",
     },
   };
 
