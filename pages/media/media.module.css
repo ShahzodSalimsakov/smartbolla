@@ -1,0 +1,18 @@
+.mediaCard {
+  display: flex;
+  flex-direction: column;
+  border-radius: 2%;
+  justify-content: center;
+  align-items: center;
+  transition: transform 100ms ease-in-out;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid #f6c886;
+  cursor: pointer;
+}
+
+.mediaCard:hover {
+  transform: scale(1.2);
+  z-index: 1000;
+}

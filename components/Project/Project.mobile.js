@@ -99,6 +99,20 @@ function Project({ project }) {
         transition={{ ease: "easeInOut" }}
       >
         <div key={project.ID} className="ml-3 w-10/12 text-xs">
+          <motion.div initial="hidden" animate={controls} variants={logoBlock}>
+            <div className="flex items-center h-full justify-around relative z-20">
+              <img src={project.DETAIL_PICTURE} className="w-8/12 my-4" />
+              {project.PROPERTY_YOUTUBE_LINK_VALUE && (
+                <div className="absolute" onClick={() => setshowYoutube(true)}>
+                  <FontAwesomeIcon
+                    icon={faYoutube}
+                    size="lg"
+                    className="cursor-pointer text-red-500 w-12"
+                  />
+                </div>
+              )}
+            </div>
+          </motion.div>
           <div className="z-20">
             <motion.div
               initial="hidden"
@@ -118,20 +132,6 @@ function Project({ project }) {
               </div>
             </motion.div>
           </div>
-          <motion.div initial="hidden" animate={controls} variants={logoBlock}>
-            <div className="flex items-center h-full justify-around relative z-20">
-              <img src={project.DETAIL_PICTURE} className="w-8/12 my-4" />
-              {project.PROPERTY_YOUTUBE_LINK_VALUE && (
-                <div className="absolute" onClick={() => setshowYoutube(true)}>
-                  <FontAwesomeIcon
-                    icon={faYoutube}
-                    size="lg"
-                    className="cursor-pointer text-red-500 w-12"
-                  />
-                </div>
-              )}
-            </div>
-          </motion.div>
         </div>
       </motion.div>
       {project.PROPERTY_YOUTUBE_LINK_VALUE && (
