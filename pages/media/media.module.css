@@ -16,3 +16,41 @@
   transform: scale(1.2);
   z-index: 1000;
 }
+
+.mediaIsotopeItemsSections {
+  width: 50%;
+  text-align: center;
+  position: fixed;
+  bottom: 70px;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  left: 25%;
+  margin: 0px auto;
+}
+
+.mediaIsotopeItemsSections__item {
+  width: 130px;
+  background: #2f2c3d;
+  cursor: pointer;
+}
+
+.mediaIsotopeItemsSections__item span {
+  display: block;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.mediaIsotopeItemsSections__item_active span {
+  background: #8a869ce6;
+}
+
+.mediaIsotopeItemsSections__item:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.mediaIsotopeItemsSections__item:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}

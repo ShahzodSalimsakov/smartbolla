@@ -47,8 +47,6 @@ function Order({
     });
   }
 
-  console.log("productId", productId);
-
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
