@@ -79,7 +79,6 @@ function AuthPage({ mainLayoutSocial }) {
     });
 
     const { data, error } = await res.json();
-    console.log(data);
 
     if (error) {
       setSubmitError(error);

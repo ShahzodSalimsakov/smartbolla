@@ -72,7 +72,7 @@ function Media({ mainLayoutSocial, photoData }) {
     width: "90%",
   };
   const { asPath } = useRouter();
-  console.log(asPath);
+
   return (
     <>
       <MainLayout
