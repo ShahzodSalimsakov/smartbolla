@@ -2,6 +2,7 @@
     background-color: rgb(246 200 134);
     color: #333;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 69%);
+    border-radius: 15px;
 }
 
 .profileTable th {
@@ -61,4 +62,8 @@
     border: 1px solid #f6c886;
     background-color: transparent;
     color: #f6c886;
+}
+
+.profileTable tbody tr {
+    border: none
 }
