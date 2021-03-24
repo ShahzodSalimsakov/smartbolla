@@ -23,10 +23,6 @@ import {
   isBrowser,
   isMobile,
 } from "react-device-detect";
-import ReactGA from "react-ga";
-
-import { YMInitializer } from "react-yandex-metrika";
-
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
@@ -75,9 +71,7 @@ function Home({
       sectionsColor.push("#152331");
     }
   });
-  ReactGA.initialize("G-CP82ML0245");
-  useEffect(() => ReactGA.pageview(window.location.pathname + window.location.search))
-  
+
   return (
     <>
       <MainLayout
@@ -294,7 +288,6 @@ function Home({
             }
           `}
         </style>
-        <YMInitializer accounts={[72172918]} />
       </MainLayout>
     </>
   );
