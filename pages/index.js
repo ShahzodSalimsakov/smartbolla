@@ -74,6 +74,22 @@ function Home({
     }
   });
 
+  const scrollDown = () => {
+    setIsAllowScroll(true);
+    setTimeout(() => {
+      fullpage_api.moveSectionDown();
+      setIsAllowScroll(false);
+    });
+  };
+
+  const scrollUp = () => {
+    setIsAllowScroll(true);
+    setTimeout(() => {
+      fullpage_api.moveSectionUp();
+      setIsAllowScroll(false);
+    });
+  };
+
   return (
     <>
       <MainLayout
@@ -207,7 +223,6 @@ function Home({
                     </div>
                   ))}
                   <div className="section pl-24 pt-30">
-                    <CounterList counter={counter} countLang={countLang} />
                     <FullPageSectionTitle title={t("team")} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={team} locale={locale} />
@@ -223,6 +238,17 @@ function Home({
                     <div
                       className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
                       onClick={() => scrollDown()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                  </div>
+                  <div className="section pl-24 pt-30">
+                    <CounterList counter={counter} countLang={countLang} />
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                      onClick={() => scrollUp()}
                     >
                       <span></span>
                       <span></span>
