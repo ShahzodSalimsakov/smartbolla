@@ -64,6 +64,8 @@ function Home({
 
   const sectionsColor = ["#000000", "#6135863d"];
 
+  const [isAllowScroll, setIsAllowScroll] = useState(false);
+
   projects.map((project) => {
     if (project.PROPERTY_BACKGROUND_COLOR_VALUE) {
       sectionsColor.push(project.PROPERTY_BACKGROUND_COLOR_VALUE);
@@ -71,6 +73,7 @@ function Home({
       sectionsColor.push("#152331");
     }
   });
+
   return (
     <>
       <MainLayout
@@ -86,7 +89,15 @@ function Home({
           navigation={true}
           navigationPosition={"left"}
           sectionsColor={sectionsColor}
-          onLeave={(origin, destination, direction) => {}}
+          onLoad={() => {
+            console.log("done");
+            setIsAllowScroll(false);
+          }}
+          onLeave={(origin, destination, direction) => {
+            if (!isAllowScroll) {
+              return false;
+            }
+          }}
           render={({ state, fullpageApi }) => {
             return (
               <ReactFullpage.Wrapper className="">
@@ -121,11 +132,35 @@ function Home({
                         </div>
                       </div>
                     </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                      onClick={() => scrollDown()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
                   </div>
                   <div className="section pl-24 pt-14">
                     <FullPageSectionTitle title={t("investors")} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={investors} />
+                    </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                      onClick={() => scrollUp()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                      onClick={() => scrollDown()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
                     </div>
                   </div>
                   <div className="section pl-24 pt-14">
@@ -133,10 +168,42 @@ function Home({
                     <div className="w-10/12 m-auto">
                       <Slider slides={cofounder} />
                     </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                      onClick={() => scrollUp()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                      onClick={() => scrollDown()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
                   </div>
                   {projects.map((project) => (
                     <div className="section pl-24 pt-20" key={project.ID}>
                       <Project project={project} />
+                      <div
+                        className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                        onClick={() => scrollUp()}
+                      >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <div
+                        className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                        onClick={() => scrollDown()}
+                      >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
                     </div>
                   ))}
                   <div className="section pl-24 pt-30">
@@ -144,6 +211,22 @@ function Home({
                     <FullPageSectionTitle title={t("team")} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={team} locale={locale} />
+                    </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                      onClick={() => scrollUp()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                      onClick={() => scrollDown()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
                     </div>
                   </div>
                 </BrowserView>
@@ -159,32 +242,120 @@ function Home({
                         </div>
                       </div>
                     </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                      onClick={() => scrollDown()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
                   </div>
                   <div className="section pl-10">
                     <FullPageSectionTitle title={t("investors")} />
-                    <div className="">
+                    <div className="mt-2">
                       <Slider slides={investors} />
+                    </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                      onClick={() => scrollUp()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                      onClick={() => scrollDown()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
                     </div>
                   </div>
                   <div className="section pl-10">
                     <FullPageSectionTitle title={t("cofounders")} />
-                    <div className="">
+                    <div className="mt-2">
                       <Slider slides={cofounder} />
+                    </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                      onClick={() => scrollUp()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                      onClick={() => scrollDown()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
                     </div>
                   </div>
                   {projects.map((project) => (
                     <div className="section pl-10" key={project.ID}>
                       <Project project={project} />
+                      <div
+                        className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                        onClick={() => scrollUp()}
+                      >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <div
+                        className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                        onClick={() => scrollDown()}
+                      >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
                     </div>
                   ))}
                   <div className="section pl-10">
                     <FullPageSectionTitle title={t("team")} />
                     <div className="">
-                      <Slider slides={team} />
+                      <Slider slides={team} locale={locale} />
+                    </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                      onClick={() => scrollUp()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                      onClick={() => scrollDown()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
                     </div>
                   </div>
                   <div className="section pl-10">
                     <CounterList counter={counter} countLang={countLang} />
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                      onClick={() => scrollUp()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                      onClick={() => scrollDown()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
                   </div>
                 </MobileView>
               </ReactFullpage.Wrapper>
@@ -214,7 +385,6 @@ function Home({
               position: absolute;
               top: 20%;
               right: 10%;
-              z-index: 2;
               display: inline-block;
               -webkit-transform: translate(0, -50%);
               transform: translate(0, -50%);
