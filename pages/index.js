@@ -23,10 +23,6 @@ import {
   isBrowser,
   isMobile,
 } from "react-device-detect";
-import ReactGA from "react-ga";
-
-import { YMInitializer } from "react-yandex-metrika";
-
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
@@ -78,25 +74,6 @@ function Home({
     }
   });
 
-  ReactGA.initialize("G-CP82ML0245");
-  useEffect(() => ReactGA.pageview(window.location.pathname + window.location.search))
-
-  const scrollDown = () => {
-    setIsAllowScroll(true);
-    setTimeout(() => {
-      fullpage_api.moveSectionDown();
-      setIsAllowScroll(false);
-    });
-  };
-
-  const scrollUp = () => {
-    setIsAllowScroll(true);
-    setTimeout(() => {
-      fullpage_api.moveSectionUp();
-      setIsAllowScroll(false);
-    });
-  };
-  
   return (
     <>
       <MainLayout
@@ -480,7 +457,6 @@ function Home({
             }
           `}
         </style>
-        <YMInitializer accounts={[72172918]} />
       </MainLayout>
     </>
   );

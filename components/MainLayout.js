@@ -17,6 +17,9 @@ import {
   isBrowser,
   isMobile,
 } from "react-device-detect";
+import React, { useEffect } from "react";
+import ReactGA from "react-ga";
+import { YMInitializer } from "react-yandex-metrika";
 
 export function MainLayout({
   children,
@@ -27,6 +30,10 @@ export function MainLayout({
 }) {
   const { backgroundColor } = useSelector((state) => state.mainConfig);
   const { pathname } = useRouter();
+  ReactGA.initialize("G-CP82ML0245");
+  useEffect(() =>
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  );
   return (
     <>
       <BrowserView>
@@ -184,11 +191,11 @@ export function MainLayout({
           }`}
           style={{ background: backgroundColor }}
         >
-          {pathname !== "/" && 
+          {pathname !== "/" && (
             <div className="pl-10 pt-10">
               {pathname !== "/" && <FullPageSectionTitle title={title} />}
             </div>
-          }
+          )}
           {children}
           {pathname != "/contacts" && (
             <Social mainLayoutSocial={mainLayoutSocial} />
@@ -202,6 +209,7 @@ export function MainLayout({
           font-family: "Montserrat";
         }
       `}</style>
+      <YMInitializer accounts={[72172918]} />
     </>
   );
 }
