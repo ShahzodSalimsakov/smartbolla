@@ -8,6 +8,7 @@ import { orderSubmitButton, isAuthLoading, orderFileButton } from "./Order.modul
 import asyncForEach from "../../helpers/asyncForEach";
 import readAsDataURL from "../../helpers/file_to_string";
 import { useRouter } from "next/router";
+import { isMobile } from 'react-device-detect';
 
 function Order({
   cookieData,
@@ -60,21 +61,21 @@ function Order({
       title={t("title")}
       mainLayoutSocial={mainLayoutSocial}
     >
-      <div className="grid grid-cols-3 mt-4">
-        <div className="col-span-2 mr-5">
+      <div className={`${isMobile ? "col-11 mt-4" : "grid grid-cols-3 mt-4"}`}>
+        <div className={`${isMobile ? "col" : "col-span-2 mr-5"}`}>
           <h7>{t("paymentInfoTitle")}</h7>
-          <div className="pt-2 w-8/12">
+          <div className={`${isMobile ? "pt-2" : "pt-2 w-8/12"}`}>
             <Formik
               initialValues={initialValues}
               validate={(values) => {
                 const errors = {};
 
                 if (!values.payment) {
-                  errors.payment = t('mustTypePayment');
+                  errors.payment = t("mustTypePayment");
                 }
 
                 if (orderData.PROPERTIES) {
-                  orderData.PROPERTIES.map((prop) => {                    
+                  orderData.PROPERTIES.map((prop) => {
                     if (prop.CODE == "NAME") {
                       prop.NAME = t("NAME");
                     }
@@ -91,15 +92,15 @@ function Order({
                       prop.NAME = t("PHOTO");
                     }
                     if (prop.REQUIRED == "Y" && !values[`prop_${prop.ID}`]) {
-                      errors[
-                        `prop_${prop.ID}`
-                      ] = `${t("field")} "${prop.NAME}" ${t("mustBeFilled")}`;
+                      errors[`prop_${prop.ID}`] = `${t("field")} "${
+                        prop.NAME
+                      }" ${t("mustBeFilled")}`;
                     }
                   });
                 }
 
                 if (!values.agreement) {
-                  errors.agreement = t('mustAgreement');
+                  errors.agreement = t("mustAgreement");
                 }
 
                 return errors;
@@ -164,7 +165,7 @@ function Order({
                     className="block mb-2 text-sm text-white-600 dark:text-white-400"
                     htmlFor=""
                   >
-                    {t('paymentMethodTitle')}
+                    {t("paymentMethodTitle")}
                   </label>
                   <div className="grid grid-cols-3 my-4">
                     {orderData.PAYMENTS.map((payment, i) => {
@@ -290,7 +291,7 @@ function Order({
                       checked={isAgreementChecked}
                     />
                     <div className="cursor-pointer ml-2">
-                      {t('agreenetInputText')}
+                      {t("agreenetInputText")}
                     </div>
                   </div>
                   {showModal ? (
@@ -368,7 +369,7 @@ function Order({
             </Formik>
           </div>
         </div>
-        <div>
+        <div className={`${isMobile ? 'col pb-20' : ''}`}>
           <h2>{t("summary")}</h2>
           <div className="bg-white p-10 rounded-md shadow-md sticky text-black top-20 tracking-wider uppercase">
             <ul>
