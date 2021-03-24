@@ -17,6 +17,7 @@ import {
   isBrowser,
   isMobile,
 } from "react-device-detect";
+import React, { useEffect } from "react";
 import ReactGA from "react-ga";
 import { YMInitializer } from "react-yandex-metrika";
 
