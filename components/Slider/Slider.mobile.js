@@ -20,9 +20,9 @@ function Slider({ slides, locale }) {
             effect="coverflow"
             grabCursor={true}
             navigation
-            preloadImages={false}
+            preloadImages={true}
             autoplay={{
-              delay: 2000,
+              delay: 3000,
             }}
             coverflowEffect={{
               rotate: 50,
