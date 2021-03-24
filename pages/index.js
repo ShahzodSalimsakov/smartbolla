@@ -223,7 +223,6 @@ function Home({
                     </div>
                   ))}
                   <div className="section pl-24 pt-30">
-                    <CounterList counter={counter} countLang={countLang} />
                     <FullPageSectionTitle title={t("team")} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={team} locale={locale} />
@@ -239,6 +238,17 @@ function Home({
                     <div
                       className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
                       onClick={() => scrollDown()}
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                  </div>
+                  <div className="section pl-24 pt-30">
+                    <CounterList counter={counter} countLang={countLang} />
+                    <div
+                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                      onClick={() => scrollUp()}
                     >
                       <span></span>
                       <span></span>
@@ -335,7 +345,7 @@ function Home({
                   <div className="section pl-10">
                     <FullPageSectionTitle title={t("team")} />
                     <div className="">
-                      <Slider slides={team} />
+                      <Slider slides={team} locale={locale} />
                     </div>
                     <div
                       className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"

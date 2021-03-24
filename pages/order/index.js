@@ -4,10 +4,11 @@ import React, { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { accountSubmitButton, isAuthLoading } from "./Profile.module.css";
+import { orderSubmitButton, isAuthLoading, orderFileButton } from "./Order.module.css";
 import asyncForEach from "../../helpers/asyncForEach";
 import readAsDataURL from "../../helpers/file_to_string";
 import { useRouter } from "next/router";
+import { isMobile } from 'react-device-detect';
 
 function Order({
   cookieData,
@@ -17,7 +18,7 @@ function Order({
   productId,
 }) {
   const router = useRouter();
-  const { t } = useTranslation("profilePage");
+  const { t } = useTranslation("orderPage");
   const commonLang = {
     about: t("about"),
     media: t("media"),
@@ -55,34 +56,49 @@ function Order({
     <MainLayout
       commonLang={commonLang}
       footerLang={footerLang}
-      title={"Make order"}
+      title={t("title")}
       mainLayoutSocial={mainLayoutSocial}
     >
-      <div className="grid grid-cols-3 mt-4">
-        <div className="col-span-2 mr-5">
-          <h2>Payment Information</h2>
-          <div className="pt-2 w-8/12">
+      <div className={`${isMobile ? "col-11 mt-4" : "grid grid-cols-3 mt-4"}`}>
+        <div className={`${isMobile ? "col" : "col-span-2 mr-5"}`}>
+          <h7>{t("paymentInfoTitle")}</h7>
+          <div className={`${isMobile ? "pt-2" : "pt-2 w-8/12"}`}>
             <Formik
               initialValues={initialValues}
               validate={(values) => {
                 const errors = {};
 
                 if (!values.payment) {
-                  errors.payment = "Payment must be chosen";
-                }
-
-                if (!values.agreement) {
-                  errors.agreement = "You must agree to the agreement";
+                  errors.payment = t("mustTypePayment");
                 }
 
                 if (orderData.PROPERTIES) {
                   orderData.PROPERTIES.map((prop) => {
+                    if (prop.CODE == "NAME") {
+                      prop.NAME = t("NAME");
+                    }
+                    if (prop.CODE == "LAST_NAME") {
+                      prop.NAME = t("LAST_NAME");
+                    }
+                    if (prop.CODE == "PHONE") {
+                      prop.NAME = t("PHONE");
+                    }
+                    if (prop.CODE == "PASPORT") {
+                      prop.NAME = t("PASPORT");
+                    }
+                    if (prop.CODE == "PHOTO") {
+                      prop.NAME = t("PHOTO");
+                    }
                     if (prop.REQUIRED == "Y" && !values[`prop_${prop.ID}`]) {
-                      errors[
-                        `prop_${prop.ID}`
-                      ] = `Field "${prop.NAME}" must be filled`;
+                      errors[`prop_${prop.ID}`] = `${t("field")} "${
+                        prop.NAME
+                      }" ${t("mustBeFilled")}`;
                     }
                   });
+                }
+
+                if (!values.agreement) {
+                  errors.agreement = t("mustAgreement");
                 }
 
                 return errors;
@@ -147,7 +163,7 @@ function Order({
                     className="block mb-2 text-sm text-white-600 dark:text-white-400"
                     htmlFor=""
                   >
-                    Payment method
+                    {t("paymentMethodTitle")}
                   </label>
                   <div className="grid grid-cols-3 my-4">
                     {orderData.PAYMENTS.map((payment, i) => {
@@ -188,6 +204,21 @@ function Order({
 
                   {orderData.PROPERTIES &&
                     orderData.PROPERTIES.map((prop) => {
+                      if (prop.CODE == "NAME") {
+                        prop.NAME = t("NAME");
+                      }
+                      if (prop.CODE == "LAST_NAME") {
+                        prop.NAME = t("LAST_NAME");
+                      }
+                      if (prop.CODE == "PHONE") {
+                        prop.NAME = t("PHONE");
+                      }
+                      if (prop.CODE == "PASPORT") {
+                        prop.NAME = t("PASPORT");
+                      }
+                      if (prop.CODE == "PHOTO") {
+                        prop.NAME = t("PHOTO");
+                      }
                       if (prop.TYPE == "STRING") {
                         return (
                           <div className="mb-6" key={prop.ID}>
@@ -221,11 +252,18 @@ function Order({
                               {prop.NAME}
                               {prop.REQUIRED == "Y" && "*"}
                             </label>
+                            <label
+                              className={`${orderFileButton} cursor-pointer`}
+                              htmlFor={prop.ID}
+                            >
+                              {t("downloadButtonText")}
+                            </label>
                             <input
                               type="file"
                               name={`prop_${prop.ID}`}
                               id={prop.ID}
                               required={prop.REQUIRED == "Y"}
+                              style={{ display: "none" }}
                               onChange={(event) => {
                                 setFieldValue(
                                   `prop_${prop.ID}`,
@@ -251,7 +289,7 @@ function Order({
                       checked={isAgreementChecked}
                     />
                     <div className="cursor-pointer ml-2">
-                      Нажимая на кнопку, я принимаю условия соглашения.
+                      {t("agreenetInputText")}
                     </div>
                   </div>
                   {showModal ? (
@@ -263,13 +301,13 @@ function Order({
                             {/*header*/}
                             <div className="border-b border-blueGray-200 border-solid flex items-start justify-between p-4 rounded-t">
                               <h3 className="font-semibold m-0 text-3xl">
-                                Agreement
+                                {t("agreement")}
                               </h3>
                               <button
-                                className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                                className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                                 onClick={() => setShowModal(false)}
                               >
-                                <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                                <span className="bg-transparent text-black h-6 w-6 text-3xl block outline-none focus:outline-none">
                                   ×
                                 </span>
                               </button>
@@ -297,7 +335,7 @@ function Order({
                                   setFieldValue("agreement", "");
                                 }}
                               >
-                                Cancel
+                                {t("cancel")}
                               </button>
                               <button
                                 className="bg-emerald-500 bg-green-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -308,7 +346,7 @@ function Order({
                                   setFieldValue("agreement", "Y");
                                 }}
                               >
-                                Agree
+                                {t("agree")}
                               </button>
                             </div>
                           </div>
@@ -319,25 +357,25 @@ function Order({
                   ) : null}
                   <button
                     type="submit"
-                    className={accountSubmitButton}
+                    className={orderSubmitButton}
                     disabled={isSubmitting}
                   >
-                    Submit
+                    {t("submit")}
                   </button>
                 </Form>
               )}
             </Formik>
           </div>
         </div>
-        <div>
-          <h2>Order Summary</h2>
+        <div className={`${isMobile ? 'col pb-20' : ''}`}>
+          <h2>{t("summary")}</h2>
           <div className="bg-white p-10 rounded-md shadow-md sticky text-black top-20 tracking-wider uppercase">
             <ul>
               <li>
-                <b>Tokens count: </b> {orderData.TOKEN_COUNT}
+                <b>{t("tokenCount")}: </b> {orderData.TOKEN_COUNT}
               </li>
               <li>
-                <b>Total summary: </b> ${orderData.ORDER_PRICE}
+                <b>{t("totalSummary")}: </b> ${orderData.ORDER_PRICE}
               </li>
             </ul>
           </div>
@@ -404,7 +442,7 @@ export async function getServerSideProps({ locale, req, res }) {
       orderData,
       authToken: cookieData.userAuthToken,
       productId: cookieData.cartItem,
-      ...(await serverSideTranslations(locale, ["profilePage"])),
+      ...(await serverSideTranslations(locale, ["orderPage"])),
     },
   };
 }
