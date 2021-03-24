@@ -23,6 +23,10 @@ import {
   isBrowser,
   isMobile,
 } from "react-device-detect";
+import ReactGA from "react-ga";
+
+import { YMInitializer } from "react-yandex-metrika";
+
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
@@ -71,6 +75,9 @@ function Home({
       sectionsColor.push("#152331");
     }
   });
+  ReactGA.initialize("G-CP82ML0245");
+  useEffect(() => ReactGA.pageview(window.location.pathname + window.location.search))
+  
   return (
     <>
       <MainLayout
@@ -180,7 +187,7 @@ function Home({
                   <div className="section pl-10">
                     <FullPageSectionTitle title={t("team")} />
                     <div className="">
-                      <Slider slides={team} />
+                      <Slider slides={team} locale={locale} />
                     </div>
                   </div>
                   <div className="section pl-10">
@@ -287,6 +294,7 @@ function Home({
             }
           `}
         </style>
+        <YMInitializer accounts={[72172918]} />
       </MainLayout>
     </>
   );
