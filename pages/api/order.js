@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const resCounter = await fetch("https://smartbolla.com/api/", {
+      const resCounter = await fetch("https://api.smartbolla.com/api/", {
         method: "POST",
         body: req.body,
         headers: {
@@ -10,8 +10,6 @@ export default async function handler(req, res) {
       });
 
       const { data } = await resCounter.json();
-      console.log(req.body);
-      console.log(data);
       return res.json({
         data,
       });
