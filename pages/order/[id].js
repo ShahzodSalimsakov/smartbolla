@@ -36,6 +36,12 @@ function OrderPayment({ mainLayoutSocial, orderData }) {
             <div
               className="w-2/12"
               dangerouslySetInnerHTML={{
+                __html: orderData.PAY_SYSTEM.DESCRIPTION,
+              }}
+            ></div>
+            <div
+              className="w-2/12"
+              dangerouslySetInnerHTML={{
                 __html: orderData.PAY_SYSTEM.BUFFERED_OUTPUT,
               }}
             ></div>
@@ -80,7 +86,6 @@ export async function getServerSideProps({ locale, req, query }) {
   });
 
   let { data: orderData } = await resOrder.json();
-
   let { data: mainLayoutSocial } = await socials.json();
   return {
     props: {

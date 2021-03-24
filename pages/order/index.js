@@ -4,11 +4,16 @@ import React, { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { orderSubmitButton, isAuthLoading, orderFileButton } from "./Order.module.css";
+import {
+  orderSubmitButton,
+  isAuthLoading,
+  orderFileButton,
+} from "./Order.module.css";
 import asyncForEach from "../../helpers/asyncForEach";
 import readAsDataURL from "../../helpers/file_to_string";
 import { useRouter } from "next/router";
-import { isMobile } from 'react-device-detect';
+import { isMobile } from "react-device-detect";
+import { useCookies } from "react-cookie";
 
 function Order({
   cookieData,
@@ -51,6 +56,8 @@ function Order({
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
+
+  const [userAuthToken, setUserAuthToken] = useCookies(["userAuthToken"]);
 
   return (
     <MainLayout
@@ -128,6 +135,7 @@ function Order({
                   const { data } = await res.json();
 
                   if (data.result) {
+                    await setUserAuthToken("userAuthToken", data.authToken);
                     return router.push("/order/" + data.result, undefined, {
                       shallow: true,
                     });
@@ -367,7 +375,7 @@ function Order({
             </Formik>
           </div>
         </div>
-        <div className={`${isMobile ? 'col pb-20' : ''}`}>
+        <div className={`${isMobile ? "col pb-20" : ""}`}>
           <h2>{t("summary")}</h2>
           <div className="bg-white p-10 rounded-md shadow-md sticky text-black top-20 tracking-wider uppercase">
             <ul>
