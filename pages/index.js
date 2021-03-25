@@ -108,6 +108,7 @@ function Home({
           navigation={true}
           navigationPosition={"left"}
           sectionsColor={sectionsColor}
+          lazyLoading={true}
           onLoad={() => {
             console.log("done");
             setIsAllowScroll(false);
@@ -398,9 +399,9 @@ function Home({
         />
         {currentProject && (
           <div className="z-[9999] text-black fixed w-full h-full top-0 left-0 flex items-center justify-center">
-            <div className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+            <div className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50 z-[10000]"></div>
 
-            <div className="modal-container w-full md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+            <div className="modal-container w-full md:max-w-md mx-auto rounded shadow-lg  z-[20000]">
               <div
                 onClick={() => {
                   setCurrentProject(null);
