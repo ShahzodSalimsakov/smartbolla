@@ -9,31 +9,29 @@ import {
   faAddressCard,
 } from "@fortawesome/free-solid-svg-icons";
 
-
-export default function Footer( { commonLang } ) {
-  
-const navButtons = [
-  {
-    label: commonLang.about,
-    path: "/about",
-    icon: faAddressCard,
-  },
-  {
-    label: commonLang.media,
-    path: "/media",
-    icon: faPhotoVideo,
-  },
-  {
-    label: commonLang.contact,
-    path: "/contacts",
-    icon: faMapMarkerAlt,
-  },
-  {
-    label: commonLang.profile,
-    path: "/profile",
-    icon: faUser,
-  },
-];
+export default function Footer({ commonLang }) {
+  const navButtons = [
+    {
+      label: commonLang.about,
+      path: "/about",
+      icon: faAddressCard,
+    },
+    {
+      label: commonLang.media,
+      path: "/media",
+      icon: faPhotoVideo,
+    },
+    {
+      label: commonLang.contact,
+      path: "/contacts",
+      icon: faMapMarkerAlt,
+    },
+    {
+      label: commonLang.profile,
+      path: "/profile",
+      icon: faUser,
+    },
+  ];
   const { pathname } = useRouter();
   return (
     <div
@@ -44,22 +42,20 @@ const navButtons = [
       }}
     >
       <div id="tabs" className="flex justify-around">
-        {navButtons.map((button) => (
-          <Link href={button.path}>
+        {navButtons.map((button, i) => (
+          <Link href={button.path} key={i}>
             <a className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 text-decoration-none">
               <FontAwesomeIcon
                 icon={button.icon}
                 className={`${
-                  pathname === button.path
-                    ? "text-white"
-                    : styles.siteGoldColor
+                  pathname === button.path ? "text-white" : styles.siteGoldColor
                 }`}
               />
-              <span className={`${
-                  pathname === button.path
-                    ? "text-white"
-                    : styles.siteGoldColor
-                  } tab tab-whishlist block text-xs`}>
+              <span
+                className={`${
+                  pathname === button.path ? "text-white" : styles.siteGoldColor
+                } tab tab-whishlist block text-xs`}
+              >
                 {button.label}
               </span>
             </a>

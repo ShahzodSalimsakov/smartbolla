@@ -50,11 +50,11 @@ function Project({ project }) {
 
   const contentBoxVariants = {
     hidden: {
-      width: ["90%", "0vw"],
+      width: ["90vw", "0vw"],
       opacity: [1, 0],
     },
     visible: {
-      width: ["0vw", "90%"],
+      width: ["0vw", "90vw"],
       opacity: [0, 1],
     },
   };
