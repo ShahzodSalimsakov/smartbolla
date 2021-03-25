@@ -85,7 +85,7 @@ function Project({ project, onClick }) {
           project.PROPERTY_PHOTOS.map((img, i) => (
             <img
               key={i}
-              src={img}
+              data-src={img}
               style={{
                 left: `${Math.floor(Math.random() * 80) + 1}%`,
                 top: `${Math.floor(Math.random() * 80) + 1}%`,
@@ -101,7 +101,7 @@ function Project({ project, onClick }) {
         <div key={project.ID} className="ml-3 w-10/12 text-xs">
           <motion.div initial="hidden" animate={controls} variants={logoBlock}>
             <div className="flex items-center h-full justify-around relative z-20">
-              <img src={project.DETAIL_PICTURE} className="w-8/12 my-4" />
+              <img data-src={project.DETAIL_PICTURE} className="w-8/12 my-4" />
               {project.PROPERTY_YOUTUBE_LINK_VALUE && (
                 <div className="absolute" onClick={() => setshowYoutube(true)}>
                   <FontAwesomeIcon
