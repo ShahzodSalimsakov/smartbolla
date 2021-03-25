@@ -12,3 +12,26 @@
   height: 100px !important;
   position: absolute;
 }
+
+.textMobileBlock {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  padding: 30px;
+  position: relative;
+}
+
+.textSmallHeight {
+  height: 25vh;
+  overflow: hidden;
+}
+
+.youtubeLink {
+  width: 3rem !important;
+}
+
+.arrowLink {
+  width: 1.1rem !important;
+}

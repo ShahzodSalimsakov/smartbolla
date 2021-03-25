@@ -1,5 +1,5 @@
-import ProjectMobile from './Project.mobile'
-import ProjectDesktop from './Project.desktop'
+import ProjectMobile from "./Project.mobile";
+import ProjectDesktop from "./Project.desktop";
 import {
   BrowserView,
   MobileView,
@@ -7,11 +7,11 @@ import {
   isMobile,
 } from "react-device-detect";
 
-function Project({ project }) {
+function Project({ project, onClick }) {
   return (
     <>
       {isMobile ? (
-        <ProjectMobile project={project} />
+        <ProjectMobile project={project} onClick={onClick} />
       ) : (
         <ProjectDesktop project={project} />
       )}
