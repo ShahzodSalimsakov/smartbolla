@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faExpandAlt } from "@fortawesome/free-solid-svg-icons";
 import YouTube from "react-youtube";
 import Image from "next/image";
 
-library.add(faYoutube, faArrowLeft);
+library.add(faYoutube, faArrowLeft, faExpandAlt);
 
-function Project({ project }) {
+function Project({ project, onClick }) {
   const controls = useAnimation();
   const { ref, inView } = useInView();
 
@@ -107,13 +107,13 @@ function Project({ project }) {
                   <FontAwesomeIcon
                     icon={faYoutube}
                     size="lg"
-                    className="cursor-pointer text-red-500 w-12"
+                    className={`cursor-pointer text-red-500 h-25 ${styles.youtubeLink}`}
                   />
                 </div>
               )}
             </div>
           </motion.div>
-          <div className="z-20">
+          <div className="z-20 relative">
             <motion.div
               initial="hidden"
               transition={{ duration: 0.6 }}
@@ -121,8 +121,20 @@ function Project({ project }) {
               variants={textBlock}
             >
               <div>
-                <div className={styles.textBlock}>
-                  <div>
+                <div className={styles.textMobileBlock}>
+                  <div
+                    className="absolute m-3 right-0 top-0"
+                    onClick={() => {
+                      onClick(project);
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faExpandAlt}
+                      size="lg"
+                      className={`cursor-pointer text-white h-25 ${styles.arrowLink}`}
+                    />
+                  </div>
+                  <div className={styles.textSmallHeight}>
                     <h1 className="fa-2x font-extralight text-center">
                       {project.NAME}
                     </h1>
