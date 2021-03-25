@@ -43,7 +43,7 @@ export default function Footer({ commonLang }) {
     >
       <div id="tabs" className="flex justify-around">
         {navButtons.map((button, i) => (
-          <Link href={button.path} key={i}>
+          <Link href={button.path} key={i} prefetch={false}>
             <a className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1 text-decoration-none">
               <FontAwesomeIcon
                 icon={button.icon}

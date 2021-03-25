@@ -2,7 +2,6 @@ import Link from "next/link";
 import styles from "./HeaderMenu.module.css";
 import { useRouter } from "next/router";
 
-
 export default function HeaderMenu({ commonLang }) {
   const navButtons = [
     {
@@ -32,7 +31,7 @@ export default function HeaderMenu({ commonLang }) {
               className={`${styles.headerMenuItem} h-full`}
               key={button.label}
             >
-              <Link href={button.path}>
+              <Link href={button.path} prefetch={false}>
                 <a
                   className={`${
                     pathname === button.path ? styles.isActive : ""
