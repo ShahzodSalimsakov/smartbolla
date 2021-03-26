@@ -1,7 +1,7 @@
 .footerbody {
-    width: 95.7%;
+  width: calc(100vw - 70px);
 }
 
 .siteGoldColor {
-    color: #f6c886
+  color: #f6c886;
 }

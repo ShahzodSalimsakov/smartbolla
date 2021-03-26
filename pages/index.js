@@ -38,29 +38,29 @@ function Home({
   team,
   mainLayoutSocial,
 }) {
-  const { t } = useTranslation("indexPage");
+  const { t: translation } = useTranslation("indexPage");
   const dispatch = useDispatch();
   const router = useRouter();
   const locale = router.locale.toUpperCase();
 
   const commonLang = {
-    about: t("about"),
-    media: t("media"),
-    contact: t("contact"),
-    profile: t("profile"),
+    about: translation("about"),
+    media: translation("media"),
+    contact: translation("contact"),
+    profile: translation("profile"),
   };
 
   const countLang = {
-    blockTitle: t("title"),
-    developers: t("team"),
-    investors: t("investors"),
-    applications: t("applications"),
-    cofounders: t("cofounders"),
+    blockTitle: translation("title"),
+    developers: translation("team"),
+    investors: translation("investors"),
+    applications: translation("applications"),
+    cofounders: translation("cofounders"),
   };
 
   const footerLang = {
-    allRightsRes: t("allRightsRes"),
-    weWoldLike: t("weWoldLike"),
+    allRightsRes: translation("allRightsRes"),
+    weWoldLike: translation("weWoldLike"),
   };
 
   const sectionsColor = ["#000000", "#6135863d"];
@@ -131,23 +131,23 @@ function Home({
                           </div>
                           <div className="absolute bg-black bottom-0 jsx-1377087279 p-4 w-2/4 z-20">
                             <h1 className="font-black uppercase text-5xl">
-                              {t("yourTime")}
+                              {translation("yourTime")}
                             </h1>
                             <h1 className="font-black uppercase text-5xl">
-                              {t("yourGoals")}
+                              {translation("yourGoals")}
                             </h1>
                             <h1 className="font-black uppercase text-5xl">
-                              {t("yourBoss")}
+                              {translation("yourBoss")}
                             </h1>
                             <span className="text-2xl font-weight-light">
-                              {t("yourInvest")}
+                              {translation("yourInvest")}
                             </span>
                           </div>
                         </div>
                         <div className="flex h-100 items-center z-20 justify-around">
                           <ProductsSlider
                             products={products}
-                            investLang={t("invest")}
+                            investLang={translation("invest")}
                           />
                         </div>
                       </div>
@@ -162,7 +162,7 @@ function Home({
                     </div>
                   </div>
                   <div className="section pl-24 pt-14">
-                    <FullPageSectionTitle title={t("investors")} />
+                    <FullPageSectionTitle title={translation("investors")} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={investors} />
                     </div>
@@ -184,7 +184,7 @@ function Home({
                     </div>
                   </div>
                   <div className="section pl-24 pt-14">
-                    <FullPageSectionTitle title={t("cofounders")} />
+                    <FullPageSectionTitle title={translation("cofounders")} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={cofounder} />
                     </div>
@@ -227,7 +227,7 @@ function Home({
                     </div>
                   ))}
                   <div className="section pl-24 pt-30">
-                    <FullPageSectionTitle title={t("team")} />
+                    <FullPageSectionTitle title={translation("team")} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={team} locale={locale} />
                     </div>
@@ -267,7 +267,7 @@ function Home({
                         <div className="flex h-100 items-center z-20 justify-around">
                           <ProductsSlider
                             products={products}
-                            investLang={t("invest")}
+                            investLang={translation("invest")}
                           />
                         </div>
                       </div>
@@ -282,7 +282,7 @@ function Home({
                     </div>
                   </div>
                   <div className="section pl-10">
-                    <FullPageSectionTitle title={t("investors")} />
+                    <FullPageSectionTitle title={translation("investors")} />
                     <div className="mt-2">
                       <Slider slides={investors} />
                     </div>
@@ -304,7 +304,7 @@ function Home({
                     </div>
                   </div>
                   <div className="section pl-10">
-                    <FullPageSectionTitle title={t("cofounders")} />
+                    <FullPageSectionTitle title={translation("cofounders")} />
                     <div className="mt-2">
                       <Slider slides={cofounder} />
                     </div>
@@ -352,7 +352,7 @@ function Home({
                     </div>
                   ))}
                   <div className="section pl-10">
-                    <FullPageSectionTitle title={t("team")} />
+                    <FullPageSectionTitle title={translation("team")} />
                     <div className="">
                       <Slider slides={team} locale={locale} />
                     </div>

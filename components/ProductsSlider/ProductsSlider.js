@@ -42,12 +42,28 @@ export default function ProductsSlider({ products, investLang }) {
     }
   };
 
+  let sliderCount = sliderValues.length;
+  console.log(sliderCount);
+  const RenderCircular = () => {
+    if (sliderCount > 0) {
+      sliderCount--;
+      console.log(sliderCount);
+      return (
+        <div>
+          <RenderCircular />
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
   return (
     <motion.div
       animate={{ scale: [0, 1, 1.1, 1] }}
       transition={{ ease: "easeInOut" }}
     >
-      <div className={`${styles.roundSlider} flex flex-col m-auto`}>
+      <div className={`${styles.roundSlider} flex flex-col m-auto relative`}>
         <CircularSlider
           label=" &nbsp;&nbsp;"
           prependToValue="$"
@@ -102,6 +118,9 @@ export default function ProductsSlider({ products, investLang }) {
           )}
           {!isLoadingBasket && investLang}
         </button>
+        {/*<div className={styles.circle}>
+          <RenderCircular />
+        </div>*/}
       </div>
     </motion.div>
   );
