@@ -17,15 +17,9 @@ import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-  deviceType,
-  CustomView,
-} from "react-device-detect";
-import { projectModal } from "./index.module.css";
+import { deviceType, CustomView } from "react-device-detect";
+import YouTube from "react-youtube";
+import { projectModal, youtubeModal } from "./index.module.css";
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
@@ -71,6 +65,8 @@ function Home({
 
   const [currentProject, setCurrentProject] = useState(null);
 
+  const [youtubeId, setYoutubeId] = useState(null);
+
   projects.map((project) => {
     if (project.PROPERTY_BACKGROUND_COLOR_VALUE) {
       sectionsColor.push(project.PROPERTY_BACKGROUND_COLOR_VALUE);
@@ -94,7 +90,16 @@ function Home({
       setIsAllowScroll(false);
     });
   };
-  console.log(deviceType);
+  let youtubeOptions = {
+    height: "60%",
+    width: "90%",
+  };
+
+  if (process.browser) {
+    youtubeOptions.width = parseInt(window.innerWidth * 0.7, 0);
+    youtubeOptions.height = parseInt(window.innerHeight * 0.5, 0);
+  }
+
   return (
     <>
       <MainLayout
@@ -211,7 +216,12 @@ function Home({
                   </div>
                   {projects.map((project) => (
                     <div className="section pl-24 pt-20" key={project.ID}>
-                      <Project project={project} />
+                      <Project
+                        project={project}
+                        onShowYoutube={(id) => {
+                          setYoutubeId(id);
+                        }}
+                      />
                       <div
                         className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
                         onClick={() => scrollUp()}
@@ -264,7 +274,9 @@ function Home({
                     </div>
                   </div>
                 </CustomView>
-                <MobileView>
+                <CustomView
+                  condition={!["browser", "tablet"].includes(deviceType)}
+                >
                   <div className="section pl-10">
                     <div className="flex h-full">
                       <div className="w-full">
@@ -336,6 +348,9 @@ function Home({
                         onClick={(project) => {
                           setCurrentProject(project);
                         }}
+                        onShowYoutube={(id) => {
+                          setYoutubeId(id);
+                        }}
                       />
                       <div
                         className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
@@ -396,7 +411,7 @@ function Home({
                       <span></span>
                     </div>
                   </div>
-                </MobileView>
+                </CustomView>
               </ReactFullpage.Wrapper>
             );
           }}
@@ -426,6 +441,39 @@ function Home({
 
               <div className={`${projectModal} text-left`}>
                 {currentProject.PREVIEW_TEXT}
+              </div>
+            </div>
+          </div>
+        )}
+        {youtubeId && (
+          <div className="z-[9999] text-black fixed w-full h-full top-0 left-0 flex items-center justify-center">
+            <div className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50 z-[10000]"></div>
+
+            <div className="modal-container w-full mx-auto rounded z-[20000]">
+              <div
+                onClick={() => {
+                  setYoutubeId(null);
+                }}
+                className="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50"
+              >
+                <svg
+                  className="fill-current text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                >
+                  <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                </svg>
+                <span className="text-sm"></span>
+              </div>
+
+              <div className={`${youtubeModal} mx-auto text-left`}>
+                <YouTube
+                  videoId={youtubeId}
+                  opts={youtubeOptions}
+                  className="m-auto"
+                />
               </div>
             </div>
           </div>

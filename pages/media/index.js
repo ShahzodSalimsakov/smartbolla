@@ -69,10 +69,15 @@ function Media({ mainLayoutSocial, photoData }) {
     </div>
   );
 
-  const youtubeOptions = {
-    height: "400",
+  let youtubeOptions = {
+    height: "60%",
     width: "90%",
   };
+
+  if (process.browser) {
+    youtubeOptions.width = parseInt(window.innerWidth * 0.7, 0);
+    youtubeOptions.height = parseInt(window.innerHeight * 0.5, 0);
+  }
   const { asPath } = useRouter();
 
   return (
@@ -100,7 +105,7 @@ function Media({ mainLayoutSocial, photoData }) {
           <div className="z-50 text-black fixed w-full h-full top-0 left-0 flex items-center justify-center">
             <div className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
-            <div className="modal-container w-full md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+            <div className="modal-container w-full mx-auto rounded shadow-lg z-50 overflow-y-auto">
               <div
                 onClick={() => {
                   setCurrentModalItem(null);
