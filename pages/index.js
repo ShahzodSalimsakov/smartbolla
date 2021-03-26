@@ -117,7 +117,6 @@ function Home({
           sectionsColor={sectionsColor}
           lazyLoading={true}
           onLoad={() => {
-            console.log("done");
             setIsAllowScroll(false);
           }}
           onLeave={(origin, destination, direction) => {
