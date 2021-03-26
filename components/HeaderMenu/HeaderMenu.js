@@ -5,19 +5,19 @@ import { useRouter } from "next/router";
 export default function HeaderMenu({ commonLang }) {
   const navButtons = [
     {
-      label: commonLang.about,
+      label: "About",
       path: "/about",
     },
     {
-      label: commonLang.media,
+      label: "Media",
       path: "/media",
     },
     {
-      label: commonLang.contact,
+      label: "Contacts",
       path: "/contacts",
     },
     {
-      label: commonLang.profile,
+      label: "Profile",
       path: "/profile",
     },
   ];
