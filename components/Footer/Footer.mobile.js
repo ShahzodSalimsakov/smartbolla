@@ -12,22 +12,22 @@ import {
 export default function Footer({ commonLang }) {
   const navButtons = [
     {
-      label: commonLang.about,
+      label: "About",
       path: "/about",
       icon: faAddressCard,
     },
     {
-      label: commonLang.media,
+      label: "Media",
       path: "/media",
       icon: faPhotoVideo,
     },
     {
-      label: commonLang.contact,
+      label: "Contacts",
       path: "/contacts",
       icon: faMapMarkerAlt,
     },
     {
-      label: commonLang.profile,
+      label: "Profile",
       path: "/profile",
       icon: faUser,
     },
