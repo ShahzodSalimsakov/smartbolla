@@ -44,8 +44,6 @@ function Project({ project, onShowYoutube }) {
     },
   };
 
-  console.log(project);
-
   return (
     <div ref={ref} className={`flex h-full items-center`}>
       <div className={`absolute h-full ${styles.projectRandomObjects} w-full`}>
