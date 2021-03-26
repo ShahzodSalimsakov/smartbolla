@@ -468,7 +468,9 @@ function Home({
                 <span className="text-sm"></span>
               </div>
 
-              <div className={`${youtubeModal} mx-auto text-left`}>
+              <div
+                className={`${youtubeModal} mx-auto overflow-hidden text-left`}
+              >
                 <YouTube
                   videoId={youtubeId}
                   opts={youtubeOptions}
