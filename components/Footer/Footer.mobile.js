@@ -8,26 +8,28 @@ import {
   faUser,
   faAddressCard,
 } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "next-i18next";
 
 export default function Footer({ commonLang }) {
+  const { t: translation } = useTranslation("indexPage");
   const navButtons = [
     {
-      label: "About",
+      label: translation("about"),
       path: "/about",
       icon: faAddressCard,
     },
     {
-      label: "Media",
+      label: translation("media"),
       path: "/media",
       icon: faPhotoVideo,
     },
     {
-      label: "Contacts",
+      label: translation("contact"),
       path: "/contacts",
       icon: faMapMarkerAlt,
     },
     {
-      label: "Profile",
+      label: translation("profile"),
       path: "/profile",
       icon: faUser,
     },
