@@ -173,43 +173,6 @@ function Order({
                   >
                     {t("paymentMethodTitle")}
                   </label>
-                  <div className="grid grid-cols-3 my-4">
-                    {orderData.PAYMENTS.map((payment, i) => {
-                      let isChecked = false;
-
-                      if (values.payment) {
-                        isChecked = values.payment == payment.ID;
-                      } else if (i == 0) {
-                        isChecked = true;
-                      }
-
-                      return (
-                        <div
-                          key={payment.ID}
-                          className={`${
-                            isChecked && "bg-white shadow-md"
-                          }  cursor-pointer flex p-3 hover:bg-white hover:shadow-md items-center rounded-2xl`}
-                        >
-                          <label>
-                            <Field
-                              type="radio"
-                              name="payment"
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              checked={isChecked}
-                              value={payment.ID}
-                              className="d-none"
-                            />
-                            <img
-                              src={payment.LOGOTIP}
-                              className="cursor-pointer"
-                            />
-                          </label>
-                        </div>
-                      );
-                    })}
-                  </div>
-
                   {orderData.PROPERTIES &&
                     orderData.PROPERTIES.map((prop) => {
                       if (prop.CODE == "NAME") {
@@ -284,6 +247,43 @@ function Order({
                         );
                       }
                     })}
+                  <div className="grid grid-cols-3 my-4">
+                    {orderData.PAYMENTS.map((payment, i) => {
+                      let isChecked = false;
+
+                      if (values.payment) {
+                        isChecked = values.payment == payment.ID;
+                      } else if (i == 0) {
+                        isChecked = true;
+                      }
+
+                      return (
+                        <div
+                          key={payment.ID}
+                          className={`${
+                            isChecked && "bg-white shadow-md"
+                          }  cursor-pointer flex p-3 hover:bg-white hover:shadow-md items-center rounded-2xl`}
+                        >
+                          <label>
+                            <Field
+                              type="radio"
+                              name="payment"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              checked={isChecked}
+                              value={payment.ID}
+                              className="d-none"
+                            />
+                            <img
+                              src={payment.LOGOTIP}
+                              className="cursor-pointer"
+                            />
+                          </label>
+                        </div>
+                      );
+                    })}
+                  </div>
+
                   <div
                     className="flex items-center my-5"
                     onClick={() => {
