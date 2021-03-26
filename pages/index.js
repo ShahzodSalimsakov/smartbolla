@@ -22,6 +22,8 @@ import {
   MobileView,
   isBrowser,
   isMobile,
+  deviceType,
+  CustomView,
 } from "react-device-detect";
 import { projectModal } from "./index.module.css";
 
@@ -92,7 +94,7 @@ function Home({
       setIsAllowScroll(false);
     });
   };
-
+  console.log(deviceType);
   return (
     <>
       <MainLayout
@@ -121,7 +123,9 @@ function Home({
           render={({ state, fullpageApi }) => {
             return (
               <ReactFullpage.Wrapper className="">
-                <BrowserView>
+                <CustomView
+                  condition={["browser", "tablet"].includes(deviceType)}
+                >
                   <div className="section pl-24">
                     <div className="flex h-full items-center">
                       <div className="grid grid-cols-2 h-full w-full pt-20">
@@ -259,7 +263,7 @@ function Home({
                       <span></span>
                     </div>
                   </div>
-                </BrowserView>
+                </CustomView>
                 <MobileView>
                   <div className="section pl-10">
                     <div className="flex h-full">
