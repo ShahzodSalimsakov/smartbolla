@@ -1,19 +1,18 @@
-import AboutPageMobile from './AboutPage.mobile'
-import AboutPageDesktop from './AboutPage.desktop'
-import {
-  isMobile
-} from "react-device-detect";
+import AboutPageMobile from "./AboutPage.mobile";
+import AboutPageDesktop from "./AboutPage.desktop";
+import { deviceType, CustomView } from "react-device-detect";
 
-function About({aboutText}) {
+function About({ aboutText }) {
   return (
     <>
-      {isMobile ? (
+      <CustomView condition={!["browser", "tablet"].includes(deviceType)}>
         <AboutPageMobile aboutText={aboutText} />
-      ) : (
+      </CustomView>
+      <CustomView condition={["browser", "tablet"].includes(deviceType)}>
         <AboutPageDesktop aboutText={aboutText} />
-      )}
+      </CustomView>
     </>
   );
 }
 
-export default About
+export default About;

@@ -23,8 +23,7 @@ function Slider({ slides, locale }) {
             slidesPerView={1}
             loop={true}
             spaceBetween={20}
-            pagination
-            clickable={true}
+            pagination={{ clickable: true }}
             grabCursor={true}
             navigation
             autoplay={{

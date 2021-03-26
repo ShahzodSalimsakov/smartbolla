@@ -7,3 +7,9 @@
   height: 80vh;
   margin: 5px;
 }
+.youtubeModal {
+  overflow-y: scroll;
+  height: 80vh;
+  margin: 5px;
+  width: 80vw;
+}
