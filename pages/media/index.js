@@ -59,9 +59,9 @@ function Media({ mainLayoutSocial, photoData }) {
         setCurrentModalItem(data);
       }}
     >
-      <Image
+      <img
         src={data.PREVIEW_PICTURE.SMALL}
-        layout="fill"
+        className="object-fill w-full"
         onClick={() => {
           setCurrentModalItem(data);
         }}
@@ -98,7 +98,6 @@ function Media({ mainLayoutSocial, photoData }) {
           // Forwards the ref to the masonry container element
           containerRef={containerRef}
           items={photoData.ITEMS}
-          overscanBy={6}
           render={MasonryCard}
         />
         {currentModalItem && (
@@ -208,7 +207,7 @@ export async function getServerSideProps({ locale }) {
     props: {
       mainLayoutSocial,
       photoData,
-      ...(await serverSideTranslations(locale, ["aboutPage"])),
+      ...(await serverSideTranslations(locale, ["mediaPage"])),
     },
   };
 }

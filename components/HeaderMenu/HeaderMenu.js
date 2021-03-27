@@ -1,23 +1,25 @@
 import Link from "next/link";
 import styles from "./HeaderMenu.module.css";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 export default function HeaderMenu({ commonLang }) {
+  const { t: translation } = useTranslation("common");
   const navButtons = [
     {
-      label: "About",
+      label: commonLang.about,
       path: "/about",
     },
     {
-      label: "Media",
+      label: commonLang.media,
       path: "/media",
     },
     {
-      label: "Contacts",
+      label: commonLang.contact,
       path: "/contacts",
     },
     {
-      label: "Profile",
+      label: commonLang.profile,
       path: "/profile",
     },
   ];
