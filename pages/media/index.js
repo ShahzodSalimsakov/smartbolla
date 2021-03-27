@@ -40,10 +40,17 @@ function Media({ mainLayoutSocial, photoData }) {
     windowWidth,
     windowHeight,
   ]);
+
+  let columnWidth = 230;
+
+  if (process.browser && windowWidth < 600) {
+    columnWidth = 150;
+  }
+
   const positioner = usePositioner({
     width,
     columnGutter: 8,
-    columnWidth: 250,
+    columnWidth: columnWidth,
   });
   const [currentModalItem, setCurrentModalItem] = useState(null);
 
@@ -51,23 +58,29 @@ function Media({ mainLayoutSocial, photoData }) {
     setCurrentModalItem(null);
   });
 
-  const MasonryCard = ({ index, data, width }) => (
-    <div
-      className={mediaCard}
-      style={{ height: data.PREVIEW_PICTURE.HEIGHT }}
-      onClick={() => {
-        setCurrentModalItem(data);
-      }}
-    >
-      <img
-        src={data.PREVIEW_PICTURE.SMALL}
-        className="object-fill w-full"
+  const MasonryCard = ({ index, data, width, ...options }) => {
+    let height = data.PREVIEW_PICTURE.HEIGHT;
+    if (process.browser && windowWidth < 600 && height > 240) {
+      height = 240;
+    }
+    return (
+      <div
+        className={mediaCard}
+        style={{ height }}
         onClick={() => {
           setCurrentModalItem(data);
         }}
-      />
-    </div>
-  );
+      >
+        <img
+          src={data.PREVIEW_PICTURE.SMALL}
+          className="object-contain w-full"
+          onClick={() => {
+            setCurrentModalItem(data);
+          }}
+        />
+      </div>
+    );
+  };
 
   let youtubeOptions = {
     height: "60%",
