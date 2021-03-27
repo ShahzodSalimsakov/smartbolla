@@ -25,7 +25,7 @@ export function MainLayout({
 }) {
   const { backgroundColor } = useSelector((state) => state.mainConfig);
   const { pathname } = useRouter();
-  ReactGA.initialize("G-CP82ML0245");
+  ReactGA.initialize("G-CP82ML0245", { standardImplementation: true });
   useEffect(() =>
     ReactGA.pageview(window.location.pathname + window.location.search)
   );
