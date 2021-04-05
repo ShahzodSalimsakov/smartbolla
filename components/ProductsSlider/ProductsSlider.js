@@ -87,7 +87,7 @@ export default function ProductsSlider({ products, investLang }) {
         </CircularSlider>
         <button
           style={{
-            backgroundColor: currentProduct.COLOR,
+            backgroundColor: currentProduct ? currentProduct.COLOR : "#c2c2c2",
           }}
           className="uppercase flex justify-center text-black font-bold mt-5 py-2 px-4 rounded"
           onClick={() => {

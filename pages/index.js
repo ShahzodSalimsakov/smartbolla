@@ -580,6 +580,7 @@ function Home({
 }
 
 export async function getServerSideProps({ locale }) {
+  let start = new Date();
   const res = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
@@ -664,6 +665,10 @@ export async function getServerSideProps({ locale }) {
       ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
     },
   });
+
+  let end = new Date();
+
+  console.log(end - start);
 
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
