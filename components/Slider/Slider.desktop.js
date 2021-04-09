@@ -4,13 +4,14 @@ import SwiperCore, {
   Navigation,
   Lazy,
   Autoplay,
+  Virtual,
 } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import InView, { useInView } from "react-intersection-observer";
 import Delayed from "../Delayed/Delayed";
 import chunk from "../../helpers/chunk";
 import styles from "./Slider.module.css";
-SwiperCore.use([EffectCoverflow, Navigation, Lazy, Autoplay]);
+SwiperCore.use([EffectCoverflow, Navigation, Lazy, Autoplay, Virtual]);
 
 function Slider({ slides, locale }) {
   const { ref, inView } = useInView();
