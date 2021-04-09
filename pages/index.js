@@ -170,7 +170,11 @@ function Home({
                     </div>
                   </div>
                   <div className="section pl-24 pt-14">
-                    <FullPageSectionTitle title={translation("investors")} />
+                    <FullPageSectionTitle
+                      title={
+                        translation("investors") + " (" + investors.length + ")"
+                      }
+                    />
                     <div className="w-10/12 m-auto">
                       <Slider slides={investors} />
                     </div>
@@ -580,6 +584,7 @@ function Home({
 }
 
 export async function getServerSideProps({ locale }) {
+  let start = new Date();
   const res = await fetch("https://api.smartbolla.com/api/", {
     method: "POST",
     body: JSON.stringify({
@@ -665,6 +670,10 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
+  let end = new Date();
+
+  console.log(end - start);
+
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
@@ -673,7 +682,10 @@ export async function getServerSideProps({ locale }) {
   let { data: cofounder } = await resCoFounder.json();
   let { data: team } = await resTeam.json();
   investors = investors || [];
-
+  investors = investors
+    .map((a) => ({ sort: Math.random(), value: a }))
+    .sort((a, b) => a.sort - b.sort)
+    .map((a) => a.value);
   return {
     props: {
       investors,
