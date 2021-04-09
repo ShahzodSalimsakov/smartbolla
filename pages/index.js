@@ -170,11 +170,7 @@ function Home({
                     </div>
                   </div>
                   <div className="section pl-24 pt-14">
-                    <FullPageSectionTitle
-                      title={
-                        translation("investors") + " (" + investors.length + ")"
-                      }
-                    />
+                    <FullPageSectionTitle title={translation("investors")} />
                     <div className="w-10/12 m-auto">
                       <Slider slides={investors} />
                     </div>
