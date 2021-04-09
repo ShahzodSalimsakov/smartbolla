@@ -43,11 +43,9 @@ export default function ProductsSlider({ products, investLang }) {
   };
 
   let sliderCount = sliderValues.length;
-  console.log(sliderCount);
   const RenderCircular = () => {
     if (sliderCount > 0) {
       sliderCount--;
-      console.log(sliderCount);
       return (
         <div>
           <RenderCircular />
