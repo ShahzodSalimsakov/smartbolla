@@ -171,7 +171,6 @@ export function MainLayout({
               <Social mainLayoutSocial={mainLayoutSocial} />
             )}
           </div>
-          <Footer footerLang={footerLang} />
         </div>
       </CustomView>
       <CustomView condition={!["browser", "tablet"].includes(deviceType)}>
