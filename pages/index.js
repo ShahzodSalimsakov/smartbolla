@@ -126,9 +126,7 @@ function Home({
           render={({ state, fullpageApi }) => {
             return (
               <ReactFullpage.Wrapper className="">
-                <CustomView
-                  condition={["browser", "tablet"].includes(deviceType)}
-                >
+                {["browser", "tablet"].includes(deviceType) ? (
                   <div className="section pl-24">
                     <div className="flex h-full items-center">
                       <div className="grid grid-cols-2 h-full w-full pt-20">
@@ -168,115 +166,7 @@ function Home({
                       <span></span>
                     </div>
                   </div>
-                  <div className="section pl-24 pt-14">
-                    <FullPageSectionTitle title={translation("investors")} />
-                    <div className="w-10/12 m-auto">
-                      <Slider slides={investors} />
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                      onClick={() => scrollDown()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                  <div className="section pl-24 pt-14">
-                    <FullPageSectionTitle title={translation("cofounders")} />
-                    <div className="w-10/12 m-auto">
-                      <Slider slides={cofounder} />
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                      onClick={() => scrollDown()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                  {projects.map((project) => (
-                    <div className="section pl-24 pt-20" key={project.ID}>
-                      <Project
-                        project={project}
-                        onShowYoutube={(id) => {
-                          setYoutubeId(id);
-                        }}
-                      />
-                      <div
-                        className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                        onClick={() => scrollUp()}
-                      >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                      <div
-                        className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                        onClick={() => scrollDown()}
-                      >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                    </div>
-                  ))}
-                  <div className="section pl-24 pt-30">
-                    <FullPageSectionTitle title={translation("team")} />
-                    <div className="w-10/12 m-auto">
-                      <Slider slides={team} locale={locale} />
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                      onClick={() => scrollDown()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                  <div className="section pl-24 pt-30">
-                    <CounterList counter={counter} countLang={countLang} />
-
-                    <Footer footerLang={footerLang} />
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                </CustomView>
-                <CustomView
-                  condition={!["browser", "tablet"].includes(deviceType)}
-                >
+                ) : (
                   <div className="section pl-10">
                     <div className="flex h-full">
                       <div className="w-full">
@@ -297,11 +187,90 @@ function Home({
                       <span></span>
                     </div>
                   </div>
-                  <div className="section pl-10">
-                    <FullPageSectionTitle title={translation("investors")} />
-                    <div className="mt-2">
-                      <Slider slides={investors} />
-                    </div>
+                )}
+                <div
+                  className={`section ${
+                    ["browser", "tablet"].includes(deviceType)
+                      ? "pl-24 pt-14"
+                      : "pl-10"
+                  }`}
+                >
+                  <FullPageSectionTitle title={translation("investors")} />
+                  <div
+                    className={`${
+                      ["browser", "tablet"].includes(deviceType)
+                        ? "w-10/12 m-auto"
+                        : "mt-2"
+                    }`}
+                  >
+                    <Slider slides={investors} />
+                  </div>
+                  <div
+                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                    onClick={() => scrollUp()}
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div
+                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                    onClick={() => scrollDown()}
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <div
+                  className={`section ${
+                    ["browser", "tablet"].includes(deviceType)
+                      ? "pl-24 pt-14"
+                      : "pl-10"
+                  }`}
+                >
+                  <FullPageSectionTitle title={translation("cofounders")} />
+                  <div
+                    className={`${
+                      ["browser", "tablet"].includes(deviceType)
+                        ? "w-10/12 m-auto"
+                        : "mt-2"
+                    }`}
+                  >
+                    <Slider slides={cofounder} />
+                  </div>
+                  <div
+                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                    onClick={() => scrollUp()}
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div
+                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                    onClick={() => scrollDown()}
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                {projects.map((project) => (
+                  <div
+                    className={`section ${
+                      ["browser", "tablet"].includes(deviceType)
+                        ? "pl-24 pt-20"
+                        : "pl-10"
+                    }`}
+                    key={project.ID}
+                  >
+                    <Project
+                      project={project}
+                      onShowYoutube={(id) => {
+                        setYoutubeId(id);
+                      }}
+                    />
                     <div
                       className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
                       onClick={() => scrollUp()}
@@ -319,99 +288,63 @@ function Home({
                       <span></span>
                     </div>
                   </div>
-                  <div className="section pl-10">
-                    <FullPageSectionTitle title={translation("cofounders")} />
-                    <div className="mt-2">
-                      <Slider slides={cofounder} />
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                      onClick={() => scrollDown()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
+                ))}
+                <div
+                  className={`section ${
+                    ["browser", "tablet"].includes(deviceType)
+                      ? "pl-24 pt-30"
+                      : "pl-10"
+                  }`}
+                >
+                  <FullPageSectionTitle title={translation("team")} />
+                  <div
+                    className={`${
+                      ["browser", "tablet"].includes(deviceType)
+                        ? "w-10/12 m-auto"
+                        : ""
+                    }`}
+                  >
+                    <Slider slides={team} locale={locale} />
                   </div>
-                  {projects.map((project) => (
-                    <div className="section pl-10" key={project.ID}>
-                      <Project
-                        project={project}
-                        onClick={(project) => {
-                          setCurrentProject(project);
-                        }}
-                        onShowYoutube={(id) => {
-                          setYoutubeId(id);
-                        }}
-                      />
-                      <div
-                        className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                        onClick={() => scrollUp()}
-                      >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                      <div
-                        className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                        onClick={() => scrollDown()}
-                      >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                    </div>
-                  ))}
-                  <div className="section pl-10">
-                    <FullPageSectionTitle title={translation("team")} />
-                    <div className="">
-                      <Slider slides={team} locale={locale} />
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                      onClick={() => scrollDown()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
+                  <div
+                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                    onClick={() => scrollUp()}
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
                   </div>
-                  <div className="section pl-10">
-                    <CounterList counter={counter} countLang={countLang} />
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                      onClick={() => scrollDown()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
+                  <div
+                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
+                    onClick={() => scrollDown()}
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
                   </div>
-                </CustomView>
+                </div>
+                <div
+                  className={`section ${
+                    ["browser", "tablet"].includes(deviceType)
+                      ? "pl-24 pt-30"
+                      : "pl-10"
+                  }`}
+                >
+                  <CounterList counter={counter} countLang={countLang} />
+                  <CustomView
+                    condition={["browser", "tablet"].includes(deviceType)}
+                  >
+                    <Footer footerLang={footerLang} />
+                  </CustomView>
+                  <div
+                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                    onClick={() => scrollUp()}
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
               </ReactFullpage.Wrapper>
             );
           }}
