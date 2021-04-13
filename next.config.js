@@ -56,4 +56,8 @@ module.exports = withPWA({
       sizeLimit: "100mb",
     },
   },
+  publicRuntimeConfig: {
+    // Will be available on both server and client
+    rollbarClientToken: "a665c3646ab94e19b3d66e396f59b49b",
+  },
 });
