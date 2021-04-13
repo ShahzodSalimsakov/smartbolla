@@ -11,6 +11,7 @@ import InView, { useInView } from "react-intersection-observer";
 import Delayed from "../Delayed/Delayed";
 import chunk from "../../helpers/chunk";
 import styles from "./Slider.module.css";
+import React from "react";
 SwiperCore.use([EffectCoverflow, Navigation, Lazy, Autoplay, Virtual]);
 
 function Slider({ slides, locale }) {
@@ -34,7 +35,7 @@ function Slider({ slides, locale }) {
             {resSlides.map((item, i) => {
               const rows = chunk(item, 4);
               return (
-                <SwiperSlide key={i} className="w-screen">
+                <SwiperSlide className="w-screen" key={i}>
                   {rows.map((
                     row,
                     rowIndex // Davay v botim, chtobi rasskazal ideyu

@@ -8,6 +8,7 @@ import SwiperCore, {
 import { Swiper, SwiperSlide } from "swiper/react";
 import InView, { useInView } from "react-intersection-observer";
 import Delayed from "../Delayed/Delayed";
+import React from "react";
 SwiperCore.use([EffectCoverflow, Navigation, Lazy, Autoplay]);
 
 function Slider({ slides, locale }) {

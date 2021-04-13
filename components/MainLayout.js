@@ -159,7 +159,7 @@ var _rollbarConfig = {
         >
           <MainLeftSide className="fixed left-0 z-30">
             <div>
-              <Link href="/">
+              <Link href="/" prefetch={false}>
                 <a className="flex flex-row items-center">
                   <MainLeftLogo />
                   <div className="font-bold ml-3 text-white uppercase text-2x1">
@@ -197,7 +197,7 @@ var _rollbarConfig = {
           <header
             className={`${styles.headerMob} flex flex-row items-end justify-around w-full z-10`}
           >
-            <Link href="/">
+            <Link href="/" prefetch={false}>
               <a className="flex flex-row items-center">
                 <MainLeftLogo />
                 <div className="font-bold ml-3 text-white uppercase text-2x1">
