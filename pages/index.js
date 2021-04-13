@@ -4,7 +4,6 @@ import ReactFullpage from "@fullpage/react-fullpage";
 import { MainLayout } from "../components/MainLayout";
 import InvestorsBubble from "../components/InvestorsBubble/InvestorsBubble";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { changeMainBackground } from "../store/actions/mainConfigActions";
 import { motion } from "framer-motion";
 import FullPageSectionTitle from "../components/FullPageSectionTitle/FullPageSectionTitle";
@@ -19,6 +18,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { deviceType, CustomView } from "react-device-detect";
 import YouTube from "react-youtube";
+import Footer from "../components/Footer/Footer";
 import { projectModal, youtubeModal } from "./index.module.css";
 
 const pluginWrapper = () => {
@@ -35,7 +35,6 @@ function Home({
   mainLayoutSocial,
 }) {
   const { t: translation } = useTranslation("indexPage");
-  const dispatch = useDispatch();
   const router = useRouter();
   const locale = router.locale.toUpperCase();
 
@@ -59,7 +58,7 @@ function Home({
     weWoldLike: translation("weWoldLike"),
   };
 
-  const sectionsColor = ["#000000", "#6135863d"];
+  const sectionsColor = ["#000000", "#242C40"];
 
   const [isAllowScroll, setIsAllowScroll] = useState(false);
 
@@ -263,6 +262,8 @@ function Home({
                   </div>
                   <div className="section pl-24 pt-30">
                     <CounterList counter={counter} countLang={countLang} />
+
+                    <Footer footerLang={footerLang} />
                     <div
                       className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
                       onClick={() => scrollUp()}
