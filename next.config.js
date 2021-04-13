@@ -42,7 +42,8 @@ module.exports = withPWA({
   },
   i18n: {
     locales: ["en", "ru", "uz", "ae", "fr", "cn", "es"],
-    defaultLocale: "en",
+    defaultLocale: "ru",
+    localeDetection: false,
   },
   images: {
     domains: ["smartbolla.com", "api.smartbolla.com"],
