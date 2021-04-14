@@ -51,7 +51,7 @@ export default function Footer({ commonLang }) {
                 icon={button.icon}
                 className={`${
                   pathname === button.path ? "text-white" : styles.siteGoldColor
-                } w-10 h-[2.5rem] m-auto`}
+                } w-10 m-auto`}
               />
               <span
                 className={`${
