@@ -149,7 +149,7 @@ function Home({
                             </span>
                           </div>
                         </div>
-                        <div className="flex h-100 items-center z-20 justify-around">
+                        <div className="flex h-100 mt-16 z-20 justify-around">
                           <ProductsSlider
                             products={products}
                             investLang={translation("invest")}
