@@ -19,6 +19,7 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
     media: t("media"),
     contact: t("contact"),
     profile: t("profile"),
+    investors: t("investors"),
   };
 
   const footerLang = {
