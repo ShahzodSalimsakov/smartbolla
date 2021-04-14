@@ -162,7 +162,7 @@ function Home({ projects, counter, products, mainLayoutSocial }) {
                   <div className="section pl-10">
                     <div className="flex h-full">
                       <div className="w-full">
-                        <div className="flex h-100 mt-16 z-20 justify-around">
+                        <div className="flex mt-16 z-20">
                           <ProductsSlider
                             products={products}
                             investLang={translation("invest")}
