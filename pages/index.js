@@ -25,12 +25,7 @@ const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({
-  projects,
-  counter,
-  products,
-  mainLayoutSocial,
-}) {
+function Home({ projects, counter, products, mainLayoutSocial }) {
   const { t: translation } = useTranslation("indexPage");
   const router = useRouter();
   const locale = router.locale.toUpperCase();
@@ -167,7 +162,7 @@ function Home({
                   <div className="section pl-10">
                     <div className="flex h-full">
                       <div className="w-full">
-                        <div className="flex h-100 items-center z-20 justify-around">
+                        <div className="flex h-100 mt-16 z-20 justify-around">
                           <ProductsSlider
                             products={products}
                             investLang={translation("invest")}
