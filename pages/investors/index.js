@@ -5,7 +5,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Slider from "../../components/Slider/Slider";
 
 function Investors({ aboutText, mainLayoutSocial, investors }) {
-  const { t } = useTranslation("aboutPage");
+  const { t } = useTranslation("investorsPage");
   const { t: translation } = useTranslation("indexPage");
 
   const commonLang = {
@@ -27,7 +27,7 @@ function Investors({ aboutText, mainLayoutSocial, investors }) {
       footerLang={footerLang}
       mainLayoutSocial={mainLayoutSocial}
     >
-      <div className="w-10/12 m-auto">
+      <div className="w-10/12 m-auto min-vh-100">
         <Slider slides={investors} />
       </div>
     </MainLayout>
@@ -70,7 +70,7 @@ export async function getServerSideProps({ locale }) {
     props: {
       investors,
       mainLayoutSocial,
-      ...(await serverSideTranslations(locale, ["aboutPage"])),
+      ...(await serverSideTranslations(locale, ["investorsPage"])),
     },
   };
 }

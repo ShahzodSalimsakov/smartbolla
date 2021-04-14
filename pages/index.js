@@ -11,7 +11,6 @@ import InvestorNewBubble from "../components/InvestorNewBubble/InvestorNewBubble
 import Project from "../components/Project/Project";
 import CounterList from "../components/CounterList/CounterList";
 import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
-import Slider from "../components/Slider/Slider";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -35,6 +34,7 @@ function Home({ projects, counter, products, mainLayoutSocial }) {
     media: translation("media"),
     contact: translation("contact"),
     profile: translation("profile"),
+    investors: translation("investors")
   };
 
   const countLang = {

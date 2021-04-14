@@ -1,12 +1,13 @@
 {
-    "title": "À propos de nous",
-    "documentTitle": "Des documents",
-    "documentCertif": "SmartBolla DMCC Certificat d'enregistrement",
-    "documentLicen": "SmartBolla DMCC Licence de service",
-    "about": "À propos de nous",
-    "media": "Médias",
-    "contact": "Contacts",
-    "profile": "Profil",
-    "allRightsRes": "Tous droits reçus.",
-    "weWoldLike": "Nous aimerions recevoir vos commentaires"
+  "title": "À propos de nous",
+  "documentTitle": "Des documents",
+  "documentCertif": "SmartBolla DMCC Certificat d'enregistrement",
+  "documentLicen": "SmartBolla DMCC Licence de service",
+  "about": "À propos de nous",
+  "media": "Médias",
+  "contact": "Contacts",
+  "profile": "Profil",
+  "investors": "investisseurs",
+  "allRightsRes": "Tous droits reçus.",
+  "weWoldLike": "Nous aimerions recevoir vos commentaires"
 }
