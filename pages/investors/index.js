@@ -2,15 +2,18 @@ import { MainLayout } from "../../components/MainLayout";
 import React from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Slider from "../../components/Slider/Slider";
 
 function Investors({ aboutText, mainLayoutSocial, investors }) {
   const { t } = useTranslation("aboutPage");
+  const { t: translation } = useTranslation("indexPage");
 
   const commonLang = {
     about: t("about"),
     media: t("media"),
     contact: t("contact"),
     profile: t("profile"),
+    investors: t('investors')
   };
 
   const footerLang = {
@@ -24,7 +27,6 @@ function Investors({ aboutText, mainLayoutSocial, investors }) {
       footerLang={footerLang}
       mainLayoutSocial={mainLayoutSocial}
     >
-      <FullPageSectionTitle title={translation("investors")} />
       <div className="w-10/12 m-auto">
         <Slider slides={investors} />
       </div>

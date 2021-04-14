@@ -22,6 +22,10 @@ export default function HeaderMenu({ commonLang }) {
       label: commonLang.profile,
       path: "/profile",
     },
+    {
+      label: commonLang.investors,
+      path: "/investors",
+    },
   ];
   const { pathname } = useRouter();
   return (

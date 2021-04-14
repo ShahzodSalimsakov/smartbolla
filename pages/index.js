@@ -26,12 +26,9 @@ const pluginWrapper = () => {
 };
 
 function Home({
-  investors,
   projects,
   counter,
   products,
-  cofounder,
-  team,
   mainLayoutSocial,
 }) {
   const { t: translation } = useTranslation("indexPage");
@@ -188,74 +185,6 @@ function Home({
                     </div>
                   </div>
                 )}
-                <div
-                  className={`section ${
-                    ["browser", "tablet"].includes(deviceType)
-                      ? "pl-24 pt-14"
-                      : "pl-10"
-                  }`}
-                >
-                  <FullPageSectionTitle title={translation("investors")} />
-                  <div
-                    className={`${
-                      ["browser", "tablet"].includes(deviceType)
-                        ? "w-10/12 m-auto"
-                        : "mt-2"
-                    }`}
-                  >
-                    <Slider slides={investors} />
-                  </div>
-                  <div
-                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                    onClick={() => scrollUp()}
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                    onClick={() => scrollDown()}
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </div>
-                <div
-                  className={`section ${
-                    ["browser", "tablet"].includes(deviceType)
-                      ? "pl-24 pt-14"
-                      : "pl-10"
-                  }`}
-                >
-                  <FullPageSectionTitle title={translation("cofounders")} />
-                  <div
-                    className={`${
-                      ["browser", "tablet"].includes(deviceType)
-                        ? "w-10/12 m-auto"
-                        : "mt-2"
-                    }`}
-                  >
-                    <Slider slides={cofounder} />
-                  </div>
-                  <div
-                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                    onClick={() => scrollUp()}
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                    onClick={() => scrollDown()}
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </div>
                 {projects.map((project) => (
                   <div
                     className={`section ${
@@ -289,40 +218,6 @@ function Home({
                     </div>
                   </div>
                 ))}
-                <div
-                  className={`section ${
-                    ["browser", "tablet"].includes(deviceType)
-                      ? "pl-24 pt-30"
-                      : "pl-10"
-                  }`}
-                >
-                  <FullPageSectionTitle title={translation("team")} />
-                  <div
-                    className={`${
-                      ["browser", "tablet"].includes(deviceType)
-                        ? "w-10/12 m-auto"
-                        : ""
-                    }`}
-                  >
-                    <Slider slides={team} locale={locale} />
-                  </div>
-                  <div
-                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                    onClick={() => scrollUp()}
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div
-                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                    onClick={() => scrollDown()}
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </div>
                 <div
                   className={`section ${
                     ["browser", "tablet"].includes(deviceType)
@@ -573,39 +468,11 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
-  const resCoFounder = await fetch("https://api.smartbolla.com/api/", {
-    method: "POST",
-    body: JSON.stringify({
-      method: "get.cofounder.list",
-      data: {
-        locale,
-      },
-    }),
-    headers: {
-      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
-    },
-  });
-
-  const resTeam = await fetch("https://api.smartbolla.com/api/", {
-    method: "POST",
-    body: JSON.stringify({
-      method: "get.team.list",
-      data: {
-        locale,
-      },
-    }),
-    headers: {
-      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
-    },
-  });
-
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
   let { data: mainLayoutSocial } = await socials.json();
   let { data: products } = await resProducts.json();
-  let { data: cofounder } = await resCoFounder.json();
-  let { data: team } = await resTeam.json();
   investors = investors || [];
   investors = investors
     .map((a) => ({ sort: Math.random(), value: a }))
@@ -618,8 +485,6 @@ export async function getServerSideProps({ locale }) {
       counter,
       mainLayoutSocial,
       products,
-      cofounder,
-      team,
       ...(await serverSideTranslations(locale, ["indexPage"])),
     },
   };
