@@ -33,10 +33,7 @@ export default function HeaderMenu({ commonLang }) {
       <nav className="h-full">
         <ul className="flex h-full flex-row">
           {navButtons.map((button) => (
-            <li
-              className={`${styles.headerMenuItem} h-full`}
-              key={button.label}
-            >
+            <li className={`${styles.headerMenuItem} h-full`} key={button.path}>
               <Link href={button.path} prefetch={false}>
                 <a
                   className={`${

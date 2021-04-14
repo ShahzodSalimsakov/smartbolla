@@ -9,7 +9,6 @@ import FullPageSectionTitle from "../../components/FullPageSectionTitle/FullPage
 
 function About({ aboutText, mainLayoutSocial, team, cofounder }) {
   const { t } = useTranslation("aboutPage");
-  const { t: translation } = useTranslation("indexPage");
 
   const commonLang = {
     about: t("about"),
@@ -35,12 +34,12 @@ function About({ aboutText, mainLayoutSocial, team, cofounder }) {
     >
       <AboutPage aboutText={aboutText} />
 
-      <FullPageSectionTitle title={translation("cofounders")} />
+      <FullPageSectionTitle title={t("cofounders")} />
       <div className="m-auto">
         <Slider slides={cofounder} locale={locale} />
       </div>
 
-      <FullPageSectionTitle title={translation("team")} />
+      <FullPageSectionTitle title={t("team")} />
       <div className="m-auto">
         <Slider slides={team} locale={locale} />
       </div>

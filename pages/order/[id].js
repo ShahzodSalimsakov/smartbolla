@@ -11,6 +11,7 @@ function OrderPayment({ mainLayoutSocial, orderData }) {
     media: t("media"),
     contact: t("contact"),
     profile: t("profile"),
+    investors: t("investors"),
   };
 
   const footerLang = {
