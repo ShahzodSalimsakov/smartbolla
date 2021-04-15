@@ -215,7 +215,7 @@ var _rollbarConfig = {
           style={{ background: backgroundColor }}
         >
           {pathname !== "/" && (
-            <div className="pl-10 pt-10">
+            <div className="pt-10 m-auto col-10 pb-2">
               {pathname !== "/" && <FullPageSectionTitle title={title} />}
             </div>
           )}

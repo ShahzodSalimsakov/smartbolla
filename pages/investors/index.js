@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Slider from "../../components/Slider/Slider";
+import { deviceType, CustomView } from "react-device-detect";
 
 function Investors({ aboutText, mainLayoutSocial, investors }) {
   const { t } = useTranslation("investorsPage");
@@ -27,9 +28,19 @@ function Investors({ aboutText, mainLayoutSocial, investors }) {
       footerLang={footerLang}
       mainLayoutSocial={mainLayoutSocial}
     >
-      <div className="w-10/12 m-auto min-vh-100">
-        <Slider slides={investors} />
-      </div>
+      {["browser", "tablet"].includes(deviceType) ? (
+        <div>
+          <div className="w-10/12 m-auto">
+            <Slider slides={investors} />
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div className="col-10 m-auto min-vh-100">
+            <Slider slides={investors} />
+          </div>
+        </div>
+      )}
     </MainLayout>
   );
 }
