@@ -4,8 +4,8 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Slider from "../../components/Slider/Slider";
-import { useRouter } from "next/router";
 import FullPageSectionTitle from "../../components/FullPageSectionTitle/FullPageSectionTitle";
+import { deviceType, CustomView } from "react-device-detect";
 
 function About({ aboutText, mainLayoutSocial, team, cofounder }) {
   const { t } = useTranslation("aboutPage");
@@ -23,8 +23,6 @@ function About({ aboutText, mainLayoutSocial, team, cofounder }) {
     weWoldLike: t("weWoldLike"),
   };
 
-  const router = useRouter();
-  const locale = router.locale.toUpperCase();
   return (
     <MainLayout
       title={t("title")}
@@ -33,16 +31,38 @@ function About({ aboutText, mainLayoutSocial, team, cofounder }) {
       mainLayoutSocial={mainLayoutSocial}
     >
       <AboutPage aboutText={aboutText} />
+      {["browser", "tablet"].includes(deviceType) ? (
+        <div>
+          <div className="m-auto">
+            <div className="pb-2">
+              <FullPageSectionTitle title={t("cofounders")} />
+            </div>
+            <Slider slides={cofounder} />
+          </div>
+          <div className="m-auto">
+            <div className="pb-2">
+              <FullPageSectionTitle title={t("team")} />
+            </div>
+            <Slider slides={team} />
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div className="m-auto col-10">
+            <div className="pb-2">
+              <FullPageSectionTitle title={t("cofounders")} />
+            </div>
+            <Slider slides={cofounder} />
+          </div>
 
-      <FullPageSectionTitle title={t("cofounders")} />
-      <div className="m-auto">
-        <Slider slides={cofounder} locale={locale} />
-      </div>
-
-      <FullPageSectionTitle title={t("team")} />
-      <div className="m-auto">
-        <Slider slides={team} locale={locale} />
-      </div>
+          <div className="m-auto col-10 pb-20">
+            <div className="pb-2">
+              <FullPageSectionTitle title={t("team")} />
+            </div>
+            <Slider slides={team} />
+          </div>
+        </div>
+      )}
     </MainLayout>
   );
 }

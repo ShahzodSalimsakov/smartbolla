@@ -14,7 +14,6 @@ import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useRouter } from "next/router";
 import { deviceType, CustomView } from "react-device-detect";
 import YouTube from "react-youtube";
 import Footer from "../components/Footer/Footer";
@@ -26,8 +25,6 @@ const pluginWrapper = () => {
 
 function Home({ projects, counter, products, mainLayoutSocial }) {
   const { t: translation } = useTranslation("indexPage");
-  const router = useRouter();
-  const locale = router.locale.toUpperCase();
 
   const commonLang = {
     about: translation("about"),
@@ -141,7 +138,7 @@ function Home({ projects, counter, products, mainLayoutSocial }) {
                             </span>
                           </div>
                         </div>
-                        <div className="flex h-100 mt-16 z-20 justify-around">
+                        <div className="flex h-100 mt-16 z-20 justify-around pr-5">
                           <ProductsSlider
                             products={products}
                             investLang={translation("invest")}
@@ -160,9 +157,9 @@ function Home({ projects, counter, products, mainLayoutSocial }) {
                   </div>
                 ) : (
                   <div className="section pl-10">
-                    <div className="flex h-full">
+                    <div className="h-50">
                       <div className="w-full">
-                        <div className="flex mt-16 z-20">
+                        <div className="flex w-10/12 z-20">
                           <ProductsSlider
                             products={products}
                             investLang={translation("invest")}

@@ -1,8 +1,11 @@
 import SliderMobile from "./Slider.mobile";
 import SliderDesktop from "./Slider.desktop";
 import { deviceType, CustomView } from "react-device-detect";
+import { useRouter } from "next/router";
 
-function Slider({ slides, locale }) {
+function Slider({ slides }) {
+  const router = useRouter();
+  const locale = router.locale.toUpperCase();
   return (
     <>
       <CustomView condition={!["browser", "tablet"].includes(deviceType)}>
