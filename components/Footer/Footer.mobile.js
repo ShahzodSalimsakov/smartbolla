@@ -12,30 +12,29 @@ import {
 import { useTranslation } from "next-i18next";
 
 export default function Footer({ commonLang }) {
-  const { t: translation } = useTranslation("indexPage");
   const navButtons = [
     {
-      label: translation("about"),
+      label: commonLang.about,
       path: "/about",
       icon: faAddressCard,
     },
     {
-      label: translation("media"),
+      label: commonLang.media,
       path: "/media",
       icon: faPhotoVideo,
     },
     {
-      label: translation("contact"),
+      label: commonLang.contact,
       path: "/contacts",
       icon: faMapMarkerAlt,
     },
     {
-      label: translation("profile"),
+      label: commonLang.profile,
       path: "/profile",
       icon: faUser,
     },
     {
-      label: translation("investors"),
+      label: commonLang.investors,
       path: "/investors",
       icon: faUsers,
     },
