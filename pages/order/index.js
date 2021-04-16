@@ -73,6 +73,8 @@ function Order({
           <div className={`${isMobile ? "pt-2" : "pt-2 w-8/12"}`}>
             <Formik
               initialValues={initialValues}
+              validateOnChange={false}
+              validateOnBlur={false}
               validate={(values) => {
                 const errors = {};
 
@@ -168,12 +170,6 @@ function Order({
                       ))}
                     </div>
                   )}
-                  <label
-                    className="block mb-2 text-sm text-white-600 dark:text-white-400"
-                    htmlFor=""
-                  >
-                    {t("paymentMethodTitle")}
-                  </label>
                   {orderData.PROPERTIES &&
                     orderData.PROPERTIES.map((prop) => {
                       if (prop.CODE == "NAME") {
@@ -205,7 +201,6 @@ function Order({
                               type="text"
                               name={`prop_${prop.ID}`}
                               onChange={handleChange}
-                              onBlur={handleBlur}
                               defaultValue={initialValues[`prop_${prop.ID}`]}
                               autoComplete="off"
                               className="text-black w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
@@ -248,6 +243,12 @@ function Order({
                         );
                       }
                     })}
+                  <label
+                    className="block mb-2 text-sm text-white-600 dark:text-white-400"
+                    htmlFor=""
+                  >
+                    {t("paymentMethodTitle")}
+                  </label>
                   <div className="grid grid-cols-3 my-4">
                     {orderData.PAYMENTS.map((payment, i) => {
                       let isChecked = false;
@@ -270,7 +271,6 @@ function Order({
                               type="radio"
                               name="payment"
                               onChange={handleChange}
-                              onBlur={handleBlur}
                               checked={isChecked}
                               value={payment.ID}
                               className="d-none"
@@ -443,13 +443,13 @@ export async function getServerSideProps({ locale, req, res }) {
   let { data: orderData } = await resOrder.json();
 
   let { data: mainLayoutSocial } = await socials.json();
-
+  console.log(cookieData);
   return {
     props: {
       mainLayoutSocial,
       cookieData,
       orderData,
-      authToken: cookieData.userAuthToken,
+      authToken: cookieData.userAuthToken || "",
       productId: cookieData.cartItem,
       ...(await serverSideTranslations(locale, ["orderPage"])),
     },
