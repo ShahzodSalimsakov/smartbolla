@@ -31,6 +31,10 @@ function Order({
     profile: t("profile"),
     investors: t("investors"),
   };
+  
+  const [passwordName, setPasswordFileName] = useState('');
+  const [photoName, setPhotoFileName] = useState('');
+  
 
   const footerLang = {
     allRightsRes: t("allRightsRes"),
@@ -211,7 +215,7 @@ function Order({
                         );
                       }
 
-                      if (prop.TYPE == "FILE") {
+                      if (prop.TYPE == "FILE" && prop.CODE == "PASPORT") {
                         return (
                           <div className="mb-6" key={prop.ID}>
                             <label
@@ -227,6 +231,7 @@ function Order({
                             >
                               {t("downloadButtonText")}
                             </label>
+                            <span className="p-3">{passwordName}</span>
                             <input
                               type="file"
                               name={`prop_${prop.ID}`}
@@ -234,10 +239,48 @@ function Order({
                               required={prop.REQUIRED == "Y"}
                               style={{ display: "none" }}
                               onChange={(event) => {
+                                setPasswordFileName(event.currentTarget.files[0].name);
                                 setFieldValue(
                                   `prop_${prop.ID}`,
                                   event.currentTarget.files[0]
                                 );
+                                console.log(event.currentTarget.files);
+                              }}
+                              className="dark:bg-gray-700 dark:border-gray-600 dark:focus:border-gray-500 dark:focus:ring-gray-900 dark:placeholder-gray-500 dark:text-white focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100 placeholder-gray-300 px-3 py-2 rounded-md w-full"
+                            />
+                          </div>
+                        );
+                      }
+                      if (prop.TYPE == "FILE" && prop.CODE == "PHOTO") {
+                        return (
+                          <div className="mb-6" key={prop.ID}>
+                            <label
+                              className="block mb-2 text-sm text-white-600 dark:text-white-400"
+                              htmlFor=""
+                            >
+                              {prop.NAME}
+                              {prop.REQUIRED == "Y" && "*"}
+                            </label>
+                            <label
+                              className={`${orderFileButton} cursor-pointer`}
+                              htmlFor={prop.ID}
+                            >
+                              {t("downloadButtonText")}
+                            </label>
+                            <span className="p-3">{photoName}</span>
+                            <input
+                              type="file"
+                              name={`prop_${prop.ID}`}
+                              id={prop.ID}
+                              required={prop.REQUIRED == "Y"}
+                              style={{ display: "none" }}
+                              onChange={(event) => {
+                                setPhotoFileName(event.currentTarget.files[0].name);
+                                setFieldValue(
+                                  `prop_${prop.ID}`,
+                                  event.currentTarget.files[0]
+                                );
+                                console.log(event.currentTarget.files);
                               }}
                               className="dark:bg-gray-700 dark:border-gray-600 dark:focus:border-gray-500 dark:focus:ring-gray-900 dark:placeholder-gray-500 dark:text-white focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100 placeholder-gray-300 px-3 py-2 rounded-md w-full"
                             />
