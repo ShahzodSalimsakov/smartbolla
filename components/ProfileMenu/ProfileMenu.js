@@ -22,7 +22,9 @@ function ProfileMenu({ balance, accountSetings, logOut }) {
   const [userAuthToken, setUserAuthToken] = useCookies(["userAuthToken"]);
 
   const logout = async () => {
-    setUserAuthToken("userAuthToken", "");
+    setUserAuthToken("userAuthToken", "", {
+      path: "/",
+    });
     return router.push("/", undefined, {
       shallow: true,
     });

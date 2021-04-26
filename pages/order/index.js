@@ -138,7 +138,9 @@ function Order({
                   const { data } = await res.json();
 
                   if (data.result) {
-                    await setUserAuthToken("userAuthToken", data.authToken);
+                    await setUserAuthToken("userAuthToken", data.authToken, {
+                      path: "/",
+                    });
                     return router.push("/order/" + data.result, undefined, {
                       shallow: true,
                     });

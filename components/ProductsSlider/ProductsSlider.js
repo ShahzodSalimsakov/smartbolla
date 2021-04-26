@@ -34,7 +34,9 @@ export default function ProductsSlider({ products, investLang }) {
   const addBasket = async () => {
     if (!isLoadingBasket) {
       setisLoadingBasket(true);
-      setCartItem("cartItem", currentProduct.ID);
+      setCartItem("cartItem", currentProduct.ID, {
+        path: "/",
+      });
       setisLoadingBasket(false);
       router.push("/order/", undefined, {
         shallow: true,
