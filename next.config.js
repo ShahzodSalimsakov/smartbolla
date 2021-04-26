@@ -42,7 +42,8 @@ module.exports = withPWA({
   },
   i18n: {
     locales: ["en", "ru", "uz", "ae", "fr", "cn", "es"],
-    defaultLocale: "en",
+    defaultLocale: "ru",
+    localeDetection: false,
   },
   images: {
     domains: ["smartbolla.com", "api.smartbolla.com"],
@@ -55,5 +56,9 @@ module.exports = withPWA({
     bodyParser: {
       sizeLimit: "100mb",
     },
+  },
+  publicRuntimeConfig: {
+    // Will be available on both server and client
+    rollbarClientToken: "a665c3646ab94e19b3d66e396f59b49b",
   },
 });

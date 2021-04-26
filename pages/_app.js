@@ -8,7 +8,7 @@ import { createWrapper } from "next-redux-wrapper";
 import { AnimateSharedLayout } from "framer-motion";
 import store from "../store/store";
 import { CookiesProvider } from "react-cookie";
-import { appWithTranslation } from 'next-i18next'
+import { appWithTranslation } from "next-i18next";
 
 const app = function MyApp({ Component, pageProps }) {
   return (

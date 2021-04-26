@@ -6,6 +6,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { parseCookies } from "../../helpers/";
 import { isMobile } from "react-device-detect";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import Link from "next/link";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 function Profile({ mainLayoutSocial, balance }) {
@@ -19,6 +20,7 @@ function Profile({ mainLayoutSocial, balance }) {
     media: t("media"),
     contact: t("contact"),
     profile: t("profile"),
+    investors: t("investors"),
   };
 
   const footerLang = {
@@ -86,7 +88,15 @@ function Profile({ mainLayoutSocial, balance }) {
                           </div>
                         )}
                       </Td>
-                      <Td></Td>
+                      <Td>
+                        {order.PAYED == "N" && (
+                          <Link href={`/order/${order.ID}`}>
+                            <a className="active:shadow-none bg-green-100 font-semibold hover:shadow-md hover:text-green-800 inline-flex leading-5 px-5 py-2 rounded-2xl text-decoration-none text-green-800 text-xs">
+                              {t("pay")}
+                            </a>
+                          </Link>
+                        )}
+                      </Td>
                     </Tr>
                   ))}
               </Tbody>

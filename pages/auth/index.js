@@ -20,6 +20,7 @@ function AuthPage({ mainLayoutSocial }) {
     media: t("media"),
     contact: t("contact"),
     profile: t("profile"),
+    investors: t("investors"),
   };
 
   const footerLang = {
@@ -79,7 +80,6 @@ function AuthPage({ mainLayoutSocial }) {
     });
 
     const { data, error } = await res.json();
-    console.log(data);
 
     if (error) {
       setSubmitError(error);

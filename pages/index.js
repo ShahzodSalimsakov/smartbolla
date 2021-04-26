@@ -4,7 +4,6 @@ import ReactFullpage from "@fullpage/react-fullpage";
 import { MainLayout } from "../components/MainLayout";
 import InvestorsBubble from "../components/InvestorsBubble/InvestorsBubble";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { changeMainBackground } from "../store/actions/mainConfigActions";
 import { motion } from "framer-motion";
 import FullPageSectionTitle from "../components/FullPageSectionTitle/FullPageSectionTitle";
@@ -12,59 +11,49 @@ import InvestorNewBubble from "../components/InvestorNewBubble/InvestorNewBubble
 import Project from "../components/Project/Project";
 import CounterList from "../components/CounterList/CounterList";
 import ProductsSlider from "../components/ProductsSlider/ProductsSlider";
-import Slider from "../components/Slider/Slider";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useRouter } from "next/router";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile,
-} from "react-device-detect";
+import { deviceType, CustomView } from "react-device-detect";
+import YouTube from "react-youtube";
+import Footer from "../components/Footer/Footer";
+import { projectModal, youtubeModal } from "./index.module.css";
 
 const pluginWrapper = () => {
   require("../public/js/scrolloverflow.min");
 };
 
-function Home({
-  investors,
-  projects,
-  counter,
-  products,
-  cofounder,
-  team,
-  mainLayoutSocial,
-}) {
-  const { t } = useTranslation("indexPage");
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const locale = router.locale.toUpperCase();
+function Home({ projects, counter, products, mainLayoutSocial }) {
+  const { t: translation } = useTranslation("indexPage");
 
   const commonLang = {
-    about: t("about"),
-    media: t("media"),
-    contact: t("contact"),
-    profile: t("profile"),
+    about: translation("about"),
+    media: translation("media"),
+    contact: translation("contact"),
+    profile: translation("profile"),
+    investors: translation("investors")
   };
 
   const countLang = {
-    blockTitle: t("title"),
-    developers: t("team"),
-    investors: t("investors"),
-    applications: t("applications"),
-    cofounders: t("cofounders"),
+    blockTitle: translation("title"),
+    developers: translation("team"),
+    investors: translation("investors"),
+    applications: translation("applications"),
+    cofounders: translation("cofounders"),
   };
 
   const footerLang = {
-    allRightsRes: t("allRightsRes"),
-    weWoldLike: t("weWoldLike"),
+    allRightsRes: translation("allRightsRes"),
+    weWoldLike: translation("weWoldLike"),
   };
 
-  const sectionsColor = ["#000000", "#6135863d"];
+  const sectionsColor = ["#000000", "#242C40"];
 
   const [isAllowScroll, setIsAllowScroll] = useState(false);
+
+  const [currentProject, setCurrentProject] = useState(null);
+
+  const [youtubeId, setYoutubeId] = useState(null);
 
   projects.map((project) => {
     if (project.PROPERTY_BACKGROUND_COLOR_VALUE) {
@@ -73,6 +62,31 @@ function Home({
       sectionsColor.push("#152331");
     }
   });
+
+  const scrollDown = () => {
+    setIsAllowScroll(true);
+    setTimeout(() => {
+      fullpage_api.moveSectionDown();
+      setIsAllowScroll(false);
+    });
+  };
+
+  const scrollUp = () => {
+    setIsAllowScroll(true);
+    setTimeout(() => {
+      fullpage_api.moveSectionUp();
+      setIsAllowScroll(false);
+    });
+  };
+  let youtubeOptions = {
+    height: "60%",
+    width: "90%",
+  };
+
+  if (process.browser) {
+    youtubeOptions.width = parseInt(window.innerWidth * 0.7, 0);
+    youtubeOptions.height = parseInt(window.innerHeight * 0.5, 0);
+  }
 
   return (
     <>
@@ -89,8 +103,8 @@ function Home({
           navigation={true}
           navigationPosition={"left"}
           sectionsColor={sectionsColor}
+          lazyLoading={true}
           onLoad={() => {
-            console.log("done");
             setIsAllowScroll(false);
           }}
           onLeave={(origin, destination, direction) => {
@@ -101,7 +115,7 @@ function Home({
           render={({ state, fullpageApi }) => {
             return (
               <ReactFullpage.Wrapper className="">
-                <BrowserView>
+                {["browser", "tablet"].includes(deviceType) ? (
                   <div className="section pl-24">
                     <div className="flex h-full items-center">
                       <div className="grid grid-cols-2 h-full w-full pt-20">
@@ -111,23 +125,23 @@ function Home({
                           </div>
                           <div className="absolute bg-black bottom-0 jsx-1377087279 p-4 w-2/4 z-20">
                             <h1 className="font-black uppercase text-5xl">
-                              {t("yourTime")}
+                              {translation("yourTime")}
                             </h1>
                             <h1 className="font-black uppercase text-5xl">
-                              {t("yourGoals")}
+                              {translation("yourGoals")}
                             </h1>
                             <h1 className="font-black uppercase text-5xl">
-                              {t("yourBoss")}
+                              {translation("yourBoss")}
                             </h1>
                             <span className="text-2xl font-weight-light">
-                              {t("yourInvest")}
+                              {translation("yourInvest")}
                             </span>
                           </div>
                         </div>
-                        <div className="flex h-100 items-center z-20 justify-around">
+                        <div className="flex h-100 mt-16 z-20 justify-around pr-5">
                           <ProductsSlider
                             products={products}
-                            investLang={t("invest")}
+                            investLang={translation("invest")}
                           />
                         </div>
                       </div>
@@ -141,103 +155,14 @@ function Home({
                       <span></span>
                     </div>
                   </div>
-                  <div className="section pl-24 pt-14">
-                    <FullPageSectionTitle title={t("investors")} />
-                    <div className="w-10/12 m-auto">
-                      <Slider slides={investors} />
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                      onClick={() => scrollDown()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                  <div className="section pl-24 pt-14">
-                    <FullPageSectionTitle title={t("cofounders")} />
-                    <div className="w-10/12 m-auto">
-                      <Slider slides={cofounder} />
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                      onClick={() => scrollDown()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                  {projects.map((project) => (
-                    <div className="section pl-24 pt-20" key={project.ID}>
-                      <Project project={project} />
-                      <div
-                        className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                        onClick={() => scrollUp()}
-                      >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                      <div
-                        className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                        onClick={() => scrollDown()}
-                      >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                    </div>
-                  ))}
-                  <div className="section pl-24 pt-30">
-                    <CounterList counter={counter} countLang={countLang} />
-                    <FullPageSectionTitle title={t("team")} />
-                    <div className="w-10/12 m-auto">
-                      <Slider slides={team} locale={locale} />
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                      onClick={() => scrollDown()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                </BrowserView>
-                <MobileView>
+                ) : (
                   <div className="section pl-10">
-                    <div className="flex h-full">
+                    <div className="h-50">
                       <div className="w-full">
-                        <div className="flex h-100 items-center z-20 justify-around">
+                        <div className="flex w-10/12 z-20">
                           <ProductsSlider
                             products={products}
-                            investLang={t("invest")}
+                            investLang={translation("invest")}
                           />
                         </div>
                       </div>
@@ -251,11 +176,22 @@ function Home({
                       <span></span>
                     </div>
                   </div>
-                  <div className="section pl-10">
-                    <FullPageSectionTitle title={t("investors")} />
-                    <div className="mt-2">
-                      <Slider slides={investors} />
-                    </div>
+                )}
+                {projects.map((project) => (
+                  <div
+                    className={`section ${
+                      ["browser", "tablet"].includes(deviceType)
+                        ? "pl-24 pt-20"
+                        : "pl-10"
+                    }`}
+                    key={project.ID}
+                  >
+                    <Project
+                      project={project}
+                      onShowYoutube={(id) => {
+                        setYoutubeId(id);
+                      }}
+                    />
                     <div
                       className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
                       onClick={() => scrollUp()}
@@ -273,95 +209,97 @@ function Home({
                       <span></span>
                     </div>
                   </div>
-                  <div className="section pl-10">
-                    <FullPageSectionTitle title={t("cofounders")} />
-                    <div className="mt-2">
-                      <Slider slides={cofounder} />
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                      onClick={() => scrollDown()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
+                ))}
+                <div
+                  className={`section ${
+                    ["browser", "tablet"].includes(deviceType)
+                      ? "pl-24 pt-30"
+                      : "pl-10"
+                  }`}
+                >
+                  <CounterList counter={counter} countLang={countLang} />
+                  <CustomView
+                    condition={["browser", "tablet"].includes(deviceType)}
+                  >
+                    <Footer footerLang={footerLang} />
+                  </CustomView>
+                  <div
+                    className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
+                    onClick={() => scrollUp()}
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
                   </div>
-                  {projects.map((project) => (
-                    <div className="section pl-10" key={project.ID}>
-                      <Project project={project} />
-                      <div
-                        className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                        onClick={() => scrollUp()}
-                      >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                      <div
-                        className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                        onClick={() => scrollDown()}
-                      >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                      </div>
-                    </div>
-                  ))}
-                  <div className="section pl-10">
-                    <FullPageSectionTitle title={t("team")} />
-                    <div className="">
-                      <Slider slides={team} locale={locale} />
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                      onClick={() => scrollDown()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                  <div className="section pl-10">
-                    <CounterList counter={counter} countLang={countLang} />
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-top"
-                      onClick={() => scrollUp()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div
-                      className="ct-btn-scroll z-50 ct-js-btn-scroll cursor-pointer ct-btn-scroll-bottom"
-                      onClick={() => scrollDown()}
-                    >
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </div>
-                </MobileView>
+                </div>
               </ReactFullpage.Wrapper>
             );
           }}
         />
+        {currentProject && (
+          <div className="z-[9999] text-black fixed w-full h-full top-0 left-0 flex items-center justify-center">
+            <div className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50 z-[10000]"></div>
+
+            <div className="modal-container w-full md:max-w-md mx-auto rounded shadow-lg  z-[20000]">
+              <div
+                onClick={() => {
+                  setCurrentProject(null);
+                }}
+                className="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50"
+              >
+                <svg
+                  className="fill-current text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                >
+                  <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                </svg>
+                <span className="text-sm"></span>
+              </div>
+
+              <div className={`${projectModal} text-left`}>
+                {currentProject.PREVIEW_TEXT}
+              </div>
+            </div>
+          </div>
+        )}
+        {youtubeId && (
+          <div className="z-[9999] text-black fixed w-full h-full top-0 left-0 flex items-center justify-center">
+            <div className="modal-overlay absolute w-full h-full bg-gray-900 opacity-50 z-[10000]"></div>
+
+            <div className="modal-container w-full mx-auto rounded z-[20000]">
+              <div
+                onClick={() => {
+                  setYoutubeId(null);
+                }}
+                className="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50"
+              >
+                <svg
+                  className="fill-current text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                >
+                  <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                </svg>
+                <span className="text-sm"></span>
+              </div>
+
+              <div
+                className={`${youtubeModal} mx-auto overflow-hidden text-left`}
+              >
+                <YouTube
+                  videoId={youtubeId}
+                  opts={youtubeOptions}
+                  className="m-auto"
+                />
+              </div>
+            </div>
+          </div>
+        )}
         <style jsx global>
           {`
             #fp-nav {
@@ -522,41 +460,16 @@ export async function getServerSideProps({ locale }) {
     },
   });
 
-  const resCoFounder = await fetch("https://api.smartbolla.com/api/", {
-    method: "POST",
-    body: JSON.stringify({
-      method: "get.cofounder.list",
-      data: {
-        locale,
-      },
-    }),
-    headers: {
-      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
-    },
-  });
-
-  const resTeam = await fetch("https://api.smartbolla.com/api/", {
-    method: "POST",
-    body: JSON.stringify({
-      method: "get.team.list",
-      data: {
-        locale,
-      },
-    }),
-    headers: {
-      ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
-    },
-  });
-
   let { data: investors } = await res.json();
   let { data: projects } = await resProjects.json();
   let { data: counter } = await resCounter.json();
   let { data: mainLayoutSocial } = await socials.json();
   let { data: products } = await resProducts.json();
-  let { data: cofounder } = await resCoFounder.json();
-  let { data: team } = await resTeam.json();
   investors = investors || [];
-
+  investors = investors
+    .map((a) => ({ sort: Math.random(), value: a }))
+    .sort((a, b) => a.sort - b.sort)
+    .map((a) => a.value);
   return {
     props: {
       investors,
@@ -564,8 +477,6 @@ export async function getServerSideProps({ locale }) {
       counter,
       mainLayoutSocial,
       products,
-      cofounder,
-      team,
       ...(await serverSideTranslations(locale, ["indexPage"])),
     },
   };

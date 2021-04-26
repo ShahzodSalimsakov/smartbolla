@@ -11,6 +11,7 @@ function OrderPayment({ mainLayoutSocial, orderData }) {
     media: t("media"),
     contact: t("contact"),
     profile: t("profile"),
+    investors: t("investors"),
   };
 
   const footerLang = {
@@ -33,6 +34,12 @@ function OrderPayment({ mainLayoutSocial, orderData }) {
             </div>
 
             <h2>Order Payment</h2>
+            <div
+              className="w-2/12"
+              dangerouslySetInnerHTML={{
+                __html: orderData.PAY_SYSTEM.DESCRIPTION,
+              }}
+            ></div>
             <div
               className="w-2/12"
               dangerouslySetInnerHTML={{
@@ -80,7 +87,6 @@ export async function getServerSideProps({ locale, req, query }) {
   });
 
   let { data: orderData } = await resOrder.json();
-
   let { data: mainLayoutSocial } = await socials.json();
   return {
     props: {

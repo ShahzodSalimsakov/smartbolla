@@ -1,0 +1,15 @@
+.projectModal {
+  background: rgb(255 255 255 / 84%);
+  box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: scroll;
+  height: 80vh;
+  margin: 5px;
+}
+.youtubeModal {
+  overflow-y: scroll;
+  height: 80vh;
+  margin: 5px;
+  width: 80vw;
+}

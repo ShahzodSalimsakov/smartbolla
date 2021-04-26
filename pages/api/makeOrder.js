@@ -11,7 +11,6 @@ export default async function handler(req, res) {
     // const text = await resCounter.text();
     // console.log(text);
     const result = await resCounter.json();
-    console.log(result);
     return res.json(result);
   } catch (e) {
     console.log(e);

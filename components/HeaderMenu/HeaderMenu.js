@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./HeaderMenu.module.css";
 import { useRouter } from "next/router";
-
+import { useTranslation } from "next-i18next";
 
 export default function HeaderMenu({ commonLang }) {
   const navButtons = [
@@ -21,6 +21,10 @@ export default function HeaderMenu({ commonLang }) {
       label: commonLang.profile,
       path: "/profile",
     },
+    {
+      label: commonLang.investors,
+      path: "/investors",
+    },
   ];
   const { pathname } = useRouter();
   return (
@@ -28,11 +32,8 @@ export default function HeaderMenu({ commonLang }) {
       <nav className="h-full">
         <ul className="flex h-full flex-row">
           {navButtons.map((button) => (
-            <li
-              className={`${styles.headerMenuItem} h-full`}
-              key={button.label}
-            >
-              <Link href={button.path}>
+            <li className={`${styles.headerMenuItem} h-full`} key={button.path}>
+              <Link href={button.path} prefetch={false}>
                 <a
                   className={`${
                     pathname === button.path ? styles.isActive : ""

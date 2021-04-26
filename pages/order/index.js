@@ -4,10 +4,16 @@ import React, { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { orderSubmitButton, isAuthLoading, orderFileButton } from "./Order.module.css";
+import {
+  orderSubmitButton,
+  isAuthLoading,
+  orderFileButton,
+} from "./Order.module.css";
 import asyncForEach from "../../helpers/asyncForEach";
 import readAsDataURL from "../../helpers/file_to_string";
 import { useRouter } from "next/router";
+import { isMobile } from "react-device-detect";
+import { useCookies } from "react-cookie";
 
 function Order({
   cookieData,
@@ -23,6 +29,7 @@ function Order({
     media: t("media"),
     contact: t("contact"),
     profile: t("profile"),
+    investors: t("investors"),
   };
 
   const footerLang = {
@@ -47,11 +54,11 @@ function Order({
     });
   }
 
-  console.log("productId", productId);
-
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
+
+  const [userAuthToken, setUserAuthToken] = useCookies(["userAuthToken"]);
 
   return (
     <MainLayout
@@ -60,21 +67,23 @@ function Order({
       title={t("title")}
       mainLayoutSocial={mainLayoutSocial}
     >
-      <div className="grid grid-cols-3 mt-4">
-        <div className="col-span-2 mr-5">
+      <div className={`${isMobile ? "col-11 mt-4" : "grid grid-cols-3 mt-4"}`}>
+        <div className={`${isMobile ? "col" : "col-span-2 mr-5"}`}>
           <h7>{t("paymentInfoTitle")}</h7>
-          <div className="pt-2 w-8/12">
+          <div className={`${isMobile ? "pt-2" : "pt-2 w-8/12"}`}>
             <Formik
               initialValues={initialValues}
+              validateOnChange={false}
+              validateOnBlur={false}
               validate={(values) => {
                 const errors = {};
 
                 if (!values.payment) {
-                  errors.payment = t('mustTypePayment');
+                  errors.payment = t("mustTypePayment");
                 }
 
                 if (orderData.PROPERTIES) {
-                  orderData.PROPERTIES.map((prop) => {                    
+                  orderData.PROPERTIES.map((prop) => {
                     if (prop.CODE == "NAME") {
                       prop.NAME = t("NAME");
                     }
@@ -91,15 +100,15 @@ function Order({
                       prop.NAME = t("PHOTO");
                     }
                     if (prop.REQUIRED == "Y" && !values[`prop_${prop.ID}`]) {
-                      errors[
-                        `prop_${prop.ID}`
-                      ] = `${t("field")} "${prop.NAME}" ${t("mustBeFilled")}`;
+                      errors[`prop_${prop.ID}`] = `${t("field")} "${
+                        prop.NAME
+                      }" ${t("mustBeFilled")}`;
                     }
                   });
                 }
 
                 if (!values.agreement) {
-                  errors.agreement = t('mustAgreement');
+                  errors.agreement = t("mustAgreement");
                 }
 
                 return errors;
@@ -129,6 +138,7 @@ function Order({
                   const { data } = await res.json();
 
                   if (data.result) {
+                    await setUserAuthToken("userAuthToken", data.authToken);
                     return router.push("/order/" + data.result, undefined, {
                       shallow: true,
                     });
@@ -160,49 +170,6 @@ function Order({
                       ))}
                     </div>
                   )}
-                  <label
-                    className="block mb-2 text-sm text-white-600 dark:text-white-400"
-                    htmlFor=""
-                  >
-                    {t('paymentMethodTitle')}
-                  </label>
-                  <div className="grid grid-cols-3 my-4">
-                    {orderData.PAYMENTS.map((payment, i) => {
-                      let isChecked = false;
-
-                      if (values.payment) {
-                        isChecked = values.payment == payment.ID;
-                      } else if (i == 0) {
-                        isChecked = true;
-                      }
-
-                      return (
-                        <div
-                          key={payment.ID}
-                          className={`${
-                            isChecked && "bg-white shadow-md"
-                          }  cursor-pointer flex p-3 hover:bg-white hover:shadow-md items-center rounded-2xl`}
-                        >
-                          <label>
-                            <Field
-                              type="radio"
-                              name="payment"
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              checked={isChecked}
-                              value={payment.ID}
-                              className="d-none"
-                            />
-                            <img
-                              src={payment.LOGOTIP}
-                              className="cursor-pointer"
-                            />
-                          </label>
-                        </div>
-                      );
-                    })}
-                  </div>
-
                   {orderData.PROPERTIES &&
                     orderData.PROPERTIES.map((prop) => {
                       if (prop.CODE == "NAME") {
@@ -234,7 +201,6 @@ function Order({
                               type="text"
                               name={`prop_${prop.ID}`}
                               onChange={handleChange}
-                              onBlur={handleBlur}
                               defaultValue={initialValues[`prop_${prop.ID}`]}
                               autoComplete="off"
                               className="text-black w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
@@ -277,6 +243,48 @@ function Order({
                         );
                       }
                     })}
+                  <label
+                    className="block mb-2 text-sm text-white-600 dark:text-white-400"
+                    htmlFor=""
+                  >
+                    {t("paymentMethodTitle")}
+                  </label>
+                  <div className="grid grid-cols-3 my-4">
+                    {orderData.PAYMENTS.map((payment, i) => {
+                      let isChecked = false;
+
+                      if (values.payment) {
+                        isChecked = values.payment == payment.ID;
+                      } else if (i == 0) {
+                        isChecked = true;
+                      }
+
+                      return (
+                        <div
+                          key={payment.ID}
+                          className={`${
+                            isChecked && "bg-white shadow-md"
+                          }  cursor-pointer flex p-3 hover:bg-white hover:shadow-md items-center rounded-2xl`}
+                        >
+                          <label>
+                            <Field
+                              type="radio"
+                              name="payment"
+                              onChange={handleChange}
+                              checked={isChecked}
+                              value={payment.ID}
+                              className="d-none"
+                            />
+                            <img
+                              src={payment.LOGOTIP}
+                              className="cursor-pointer"
+                            />
+                          </label>
+                        </div>
+                      );
+                    })}
+                  </div>
+
                   <div
                     className="flex items-center my-5"
                     onClick={() => {
@@ -290,7 +298,7 @@ function Order({
                       checked={isAgreementChecked}
                     />
                     <div className="cursor-pointer ml-2">
-                      {t('agreenetInputText')}
+                      {t("agreenetInputText")}
                     </div>
                   </div>
                   {showModal ? (
@@ -368,7 +376,7 @@ function Order({
             </Formik>
           </div>
         </div>
-        <div>
+        <div className={`${isMobile ? "col pb-20" : ""}`}>
           <h2>{t("summary")}</h2>
           <div className="bg-white p-10 rounded-md shadow-md sticky text-black top-20 tracking-wider uppercase">
             <ul>
@@ -435,13 +443,13 @@ export async function getServerSideProps({ locale, req, res }) {
   let { data: orderData } = await resOrder.json();
 
   let { data: mainLayoutSocial } = await socials.json();
-
+  console.log(cookieData);
   return {
     props: {
       mainLayoutSocial,
       cookieData,
       orderData,
-      authToken: cookieData.userAuthToken,
+      authToken: cookieData.userAuthToken || "",
       productId: cookieData.cartItem,
       ...(await serverSideTranslations(locale, ["orderPage"])),
     },
