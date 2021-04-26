@@ -216,7 +216,9 @@ function AuthPage({ mainLayoutSocial }) {
                   setSubmitError(error);
                 } else if (data) {
                   if (data.AUTH_TOKEN) {
-                    setUserAuthToken("userAuthToken", data.AUTH_TOKEN);
+                    setUserAuthToken("userAuthToken", data.AUTH_TOKEN, {
+                      path: '/'
+                    });
                     if (backUrl) {
                       return router.push(backUrl, undefined, {
                         shallow: true,
