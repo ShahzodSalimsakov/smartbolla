@@ -1,5 +1,6 @@
 import { MainLayout } from "../../../components/MainLayout";
 import styles from "../Profile.module.css";
+import { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import ProfileMenu from "../../../components/ProfileMenu/ProfileMenu";
 import { useTranslation } from "next-i18next";
@@ -13,6 +14,8 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
   const balance = t("balance");
   const accountSetings = t("accountSetings");
   const logOut = t("logOut");
+
+  const [passportName, setPassportName] = useState('');
 
   const commonLang = {
     about: t("about"),
@@ -45,7 +48,7 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
     if (field.CODE == "PASPORT") {
       field.NAME = t("PASPORT");
     }
-
+    
     switch (field.TYPE) {
       case "FILE":
         return (
@@ -56,6 +59,7 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
             >
               {t("downloadButtonText")}
             </label>
+            <span className="p-3">{passportName}</span>
             <input
               type={"file"}
               name={field.ID}
@@ -63,6 +67,7 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
               style={{ visibility: "hidden" }}
               required
               onChange={(event) => {
+                setPassportName(event.currentTarget.files[0].name);
                 setFieldValue(field.ID, event.currentTarget.files[0]);
               }}
               className="dark:bg-gray-700 dark:border-gray-600 dark:focus:border-gray-500 dark:focus:ring-gray-900 dark:placeholder-gray-500 dark:text-white focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-100 placeholder-gray-300 px-3 py-2 rounded-md w-full"
