@@ -226,12 +226,12 @@ function Order({
                               {prop.REQUIRED == "Y" && "*"}
                             </label>
                             <label
-                              className={`${orderFileButton} cursor-pointer`}
+                              className={`${orderFileButton} cursor-pointer mb-4`}
                               htmlFor={prop.ID}
                             >
                               {t("downloadButtonText")}
                             </label>
-                            <span className="p-3">{passwordName}</span>
+                            <span className="flex justify-center p-3">{passwordName}</span>
                             <input
                               type="file"
                               name={`prop_${prop.ID}`}
@@ -262,12 +262,12 @@ function Order({
                               {prop.REQUIRED == "Y" && "*"}
                             </label>
                             <label
-                              className={`${orderFileButton} cursor-pointer`}
+                              className={`${orderFileButton} cursor-pointer mb-4`}
                               htmlFor={prop.ID}
                             >
                               {t("downloadButtonText")}
                             </label>
-                            <span className="p-3">{photoName}</span>
+                            <span className="flex justify-center p-3">{photoName}</span>
                             <input
                               type="file"
                               name={`prop_${prop.ID}`}

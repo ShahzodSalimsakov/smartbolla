@@ -67,3 +67,9 @@
 .profileTable tbody tr {
     border: none
 }
+
+@media only screen and (max-width: 600px) {
+  .accountFileButton {
+    width: 100%;
+  }
+}
