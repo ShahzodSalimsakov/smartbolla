@@ -49,3 +49,9 @@
   background-color: transparent;
   color: #f6c886;
 }
+
+@media only screen and (max-width: 600px) {
+  .orderFileButton {
+    width: 100%;
+  }
+}

@@ -55,11 +55,11 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
           <>
             <label
               htmlFor={field.CODE}
-              className={`${styles.accountFileButton} cursor-pointer`}
+              className={`${styles.accountFileButton} cursor-pointer mb-4`}
             >
               {t("downloadButtonText")}
             </label>
-            <span className="p-3">{passportName}</span>
+            <span className="flex justify-center p-3">{passportName}</span>
             <input
               type={"file"}
               name={field.ID}
