@@ -10,6 +10,7 @@ import asyncForEach from "../../../helpers/asyncForEach";
 import { isMobile } from "react-device-detect";
 
 function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
+  console.log(orderProps);
   const { t } = useTranslation("accountPage");
   const balance = t("balance");
   const accountSetings = t("accountSetings");
@@ -60,6 +61,7 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
               {t("downloadButtonText")}
             </label>
             <span className="flex justify-center p-3">{passportName}</span>
+            <a href={`https://api.smartbolla.com${values[field.ID].URL}`}  target="_blank">{values[field.ID].NAME}</a>
             <input
               type={"file"}
               name={field.ID}
