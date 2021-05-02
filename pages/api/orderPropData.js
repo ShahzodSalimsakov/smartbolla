@@ -1,11 +1,12 @@
 export default async function handler(req, res) {
   //   if (req.method === "POST") {
   try {
+    const body = JSON.parse(req.body);
     const resCounter = await fetch("https://api.smartbolla.com/api/", {
       method: "POST",
       body: req.body,
       headers: {
-        ApiToken: "e7r8uGk5KcwrzT6CanBqRbPVag8ILXFC",
+        ApiToken: body.data.authToken,
       },
     });
     // const text = await resCounter.text();
