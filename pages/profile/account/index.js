@@ -10,13 +10,14 @@ import asyncForEach from "../../../helpers/asyncForEach";
 import { isMobile } from "react-device-detect";
 
 function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
-  console.log(orderProps);
   const { t } = useTranslation("accountPage");
   const balance = t("balance");
   const accountSetings = t("accountSetings");
   const logOut = t("logOut");
 
-  const [passportName, setPassportName] = useState('');
+  const [isAjaxLoading, setIsAjaxLoading] = useState(false);
+
+  const [passportName, setPassportName] = useState("");
 
   const commonLang = {
     about: t("about"),
@@ -49,7 +50,7 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
     if (field.CODE == "PASPORT") {
       field.NAME = t("PASPORT");
     }
-    
+
     switch (field.TYPE) {
       case "FILE":
         return (
@@ -61,7 +62,19 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
               {t("downloadButtonText")}
             </label>
             <span className="flex justify-center p-3">{passportName}</span>
-            <a href={`https://api.smartbolla.com${values[field.ID].URL}`}  target="_blank">{values[field.ID].NAME}</a>
+            {values[field.ID] && (
+              <div>
+                <img
+                  src={`https://api.smartbolla.com${values[field.ID].URL}`}
+                />
+                <a
+                  href={`https://api.smartbolla.com${values[field.ID].URL}`}
+                  target="_blank"
+                >
+                  {values[field.ID].NAME}
+                </a>
+              </div>
+            )}
             <input
               type={"file"}
               name={field.ID}
@@ -104,7 +117,11 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
       mainLayoutSocial={mainLayoutSocial}
     >
       <div className={`${isMobile ? "col" : "grid grid-cols-3"}`}>
-        <div className={`${isMobile ? "col" : "col-span-2"}`}>
+        <div
+          className={`${isAjaxLoading ? styles.isAuthLoading : ""} ${
+            isMobile ? "col" : "col-span-2"
+          }`}
+        >
           <Formik
             initialValues={initialValues}
             validate={(values) => {
@@ -130,6 +147,7 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
             }}
             onSubmit={async (values, { setSubmitting }) => {
               try {
+                setIsAjaxLoading(true);
                 await asyncForEach(
                   orderProps["ORDER_PROP_FIELDS"],
                   async (prop) => {
@@ -153,6 +171,7 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
                 });
 
                 setSubmitting(false);
+                setIsAjaxLoading(false);
               } catch (error) {
                 console.log(error);
               }
@@ -223,15 +242,21 @@ function Account({ orderProps, mainLayoutSocial, userAuthToken }) {
 
 export async function getServerSideProps({ locale, req, res }) {
   const cookieData = parseCookies(req);
-  let authPage = "/auth";
-  if (locale != "en") {
+  let authPage = "/auth?backUrl=/profile/account";
+
+  if (locale != "ru") {
     authPage =
       "/" + locale + authPage + "?backUrl=" + "/" + locale + "/profile/account";
   }
 
   if (res && !cookieData.userAuthToken) {
-    res.writeHead(302, { Location: authPage });
-    return res.end();
+    console.log("davr");
+    return {
+      redirect: {
+        destination: authPage,
+        permanent: false,
+      },
+    };
   } else {
     const profileBalance = await fetch("https://api.smartbolla.com/api/", {
       method: "POST",
@@ -248,8 +273,12 @@ export async function getServerSideProps({ locale, req, res }) {
 
     const { data: tokenData } = await profileBalance.json();
     if (!tokenData.result) {
-      res.writeHead(302, { Location: authPage });
-      return res.end();
+      return {
+        redirect: {
+          destination: authPage,
+          permanent: false,
+        },
+      };
     }
   }
   const resProps = await fetch("https://api.smartbolla.com/api/", {
@@ -281,6 +310,7 @@ export async function getServerSideProps({ locale, req, res }) {
   let { data: mainLayoutSocial } = await socials.json();
 
   let { data: orderProps } = await resProps.json();
+  console.log(orderProps);
   orderProps = orderProps || [];
 
   return {
