@@ -25,7 +25,7 @@ export default function Refund({ mainLayoutSocial }) {
         Center; BB1 Tower, Level 18, Unit №1801-1808 PO BOX 26734, +971
         43699090.
       </p>
-      <p style="text-align: center;">Refund policy</p>
+      <p style={{ textAlign: "center" }}>Refund policy</p>
       <p>
         We're so convinced you'll absolutely love our services, that we're
         willing to offer a 90 day risk-free money back guarantee. If you are not
