@@ -31,7 +31,8 @@ function Home({ projects, counter, products, mainLayoutSocial }) {
     media: translation("media"),
     contact: translation("contact"),
     profile: translation("profile"),
-    investors: translation("investors")
+    investors: translation("investors"),
+    policies: translation("policies")
   };
 
   const countLang = {

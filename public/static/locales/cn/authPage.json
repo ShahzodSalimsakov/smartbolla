@@ -17,5 +17,6 @@
     "codeFromSms": "来自SMS的授权码",
     "resendCode": "您将能够通过以下方式再次发送代码",
     "resendCodeSek": "秒",
-    "sendCode": "重新发送验证码"
+    "sendCode": "重新发送验证码",
+    "policies": "政策规定"
 }

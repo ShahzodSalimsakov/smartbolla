@@ -26,5 +26,6 @@
     "agree": "estoy de acuerdo",
     "summary": "Total",
     "tokenCount": "Numero de monedas",
-    "totalSummary": "Cantidad total"
+    "totalSummary": "Cantidad total",
+    "policies": "politicas"
 }

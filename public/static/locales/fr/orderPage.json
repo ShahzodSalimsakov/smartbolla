@@ -26,5 +26,6 @@
     "agree": "Je suis d'accord",
     "summary": "Total",
     "tokenCount": "Nombre de pièces",
-    "totalSummary": "montant total"
+    "totalSummary": "montant total",
+    "policies": "Stratégies"
 }

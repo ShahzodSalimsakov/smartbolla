@@ -17,5 +17,6 @@
     "codeFromSms": "Code d'autorisation de SMS",
     "resendCode": "Vous pourrez à nouveau envoyer le code via",
     "resendCodeSek": "seconde",
-    "sendCode": "Renvoyer le code"
+    "sendCode": "Renvoyer le code",
+    "policies": "Stratégies"
 }
