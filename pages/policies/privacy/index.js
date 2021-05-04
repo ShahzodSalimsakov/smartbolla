@@ -25,7 +25,7 @@ export default function Privacy({ mainLayoutSocial }) {
         Center; BB1 Tower, Level 18, Unit №1801-1808 PO BOX 26734, +971
         43699090.
       </p>
-      <p style="text-align: center;">Privacy Police</p>
+      <p style={{ textAlign: "center" }}>Privacy Police</p>
       <p>
         1. Any information transferred by the Parties to each other when using
         the resources of the Site (smartbolla.com) is confidential information.
