@@ -21,6 +21,7 @@ function Profile({ mainLayoutSocial, balance }) {
     contact: t("contact"),
     profile: t("profile"),
     investors: t("investors"),
+    policies: t("policies"),
   };
 
   const footerLang = {

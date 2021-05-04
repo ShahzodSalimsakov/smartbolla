@@ -26,5 +26,6 @@
     "agree": "Согласен",
     "summary": "Итого",
     "tokenCount": "Количество монет",
-    "totalSummary": "Общая сумма"
+    "totalSummary": "Общая сумма",
+    "policies": "Политика"
 }

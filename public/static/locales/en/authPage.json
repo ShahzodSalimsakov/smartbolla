@@ -17,5 +17,6 @@
     "codeFromSms": "Authorization code from SMS",
     "resendCode": "You will be able to send the code again through",
     "resendCodeSek": "sec",
-    "sendCode": "Resend code"
+    "sendCode": "Resend code",
+    "policies": "policies"
 }

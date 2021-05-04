@@ -21,6 +21,7 @@ function AuthPage({ mainLayoutSocial }) {
     contact: t("contact"),
     profile: t("profile"),
     investors: t("investors"),
+    policies: t("policies"),
   };
 
   const footerLang = {

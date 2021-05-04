@@ -17,5 +17,6 @@
     "codeFromSms": "كود التفويض من SMS",
     "resendCode": "ستتمكن من إرسال الرمز مرة أخرى من خلال",
     "resendCodeSek": "ثانية",
-    "sendCode": "أعد إرسال الرمز"
+    "sendCode": "أعد إرسال الرمز",
+    "policies": "سياسات"
 }

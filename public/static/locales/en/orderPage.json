@@ -26,5 +26,6 @@
     "agree": "I agree",
     "summary": "Total",
     "tokenCount": "Number of coins",
-    "totalSummary": "Total amount"
+    "totalSummary": "Total amount",
+    "policies": "policies"
 }

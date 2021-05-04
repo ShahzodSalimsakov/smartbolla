@@ -30,6 +30,7 @@ function Order({
     contact: t("contact"),
     profile: t("profile"),
     investors: t("investors"),
+    policies: t("policies"),
   };
   
   const [passwordName, setPasswordFileName] = useState('');
@@ -488,7 +489,6 @@ export async function getServerSideProps({ locale, req, res }) {
   let { data: orderData } = await resOrder.json();
 
   let { data: mainLayoutSocial } = await socials.json();
-  console.log(cookieData);
   return {
     props: {
       mainLayoutSocial,

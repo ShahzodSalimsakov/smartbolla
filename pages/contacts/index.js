@@ -6,6 +6,7 @@ import {
   faMapMarkerAlt,
   faPhoneAlt,
   faCircle,
+  faBuilding,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Contact.module.css";
 import { YMaps, Map, Placemark } from "react-yandex-maps";
@@ -32,6 +33,7 @@ function Contacts({ contactAddress, social }) {
     contact: t("contact"),
     profile: t("profile"),
     investors: t("investors"),
+    policies: t("policies"),
   };
 
   const footerLang = {
@@ -55,6 +57,16 @@ function Contacts({ contactAddress, social }) {
       </div>
       <div className={`${isMobile ? "col" : "grid grid-cols-2"}`}>
         <div className={`${isMobile ? "col" : ""}`}>
+          <div className="flex p-4">
+            <div className="flex">
+              <FontAwesomeIcon
+                size="2x"
+                icon={faBuilding}
+                className="mr-3 w-5 text-white"
+              />
+            </div>
+            <div>Smart Bolla DMCC</div>
+          </div>
           <div className="flex p-4">
             <div className="flex">
               <FontAwesomeIcon
