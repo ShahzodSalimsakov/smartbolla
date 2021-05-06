@@ -8,6 +8,7 @@ import {
   faUser,
   faUsers,
   faAddressCard,
+  faUserShield,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "next-i18next";
 
@@ -37,6 +38,12 @@ export default function Footer({ commonLang }) {
       label: commonLang.investors,
       path: "/investors",
       icon: faUsers,
+    },
+
+    {
+      label: commonLang.policies,
+      path: "/policies",
+      icon: faUserShield,
     },
   ];
   const { pathname } = useRouter();

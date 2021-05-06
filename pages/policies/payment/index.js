@@ -1,6 +1,10 @@
 import { MainLayout } from "../../../components/MainLayout";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { isMobile } from "react-device-detect";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function Payment({ mainLayoutSocial }) {
   const { t } = useTranslation("common");
@@ -19,7 +23,7 @@ export default function Payment({ mainLayoutSocial }) {
       commonLang={commonLang}
       mainLayoutSocial={mainLayoutSocial}
     >
-      <div className="mt-4">
+      <div className={`${isMobile ? "col-10 m-auto pb-20" : "mt-4"}`}>
         <h4>Payment Policy of SMART BOLLA DMCC</h4>
         <div>
           <p>
@@ -310,6 +314,11 @@ export default function Payment({ mainLayoutSocial }) {
             according to the internal legislation of the citizenship state of
             “the Buyer”.
           </p>
+          <Link href={"/policies"}>
+            <a>
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </a>
+          </Link>
         </div>
       </div>
     </MainLayout>
