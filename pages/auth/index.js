@@ -72,7 +72,7 @@ function AuthPage({ mainLayoutSocial }) {
     const { data, error } = await res.json();
 
     if (!data.result) {
-      setSubmitError(data.MESSAGE);
+      setSubmitError(data.MESSAGE); // TODO: Show lang message "Phone not found or password is incorrect"
     } else {
       setUserAuthToken("userAuthToken", data.token, {
         path: "/",

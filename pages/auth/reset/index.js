@@ -66,19 +66,18 @@ function AuthPage({ mainLayoutSocial }) {
     });
 
     const { data, error } = await res.json();
-    console.log(data);
     if (!data.result) {
-      setSubmitError(data.MESSAGE);
+      setSubmitError(data.MESSAGE); // TODO: Show lang message "Phone not found"
     } else {
-      // if (backUrl) {
-      //   return router.push(backUrl, undefined, {
-      //     shallow: true,
-      //   });
-      // } else {
-      //   return router.push("/", undefined, {
-      //     shallow: true,
-      //   });
-      // }
+      if (backUrl) {
+        return router.push(backUrl, undefined, {
+          shallow: true,
+        });
+      } else {
+        return router.push("/", undefined, {
+          shallow: true,
+        });
+      }
     }
   };
 
