@@ -100,7 +100,7 @@ function AuthPage({ mainLayoutSocial }) {
         className={`${isAjaxLoading ? styles.isAuthLoading : ""} ${
           isMobile
             ? "col col-11 h-screen"
-            : "items-center mt-16 mx-auto w-2/12 relative"
+            : "items-center mt-16 mx-auto w-25 relative"
         } `}
       >
         <Formik
@@ -160,6 +160,7 @@ function AuthPage({ mainLayoutSocial }) {
                   }}
                   onBlur={handleBlur}
                   autoComplete="off"
+                  inputClass="w-100"
                 />
                 <label className="block mb-3 mt-3 text-white" htmlFor="">
                   {t("password")}
