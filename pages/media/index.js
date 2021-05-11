@@ -98,7 +98,7 @@ function Media({ mainLayoutSocial, photoData }) {
   return (
     <>
       <MainLayout
-        title="Media"
+        title={t("title")}
         commonLang={commonLang}
         footerLang={footerLang}
         mainLayoutSocial={mainLayoutSocial}
