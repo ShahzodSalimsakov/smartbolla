@@ -5,9 +5,8 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Slider from "../../components/Slider/Slider";
 import { deviceType, CustomView } from "react-device-detect";
 
-function Investors({ aboutText, mainLayoutSocial, investors }) {
+function Investors({ mainLayoutSocial, investors }) {
   const { t } = useTranslation("investorsPage");
-  const { t: translation } = useTranslation("indexPage");
 
   const commonLang = {
     about: t("about"),
@@ -24,7 +23,7 @@ function Investors({ aboutText, mainLayoutSocial, investors }) {
   };
   return (
     <MainLayout
-      title={t("title")}
+      title={t("investors")}
       commonLang={commonLang}
       footerLang={footerLang}
       mainLayoutSocial={mainLayoutSocial}
