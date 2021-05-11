@@ -22,6 +22,7 @@ function AuthPage({ mainLayoutSocial }) {
     profile: t("profile"),
     investors: t("investors"),
     policies: t("policies"),
+    phoneNotFound: t("phoneNotFound")
   };
 
   const footerLang = {
@@ -67,7 +68,7 @@ function AuthPage({ mainLayoutSocial }) {
 
     const { data, error } = await res.json();
     if (!data.result) {
-      setSubmitError(data.MESSAGE); // TODO: Show lang message "Phone not found"
+      setSubmitError(commonLang.phoneNotFound); // TODO: Show lang message "Phone not found"
     } else {
       if (backUrl) {
         return router.push(backUrl, undefined, {

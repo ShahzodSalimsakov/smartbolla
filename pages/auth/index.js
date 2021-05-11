@@ -72,7 +72,7 @@ function AuthPage({ mainLayoutSocial }) {
     const { data, error } = await res.json();
 
     if (!data.result) {
-      setSubmitError(data.MESSAGE); // TODO: Show lang message "Phone not found or password is incorrect"
+        setSubmitError(t("incorrect")); // TODO: Show lang message "Phone not found or password is incorrect"
     } else {
       setUserAuthToken("userAuthToken", data.token, {
         path: "/",
@@ -162,7 +162,7 @@ function AuthPage({ mainLayoutSocial }) {
                   autoComplete="off"
                 />
                 <label className="block mb-3 mt-3 text-white" htmlFor="">
-                  Пароль
+                  {t("password")}
                 </label>
                 <input
                   type="password"
@@ -175,7 +175,7 @@ function AuthPage({ mainLayoutSocial }) {
                 />
                 <div className="flex justify-end my-2">
                   <Link href={resetRoute}>
-                    <a>Сбросить пароль</a>
+                    <a>{t("resetPass")}</a>
                   </Link>
                 </div>
               </div>
