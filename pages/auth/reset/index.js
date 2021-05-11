@@ -1,4 +1,4 @@
-import { MainLayout } from "../../components/MainLayout";
+import { MainLayout } from "../../../components/MainLayout";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PhoneInput from "react-phone-input-2";
@@ -6,10 +6,9 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import { useCookies } from "react-cookie";
 import "react-phone-input-2/lib/style.css";
-import styles from "./Auth.module.css";
+import styles from "../Auth.module.css";
 import { useRouter } from "next/router";
 import { isMobile } from "react-device-detect";
-import Link from "next/link";
 
 let timerInvetval = null;
 let intervalTime = 60;
@@ -23,6 +22,7 @@ function AuthPage({ mainLayoutSocial }) {
     profile: t("profile"),
     investors: t("investors"),
     policies: t("policies"),
+    phoneNotFound: t("phoneNotFound")
   };
 
   const footerLang = {
@@ -37,10 +37,8 @@ function AuthPage({ mainLayoutSocial }) {
   const [userAuthToken, setUserAuthToken] = useCookies(["userAuthToken"]);
 
   const router = useRouter();
-  const { pathname } = router;
-  const { backUrl } = router.query;
 
-  const resetRoute = pathname + "/reset?backUrl=" + backUrl;
+  const { backUrl } = router.query;
 
   const startTimer = () => {
     intervalTime = 60;
@@ -54,14 +52,13 @@ function AuthPage({ mainLayoutSocial }) {
     }, 1000);
   };
 
-  const tryLogin = async (phone, password) => {
+  const tryReset = async (phone, password) => {
     const res = await fetch("/api/auth", {
       method: "POST",
       body: JSON.stringify({
-        method: "phone.auth.login",
+        method: "phone.auth.reset",
         data: {
           phone,
-          password,
         },
       }),
       headers: {
@@ -70,13 +67,9 @@ function AuthPage({ mainLayoutSocial }) {
     });
 
     const { data, error } = await res.json();
-
     if (!data.result) {
-        setSubmitError(t("incorrect")); // TODO: Show lang message "Phone not found or password is incorrect"
+      setSubmitError(commonLang.phoneNotFound); // TODO: Show lang message "Phone not found"
     } else {
-      setUserAuthToken("userAuthToken", data.token, {
-        path: "/",
-      });
       if (backUrl) {
         return router.push(backUrl, undefined, {
           shallow: true,
@@ -100,27 +93,23 @@ function AuthPage({ mainLayoutSocial }) {
         className={`${isAjaxLoading ? styles.isAuthLoading : ""} ${
           isMobile
             ? "col col-11 h-screen"
-            : "items-center mt-16 mx-auto w-2/12 relative"
+            : "items-center mt-16 mx-auto text-center w-5/12 relative"
         } `}
       >
         <Formik
-          initialValues={{ phone: "", password: "" }}
+          initialValues={{ phone: "" }}
           validate={(values) => {
             const errors = {};
 
             if (!values.phone) {
               errors.phone = t("phoneFilled");
             }
-
-            if (!values.password) {
-              errors.password = t("phoneFilled");
-            }
             return errors;
           }}
           onSubmit={async (values, { setSubmitting }) => {
             setIsAjaxLoading(true);
             setSubmitError("");
-            await tryLogin(values.phone, values.password);
+            await tryReset(values.phone);
             setSubmitting(false);
             setIsAjaxLoading(false);
           }}
@@ -161,25 +150,7 @@ function AuthPage({ mainLayoutSocial }) {
                   onBlur={handleBlur}
                   autoComplete="off"
                 />
-                <label className="block mb-3 mt-3 text-white" htmlFor="">
-                  {t("password")}
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  required
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                  className="text-black w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                />
-                <div className="flex justify-end my-2">
-                  <Link href={resetRoute}>
-                    <a>{t("resetPass")}</a>
-                  </Link>
-                </div>
               </div>
-              <div className="mb-6">{t("authRegText")}</div>
               <button type="submit" className={styles.formControlSubmitButton}>
                 {t("signIn")}
               </button>
