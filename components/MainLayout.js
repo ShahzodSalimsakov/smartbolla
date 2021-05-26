@@ -132,6 +132,12 @@ export function MainLayout({
             rel="stylesheet"
             type="text/css"
           />
+          dangerouslySetInnerHTML=
+          {{
+            __html: `<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=949121602542823&ev=PageView&noscript=1"
+/>`,
+          }}
         </noscript>
         <script
           dangerouslySetInnerHTML={{
