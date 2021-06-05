@@ -43,7 +43,7 @@ function Profile({ mainLayoutSocial, balance }) {
             <div
               className={`${styles.tokenCount} bott flex-col items-center font-bold justify-center text-9xl`}
             >
-              <span>{balance.TOKENS_COUNT}</span>
+              <span>{balance.TOTAL_PERCENT}</span>
               <div className={`${styles.balanceColsText} font-bold text-4xl `}>
                 {t("coins")}
               </div>
@@ -75,7 +75,7 @@ function Profile({ mainLayoutSocial, balance }) {
                       <Td>{order.ID}</Td>
                       <Td>{order.DATE_INSERT}</Td>
                       <Td>
-                        {order.PROPERTIES.TOKEN_COUNTS.VALUE} {t("coins")}
+                        {order.PROPERTIES.PERCENT.VALUE} {t("coins")}
                       </Td>
                       <Td>${+order.PRICE}</Td>
                       <Td>
@@ -118,15 +118,14 @@ function Profile({ mainLayoutSocial, balance }) {
 }
 
 export async function getServerSideProps({ locale, req, res }) {
-
   const cookieData = parseCookies(req);
   let authPage = "/auth?backUrl=/profile";
-  
+
   if (locale != "ru") {
     authPage =
       "/" + locale + authPage + "?backUrl=" + "/" + locale + "/profile";
   }
-  
+
   if (res && !cookieData.userAuthToken) {
     return {
       redirect: {
