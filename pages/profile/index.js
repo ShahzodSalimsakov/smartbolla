@@ -43,7 +43,7 @@ function Profile({ mainLayoutSocial, balance }) {
             <div
               className={`${styles.tokenCount} bott flex-col items-center font-bold justify-center text-9xl`}
             >
-              <span>{balance.TOTAL_PERCENT}</span>
+              <span>{balance.TOTAL_PERCENT} %</span>
               <div className={`${styles.balanceColsText} font-bold text-4xl `}>
                 {t("coins")}
               </div>
@@ -75,7 +75,7 @@ function Profile({ mainLayoutSocial, balance }) {
                       <Td>{order.ID}</Td>
                       <Td>{order.DATE_INSERT}</Td>
                       <Td>
-                        {order.PROPERTIES.PERCENT.VALUE} {t("coins")}
+                        {order.PROPERTIES.PERCENT.VALUE} % {t("coins")}
                       </Td>
                       <Td>${+order.PRICE}</Td>
                       <Td>
