@@ -79,8 +79,9 @@ function AuthPage({ mainLayoutSocial }) {
     if (authTypeSelect.id == "email" && email) {
       loginPostData.email = email;
     } else {
-      loginPostData.phone = phome;
+      loginPostData.phone = phone;
     }
+
     const res = await fetch("/api/auth", {
       method: "POST",
       body: JSON.stringify({
