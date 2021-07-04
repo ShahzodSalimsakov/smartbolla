@@ -32,10 +32,9 @@ function Order({
     investors: t("investors"),
     policies: t("policies"),
   };
-  
-  const [passwordName, setPasswordFileName] = useState('');
-  const [photoName, setPhotoFileName] = useState('');
-  
+
+  const [passwordName, setPasswordFileName] = useState("");
+  const [photoName, setPhotoFileName] = useState("");
 
   const footerLang = {
     allRightsRes: t("allRightsRes"),
@@ -207,6 +206,7 @@ function Order({
                             <input
                               type="text"
                               name={`prop_${prop.ID}`}
+                              required={prop.REQUIRED == "Y"}
                               onChange={handleChange}
                               defaultValue={initialValues[`prop_${prop.ID}`]}
                               autoComplete="off"
@@ -232,7 +232,9 @@ function Order({
                             >
                               {t("downloadButtonText")}
                             </label>
-                            <span className="flex justify-center p-3">{passwordName}</span>
+                            <span className="flex justify-center p-3">
+                              {passwordName}
+                            </span>
                             <input
                               type="file"
                               name={`prop_${prop.ID}`}
@@ -240,7 +242,9 @@ function Order({
                               required={prop.REQUIRED == "Y"}
                               style={{ display: "none" }}
                               onChange={(event) => {
-                                setPasswordFileName(event.currentTarget.files[0].name);
+                                setPasswordFileName(
+                                  event.currentTarget.files[0].name
+                                );
                                 setFieldValue(
                                   `prop_${prop.ID}`,
                                   event.currentTarget.files[0]
@@ -268,7 +272,9 @@ function Order({
                             >
                               {t("downloadButtonText")}
                             </label>
-                            <span className="flex justify-center p-3">{photoName}</span>
+                            <span className="flex justify-center p-3">
+                              {photoName}
+                            </span>
                             <input
                               type="file"
                               name={`prop_${prop.ID}`}
@@ -276,7 +282,9 @@ function Order({
                               required={prop.REQUIRED == "Y"}
                               style={{ display: "none" }}
                               onChange={(event) => {
-                                setPhotoFileName(event.currentTarget.files[0].name);
+                                setPhotoFileName(
+                                  event.currentTarget.files[0].name
+                                );
                                 setFieldValue(
                                   `prop_${prop.ID}`,
                                   event.currentTarget.files[0]
